@@ -268,80 +268,71 @@
 
 <body>
     <div class="container">
-        <form>
+        <form action="{% url 'app:qoute' %}" method="post">
+            {% csrf_token %}
             <div class="row">
-                <h4>Frame Details</h4>
+                <h4>Frame Size</h4>
                 <div class="input-group input-group-icon">
-                    <input type="text" placeholder="Height Of Window/Door" name="height"/>
+                    <input type="number" step="any" placeholder="Height Of Window/Door" name="height"/>
                     <div class="input-icon"><i class="fas fa-arrows-alt-v"></i></div>
                 </div>
                 <div class="input-group input-group-icon">
-                    <input type="text" placeholder="Width Of Window/Door" name="width"/>
+                    <input type="number" step="any" placeholder="Width Of Window/Door" name="width"/>
                     <div class="input-icon"><i class="fas fa-arrows-alt-h"></i></div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-half">
-                    <h4>Date of Birth</h4>
-                    <div class="input-group">
-                        <div class="col-third">
-                            <input type="text" placeholder="DD" />
-                        </div>
-                        <div class="col-third">
-                            <input type="text" placeholder="MM" />
-                        </div>
-                        <div class="col-third">
-                            <input type="text" placeholder="YYYY" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-half">
-                    <h4>Gender</h4>
-                    <div class="input-group">
-                        <input id="gender-male" type="radio" name="gender" value="male" />
-                        <label for="gender-male">Male</label>
-                        <input id="gender-female" type="radio" name="gender" value="female" />
-                        <label for="gender-female">Female</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <h4>Payment Details</h4>
+                <h4>Frame Details</h4>
                 <div class="input-group">
                     <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true" />
-                    <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label>
+                    <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>2-Slider Window</span></label>
                     <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" />
-                    <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label>
-                </div>
-                <div class="input-group input-group-icon">
-                    <input type="text" placeholder="Card Number" />
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-                </div>
-                <div class="col-half">
-                    <div class="input-group input-group-icon">
-                        <input type="text" placeholder="Card CVC" />
-                        <div class="input-icon"><i class="fa fa-user"></i></div>
-                    </div>
-                </div>
-                <div class="col-half">
-                    <div class="input-group">
-                        <select>
-                            <option>01 Jan</option>
-                            <option>02 Jan</option>
-                        </select>
-                        <select>
-                            <option>2015</option>
-                            <option>2016</option>
-                        </select>
-                    </div>
+                    <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>3-Slider Window</span></label>
                 </div>
             </div>
             <div class="row">
-                <h4>Terms and Conditions</h4>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="text" placeholder="Frame Type" name="frametype"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Frame Rate" name="framerate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-half input-group input-group-icon">
+                    <input type="text" placeholder="Glass Type" name="glasstype"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Glass Rate" name="glassrate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-half input-group input-group-icon">
+                    <input type="text" placeholder="Net Type" name="nettype"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Net Rate" name="netrate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-half input-group input-group-icon">
+                    <input type="text" placeholder="Add on Name" name="addon"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Add on Rate" name="addonrate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="input-group">
-                    <input id="terms" type="checkbox" />
-                    <label for="terms">I accept the terms and conditions for signing up to this service, and hereby
-                        confirm I have read the privacy policy.</label>
+                    <input id="terms" type="submit"/>
                 </div>
             </div>
         </form>

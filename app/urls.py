@@ -6,5 +6,6 @@ app_name="app"
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('qoute', views.qoute, name="qoute"),
 ]
 
