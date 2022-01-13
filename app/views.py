@@ -35,7 +35,7 @@ def qoute(request):
         shutter_prize = shutter_size * (frame_size/frame_rate)
 
         lpatti_size = (sh*3)
-        lpatti_prize = ilpatti_size * (frame_size/frame_rate)
+        lpatti_prize = lpatti_size * (frame_size/frame_rate)
 
         net_size = sh*sw
         net_prize = net_size * net_rate
