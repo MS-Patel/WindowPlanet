@@ -1,3 +1,4 @@
+import math
 from django.shortcuts import render
 
 # Create your views here.
@@ -27,12 +28,15 @@ def qoute(request):
         fh= float(request.POST['height'])
         fw = float(request.POST['width'])
 
-        frame_prize= ((fh*2)+(fw*2)) * (frame_size/frame_rate)
+        # frame_prize= ((fh*2)+(fw*2)) * (frame_size/frame_rate)
         
         sh = fh-2.75
         sw = (fw-0.5)/2
         shutter_size = (sh*6)+(sw*6)
-        shutter_prize = shutter_size * (frame_size/frame_rate)
+        # shutter_prize = shutter_size * (frame_size/frame_rate)
+
+        fm_size = math.ceil(((fh*2)+(fw*2) + shutter_size)/frame_size)
+        frame_prize = fm_size * frame_rate
 
         lpatti_size = (sh*3)
         lpatti_prize = lpatti_size * (frame_size/frame_rate)
@@ -54,7 +58,7 @@ def qoute(request):
             "Frame":
                 {
                 'type':frame_type,
-                'size':frame_size,
+                'size':fm_size,
                 'rate':frame_rate,
                 'prize':frame_prize,
                 },
