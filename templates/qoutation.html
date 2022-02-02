@@ -55,7 +55,9 @@ body {
                                         <th class="border-0 text-uppercase small font-weight-bold">Item</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Description</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Weight</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Unit Cost</th>
+                                        <th class="border-0 text-uppercase small font-weight-bold">Coating Cost</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Total</th>
                                     </tr>
                                 </thead>
@@ -66,7 +68,9 @@ body {
                                         <td>{{key}}</td>
                                         <td>{{value.type}}</td>
                                         <td>{{value.size}}</td>
+                                        <td>{{value.weight}}</td>
                                         <td>{{value.rate}}</td>
+                                        <td>{{value.coat}}</td>
                                         <td>{{value.prize}}</td>
                                     </tr>
                                     {% endfor %}
@@ -78,17 +82,17 @@ body {
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Grand Total</div>
+                            <div class="h2 font-weight-light">{{grand_total}}</div>
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Coating Total</div>
+                            <div class="h2 font-weight-light">{{coat_total}}</div>
+                        </div>
+
+                        <div class="py-3 px-5 text-right">
+                            <div class="mb-2">Total amount</div>
                             <div class="h2 font-weight-light">{{total}}</div>
-                        </div>
-
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Discount</div>
-                            <div class="h2 font-weight-light"></div>
-                        </div>
-
-                        <div class="py-3 px-5 text-right">
-                            <div class="mb-2">Sub - Total amount</div>
-                            <div class="h2 font-weight-light"></div>
                         </div>
                     </div>
                 </div>

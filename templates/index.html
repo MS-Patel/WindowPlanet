@@ -214,7 +214,7 @@
         }
 
         .container {
-            max-width: 38em;
+            max-width: 70em;
             padding: 1em 3em 2em 3em;
             margin: 0em auto;
             background-color: #fff;
@@ -237,6 +237,12 @@
         }
 
         .col-half {
+            padding-right: 10px;
+            float: left;
+            width: 20%;
+        }
+
+        .col{
             padding-right: 10px;
             float: left;
             width: 50%;
@@ -272,13 +278,13 @@
             {% csrf_token %}
             <div class="row">
                 <h4>Frame Size</h4>
-                <div class="input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Height Of Window/Door" name="height"/>
-                    <div class="input-icon"><i class="fas fa-arrows-alt-v"></i></div>
-                </div>
-                <div class="input-group input-group-icon">
+                <div class="col input-group input-group-icon">
                     <input type="number" step="any" placeholder="Width Of Window/Door" name="width"/>
                     <div class="input-icon"><i class="fas fa-arrows-alt-h"></i></div>
+                </div>
+                <div class="col input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Height Of Window/Door" name="height"/>
+                    <div class="input-icon"><i class="fas fa-arrows-alt-v"></i></div>
                 </div>
             </div>
             <div class="row">
@@ -286,8 +292,12 @@
                 <div class="input-group">
                     <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true" />
                     <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>2-Slider Window</span></label>
-                    <input id="payment-method-paypal" type="radio" name="payment-method" value="paypal" />
-                    <label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>3-Slider Window</span></label>
+                </div>
+            </div>
+            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
+                <div class=" col-half input-group input-group-icon" style="float: right;">
+                    <input type="text" placeholder="Coating Type" name="coattype"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
@@ -296,21 +306,41 @@
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Frame Length" name="framesize"/>
+                    <input type="number" step="any" placeholder="Length" name="framesize"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Weight" name="frameweight"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Rate/kg" name="framerate"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
                 <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="number" step="any" placeholder="Frame Rate" name="framerate"/>
+                    <input type="text" placeholder="Coating Rate" name="framecoat"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <input type="text" placeholder="Glass Type" name="glasstype"/>
+                    <input type="text" placeholder="Shutter Type" name="shuttertype"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Glass Rate(Rs/sq.inch)" name="glassrate"/>
+                    <input type="number" step="any" placeholder="Length" name="shuttersize"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Weight" name="shutterweight"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Rate/kg" name="shutterrate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon" style="float: right;">
+                    <input type="text" placeholder="Coating Rate" name="shuttercoat"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
             </div>
@@ -320,17 +350,19 @@
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="I/L Patti Rate" name="lpattirate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-                </div>
-            </div>
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-half input-group input-group-icon">
-                    <input type="text" placeholder="Net Type" name="nettype"/>
+                    <input type="number" step="any" placeholder="Length" name="lpattisize"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Net Rate(Rs/sq.inch)" name="netrate"/>
+                    <input type="number" step="any" placeholder="Weight" name="lpattiweight"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Rate/kg" name="lpattirate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon" style="float: right;">
+                    <input type="text" placeholder="Coating Rate" name="lpatticoat"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
             </div>
@@ -340,17 +372,51 @@
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Uchannel Rate" name="uchannel_rate"/>
+                    <input type="number" step="any" placeholder="Length" name="uchannel_size"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Weight" name="uchannel_weight"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Rate/kg" name="uchannel_rate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-half input-group input-group-icon" style="float: right;">
+                    <input type="text" placeholder="Coating Rate" name="uchannel_coat"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-half input-group input-group-icon">
+                <div class=" col-third input-group input-group-icon">
+                    <input type="text" placeholder="Glass Type" name="glasstype"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-third input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Glass Rate(Rs/sq.foot)" name="glassrate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+            </div>
+            
+            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
+                <div class=" col-third input-group input-group-icon">
+                    <input type="text" placeholder="Net Type" name="nettype"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+                <div class=" col-third input-group input-group-icon">
+                    <input type="number" step="any" placeholder="Net Rate(Rs/sq.foot)" name="netrate"/>
+                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                </div>
+            </div>
+            
+            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
+                <div class=" col-third input-group input-group-icon">
                     <input type="text" placeholder="Add on Name" name="addon"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Add on Rate" name="addonrate"/>
+                <div class=" col-third input-group input-group-icon">
+                    <input type="number" value="0" step="any" placeholder="Add on Rate" name="addonrate"/>
                     <div class="input-icon"><i class="fa fa-credit-card"></i></div>
                 </div>
             </div>
