@@ -81,7 +81,7 @@ def qoute(request):
         net_prize = net_size * net_rate
 
         coat_total = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-        total = round((frame_prize + glass_prize + net_prize + uchannel_prize + addon_rate),2)
+        total = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + addon_rate),2)
         grand_total = round((coat_total +total),2)
 
         data = {
