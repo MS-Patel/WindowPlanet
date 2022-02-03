@@ -43,7 +43,10 @@ def qoute(request):
 
         addon = request.POST['addon']
         addon_rate = float(request.POST['addonrate'])
-
+        if request.POST['labourrate']:
+            labour_rate = float(request.POST['labourrate'])
+        else:
+            labour_rate = 0
 
 ####################################################################################################################################
 
@@ -81,7 +84,7 @@ def qoute(request):
         net_prize = net_size * net_rate
 
         coat_total = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-        total = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + addon_rate),2)
+        total = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + addon_rate + labour_rate),2)
         grand_total = round((coat_total +total),2)
 
         data = {
@@ -143,6 +146,11 @@ def qoute(request):
                 {
                 'type':addon,
                 'prize':addon_rate,
+                },
+            "Labour":
+                {
+                'type':"Labour Charge",
+                'prize':labour_rate,
                 }
         }
 
