@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style>
         /* 64ac15 */
         *,
@@ -34,7 +35,7 @@
         select option,
         select {
             width: 100%;
-            padding: 1em;
+            padding: 5px;
             line-height: 1.4;
             background-color: #f9f9f9;
             border: 1px solid #e5e5e5;
@@ -68,7 +69,6 @@
             display: inline-block;
             width: 50%;
             text-align: center;
-            float: left;
             border-radius: 0;
         }
 
@@ -134,6 +134,7 @@
         select {
             height: 3.4em;
             line-height: 2;
+            min-width: fit-content;
         }
 
         select:first-of-type {
@@ -242,7 +243,7 @@
             width: 20%;
         }
 
-        .col{
+        .col {
             padding-right: 10px;
             float: left;
             width: 50%;
@@ -279,154 +280,205 @@
             <div class="row">
                 <h4>Frame Size</h4>
                 <div class="col input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Width Of Window/Door" name="width"/>
+                    <input type="tel" step="any" placeholder="Width Of Window/Door" name="width" />
                     <div class="input-icon"><i class="fas fa-arrows-alt-h"></i></div>
                 </div>
                 <div class="col input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Height Of Window/Door" name="height"/>
+                    <input type="tel" step="any" placeholder="Height Of Window/Door" name="height" />
                     <div class="input-icon"><i class="fas fa-arrows-alt-v"></i></div>
                 </div>
             </div>
             <div class="row">
                 <h4>Frame Details</h4>
                 <div class="input-group">
-                    <input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true" />
-                    <label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>2-Slider Window</span></label>
+                    <label for="product">Select Product:</label>
+                    <select id="product" name="product">
+                        {% for i in products %}
+                        <option value={{i.code}}>{{i.name}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
+
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Type" name="coattype"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select Frame:</label>
+                    <select id="product" name="product">
+                        {% for i in coat %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <input type="text" placeholder="Frame Type" name="frametype"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select Frame:</label>
+                    <select id="product" name="product">
+                        {% for i in frame %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Length" name="framesize"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select length:</label>
+                    <select id="product" name="product">
+                        {% for i in length %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Weight" name="frameweight"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" step="any" list="fweight" placeholder="Weight" name="frameweight" />
+                    <datalist id="fweight">
+                        {% for i in weight %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </datalist>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Rate/kg" name="framerate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" step="any" placeholder="Rate/kg" name="framerate" />
                 </div>
                 <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Rate" name="framecoat"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="text" placeholder="Coating Rate" name="framecoat" />
                 </div>
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <input type="text" placeholder="Shutter Type" name="shuttertype"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select Shutter:</label>
+                    <select id="product" name="product">
+                        {% for i in shutter %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Length" name="shuttersize"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select length:</label>
+                    <select id="product" name="product">
+                        {% for i in length %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Weight" name="shutterweight"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" list="sweight" step="any" placeholder="Weight" name="shutterweight" />
+                    <datalist id="sweight">
+                        {% for i in length %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </datalist>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Rate/kg" name="shutterrate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" step="any" placeholder="Rate/kg" name="shutterrate" />
                 </div>
                 <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Rate" name="shuttercoat"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="text" placeholder="Coating Rate" name="shuttercoat" />
                 </div>
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <input type="text" placeholder="I/L Patti Type" name="lpattitype"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select I/L patti:</label>
+                    <select id="product" name="product">
+                        {% for i in ilpatti %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Length" name="lpattisize"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select length:</label>
+                    <select id="product" name="product">
+                        {% for i in length %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Weight" name="lpattiweight"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" list="weight" step="any" placeholder="Weight" name="lpattiweight" />
+                    <datalist id="weight">
+                        {% for i in length %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </datalist>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Rate/kg" name="lpattirate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" step="any" placeholder="Rate/kg" name="lpattirate" />
                 </div>
                 <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Rate" name="lpatticoat"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="text" placeholder="Coating Rate" name="lpatticoat" />
                 </div>
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <input type="text" placeholder="Uchannel Type" name="uchannel_type"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select Uchannel:</label>
+                    <select id="product" name="product">
+                        {% for i in uch %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Length" name="uchannel_size"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select length:</label>
+                    <select id="product" name="product">
+                        {% for i in length %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Weight" name="uchannel_weight"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-                </div>
+                    <input type="tel" list="weight" step="any" placeholder="Weight" name="uchannel_weight" />
+                    <datalist id="weight">
+                        {% for i in length %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </datalist> </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Rate/kg" name="uchannel_rate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" step="any" placeholder="Rate/kg" name="uchannel_rate" />
                 </div>
                 <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Rate" name="uchannel_coat"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="text" placeholder="Coating Rate" name="uchannel_coat" />
                 </div>
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-third input-group input-group-icon">
-                    <input type="text" placeholder="Glass Type" name="glasstype"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select Glass:</label>
+                    <select id="product" name="product">
+                        {% for i in glass %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-third input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Glass Rate(Rs/sq.foot)" name="glassrate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-                </div>
-            </div>
-            
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-third input-group input-group-icon">
-                    <input type="text" placeholder="Net Type" name="nettype"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
-                </div>
-                <div class=" col-third input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Net Rate(Rs/sq.foot)" name="netrate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" step="any" placeholder="Glass Rate(Rs/sq.foot)" name="glassrate" />
                 </div>
             </div>
-            
+
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-third input-group input-group-icon">
-                    <input type="text" placeholder="Add on Name" name="addon"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <label for="product">Select Mosquito Net:</label>
+                    <select id="product" name="product">
+                        {% for i in net %}
+                        <option value={{i}}>{{i}}</option>
+                        {% endfor %}
+                    </select>
                 </div>
                 <div class=" col-third input-group input-group-icon">
-                    <input type="number" value="0" step="any" placeholder="Add on Rate" name="addonrate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" step="any" placeholder="Net Rate(Rs/sq.foot)" name="netrate" />
+                </div>
+            </div>
+
+            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
+                <div class=" col-third input-group input-group-icon">
+                    <input type="text" placeholder="Add on Name" name="addon" />
                 </div>
                 <div class=" col-third input-group input-group-icon">
-                    <input type="number" step="any" placeholder="Labour Charges" name="labourrate"/>
-                    <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+                    <input type="tel" value="0" step="any" placeholder="Add on Rate" name="addonrate" />
+                </div>
+                <div class=" col-third input-group input-group-icon">
+                    <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
                 </div>
             </div>
             <div class="row">
                 <div class="input-group">
-                    <input id="terms" type="submit"/>
+                    <input id="terms" type="submit" />
                 </div>
             </div>
         </form>
