@@ -291,19 +291,20 @@
             <div class="row">
                 <h4>Frame Details</h4>
                 <div class="input-group">
-                    <label for="product">Select Product:</label>
-                    <select id="product" name="product">
+                    <label for="Product">Select Product:</label>
+                    <input type="text" list="Product" step="any" placeholder="Weight" name="shutterweight" />
+                    <datalist id="Product" name="Product">
                         {% for i in products %}
                         <option value={{i.code}}>{{i.name}}</option>
                         {% endfor %}
-                    </select>
+                    </datalist>
                 </div>
 
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <label for="product">Select Frame:</label>
-                    <select id="product" name="product">
+                    <label for="coating">Select Frame:</label>
+                    <select id="product" name="coating">
                         {% for i in coat %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
@@ -312,24 +313,24 @@
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <label for="product">Select Frame:</label>
-                    <select id="product" name="product">
+                    <label for="frametype">Select Frame:</label>
+                    <select id="frametype" name="frametype">
                         {% for i in frame %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <label for="product">Select length:</label>
-                    <select id="product" name="product">
+                    <label for="framesize">Select length:</label>
+                    <select id="framesize" name="framesize">
                         {% for i in length %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="tel" step="any" list="fweight" placeholder="Weight" name="frameweight" />
-                    <datalist id="fweight">
+                    <input type="tel" step="any" list="frameweight" placeholder="Weight" name="frameweight" />
+                    <datalist id="frameweight">
                         {% for i in weight %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
@@ -344,24 +345,24 @@
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <label for="product">Select Shutter:</label>
-                    <select id="product" name="product">
+                    <label for="shuttertype">Select Shutter:</label>
+                    <select id="shuttertype" name="shuttertype">
                         {% for i in shutter %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <label for="product">Select length:</label>
-                    <select id="product" name="product">
+                    <label for="shuttersize">Select length:</label>
+                    <select id="shuttersize" name="shuttersize">
                         {% for i in length %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="tel" list="sweight" step="any" placeholder="Weight" name="shutterweight" />
-                    <datalist id="sweight">
+                    <input type="tel" list="shutterweight" step="any" placeholder="Weight" name="shutterweight" />
+                    <datalist id="shutterweight">
                         {% for i in length %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
@@ -376,24 +377,24 @@
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <label for="product">Select I/L patti:</label>
-                    <select id="product" name="product">
+                    <label for="lpattisize">Select I/L patti:</label>
+                    <select id="lpattisize" name="lpattisize">
                         {% for i in ilpatti %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <label for="product">Select length:</label>
-                    <select id="product" name="product">
+                    <label for="lpattisize">Select length:</label>
+                    <select id="lpattisize" name="lpattisize">
                         {% for i in length %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="tel" list="weight" step="any" placeholder="Weight" name="lpattiweight" />
-                    <datalist id="weight">
+                    <input type="tel" list="lpattiweight" step="any" placeholder="lpattiweight" name="lpattiweight" />
+                    <datalist id="lpattiweight">
                         {% for i in length %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
@@ -408,24 +409,24 @@
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-half input-group input-group-icon">
-                    <label for="product">Select Uchannel:</label>
-                    <select id="product" name="product">
+                    <label for="uchannel_type">Select Uchannel:</label>
+                    <select id="uchannel_type" name="uchannel_type">
                         {% for i in uch %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <label for="product">Select length:</label>
-                    <select id="product" name="product">
+                    <label for="uchannel_size">Select length:</label>
+                    <select id="uchannel_size" name="uchannel_size">
                         {% for i in length %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class=" col-half input-group input-group-icon">
-                    <input type="tel" list="weight" step="any" placeholder="Weight" name="uchannel_weight" />
-                    <datalist id="weight">
+                    <input type="tel" list="uchannel_weight" step="any" placeholder="uchannel_weight" name="uchannel_weight" />
+                    <datalist id="uchannel_weight">
                         {% for i in length %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
@@ -439,8 +440,8 @@
             </div>
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-third input-group input-group-icon">
-                    <label for="product">Select Glass:</label>
-                    <select id="product" name="product">
+                    <label for="glasstype">Select Glass:</label>
+                    <select id="glasstype" name="glasstype">
                         {% for i in glass %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
@@ -453,8 +454,8 @@
 
             <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
                 <div class=" col-third input-group input-group-icon">
-                    <label for="product">Select Mosquito Net:</label>
-                    <select id="product" name="product">
+                    <label for="nettype">Select Mosquito Net:</label>
+                    <select id="nettype" name="nettype">
                         {% for i in net %}
                         <option value={{i}}>{{i}}</option>
                         {% endfor %}
@@ -484,5 +485,4 @@
         </form>
     </div>
 </body>
-
 </html>

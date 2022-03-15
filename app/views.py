@@ -65,90 +65,86 @@ def qoute(request):
 
         
         if product == "1":
-            pass
 
+            fh                  = float(request.POST['height'])
+            fw                  = float(request.POST['width'])
 
-        fh                  = float(request.POST['height'])
-        fw                  = float(request.POST['width'])
-
-        fm_size             = ((fh*2)+(fw*2))
-        fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
-        fm_coat             = round(((fm_size*frame_coat)/12),2)
-        frame_prize         = round((fm_weight*frame_rate),2)
+            fm_size             = ((fh*2)+(fw*2))
+            fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
+            fm_coat             = round(((fm_size*frame_coat)/12),2)
+            frame_prize         = round((fm_weight*frame_rate),2)
+            
+            sh                  = fh-2.75
+            sw                  = (fw-0.375)/2
+            shtt_size           = (sh*4)+(sw*4)
+            sh_coat             = round(((shtt_size*shutter_coat)/12),2)
+            sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
+            shutter_prize       = round((sh_weight * shutter_rate),2)
         
-        sh                  = fh-2.75
-        sw                  = (fw-0.5)/2
-        shtt_size           = (sh*6)+(sw*6)
-        sh_coat             = round(((shtt_size*shutter_coat)/12),2)
-        sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
-        shutter_prize       = round((sh_weight * shutter_rate),2)
-    
-        il_size             = (sh*3)
-        il_weight           = round(((il_size * lpatti_weight) / lpatti_size),2)
-        il_coat             = round(((il_size*lpatti_coat)/12),2)
-        lpatti_prize        = round((il_weight * lpatti_rate),2)
+            il_size             = (sh*3)
+            il_weight           = round(((il_size * lpatti_weight) / lpatti_size),2)
+            il_coat             = round(((il_size*lpatti_coat)/12),2)
+            lpatti_prize        = round((il_weight * lpatti_rate),2)
 
-        uh                  = sh-5
-        uw                  = sw-5
-        uc_size             = (uh+uw)*2
-        uc_coat             = round(((uc_size * uchannel_coat)/12),2)
-        uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-        uchannel_prize      = round((uc_weight * uchannel_rate),2)
+            uh                  = sh-5
+            uw                  = sw-5
+            uc_size             = (uh+uw)*2
+            uc_coat             = round(((uc_size * uchannel_coat)/12),2)
+            uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
+            uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
-        glass_size          = round(((((sh-4.125) * (sw-4.125))*2)/144),2)
-        glass_prize         = round((glass_size * glass_rate),2)
+            glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
+            glass_prize         = round((glass_size * glass_rate),2)
 
-        net_size            = round(((sh*sw)/144),2)
-        net_prize           = net_size * net_rate
+            net_size            = round(((sh*sw)/144),2)
+            net_prize           = net_size * net_rate
 
-        coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-        total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + addon_rate + labour_rate),2)
-        grand_total         = round((coat_total +total),2)
+            coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
+            total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + addon_rate + labour_rate),2)
+            grand_total         = round((coat_total +total),2)
 
 
 #############################################################################################################       3 Track Window(2+1)
 
         
         if product == "2":
-            pass
 
+            fh                  = float(request.POST['height'])
+            fw                  = float(request.POST['width'])
 
-        fh                  = float(request.POST['height'])
-        fw                  = float(request.POST['width'])
-
-        fm_size             = ((fh*2)+(fw*2))
-        fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
-        fm_coat             = round(((fm_size*frame_coat)/12),2)
-        frame_prize         = round((fm_weight*frame_rate),2)
+            fm_size             = ((fh*2)+(fw*2))
+            fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
+            fm_coat             = round(((fm_size*frame_coat)/12),2)
+            frame_prize         = round((fm_weight*frame_rate),2)
+            
+            sh                  = fh-2.75
+            sw                  = (fw-0.375)/2
+            shtt_size           = (sh*6)+(sw*6)
+            sh_coat             = round(((shtt_size*shutter_coat)/12),2)
+            sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
+            shutter_prize       = round((sh_weight * shutter_rate),2)
         
-        sh                  = fh-2.75
-        sw                  = (fw-0.5)/2
-        shtt_size           = (sh*6)+(sw*6)
-        sh_coat             = round(((shtt_size*shutter_coat)/12),2)
-        sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
-        shutter_prize       = round((sh_weight * shutter_rate),2)
-    
-        il_size             = (sh*3)
-        il_weight           = round(((il_size * lpatti_weight) / lpatti_size),2)
-        il_coat             = round(((il_size*lpatti_coat)/12),2)
-        lpatti_prize        = round((il_weight * lpatti_rate),2)
+            il_size             = (sh*3)
+            il_weight           = round(((il_size * lpatti_weight) / lpatti_size),2)
+            il_coat             = round(((il_size*lpatti_coat)/12),2)
+            lpatti_prize        = round((il_weight * lpatti_rate),2)
 
-        uh                  = sh-5
-        uw                  = sw-5
-        uc_size             = (uh+uw)*2
-        uc_coat             = round(((uc_size * uchannel_coat)/12),2)
-        uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-        uchannel_prize      = round((uc_weight * uchannel_rate),2)
+            uh                  = sh-5
+            uw                  = sw-5
+            uc_size             = (uh+uw)*2
+            uc_coat             = round(((uc_size * uchannel_coat)/12),2)
+            uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
+            uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
-        glass_size          = round(((((sh-4.125) * (sw-4.125))*2)/144),2)
-        glass_prize         = round((glass_size * glass_rate),2)
+            glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
+            glass_prize         = round((glass_size * glass_rate),2)
 
-        net_size            = round(((sh*sw)/144),2)
-        net_prize           = net_size * net_rate
+            net_size            = round(((sh*sw)/144),2)
+            net_prize           = net_size * net_rate
 
-        coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-        total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + addon_rate + labour_rate),2)
-        grand_total         = round((coat_total +total),2)
+            coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
+            total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + addon_rate + labour_rate),2)
+            grand_total         = round((coat_total +total),2)
 
 #############################################################################################################       3 Track Window
 
