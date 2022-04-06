@@ -19,6 +19,9 @@ def home(request):
 
     return render(request,'index.html',{'products':prod, 'frame':frame,'shutter':shutter,'ilpatti':ilpatti,'uch':uch,'glass':glass,'net':net ,'coat':coat, 'length':length})
 
+def partial(request, id):
+    
+    return render(request, 'part-form.html', {'no':id})
 
 def qoute(request):
 

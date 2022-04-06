@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quatation</title>
+        <link rel="stylesheet"
+              href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+              integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+              crossorigin="anonymous"/>
+        </link>
     <style>
         /* 64ac15 */
         *,
@@ -270,211 +271,298 @@
             }
         }
     </style>
-
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
 </head>
-
 <body>
     <div class="container">
         <form action="{% url 'app:qoute' %}" method="post">
             {% csrf_token %}
-            <div class="row">
-                <h4>Frame Size</h4>
-                <div class="col input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Width Of Window/Door" name="width" />
-                    <div class="input-icon"><i class="fas fa-arrows-alt-h"></i></div>
+            <div class="form">
+                <div class="row">
+                    <h4>Frame Size</h4>
+                    <div class="col input-group input-group-icon">
+                        <input type="tel" step="any" placeholder="Width Of Window/Door" name="width" />
+                        <div class="input-icon">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                    </div>
+                    <div class="col input-group input-group-icon">
+                        <input type="tel"
+                               step="any"
+                               placeholder="Height Of Window/Door"
+                               name="height"/>
+                        <div class="input-icon">
+                            <i class="fas fa-arrows-alt-v"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="col input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Height Of Window/Door" name="height" />
-                    <div class="input-icon"><i class="fas fa-arrows-alt-v"></i></div>
+                <div class="row">
+                    <h4>Frame Details</h4>
+                    <div class="input-group">
+                        <label for="Product">Select Product:</label>
+                        <select id="product" name="product">
+                            {% for i in products %}
+                                <option value="{{ i.code }}">
+                                    {{i}}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="col-half input-group" style="float: right;">
+                            <label for="qty">Quantity</label>
+                            <input id="qty" name="qty" type="number"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                        <label for="coating">Select Frame:</label>
+                        <select id="coating" name="coating">
+                            {% for i in coat %}
+                                <option value='{{i}}'>
+                                    {{i}}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="frametype">Select Frame:</label>
+                        <select id="frametype" name="frametype">
+                            {% for i in frame %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="framesize">Select length:</label>
+                        <select id="framesize" name="framesize">
+                            {% for i in length %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel"
+                               step="any"
+                               list="frameweight"
+                               placeholder="Weight"
+                               name="frameweight"/>
+                        <datalist id="frameweight">
+                            {% for i in weight %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel" step="any" placeholder="Rate/kg" name="framerate" />
+                    </div>
+                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                        <input type="text" placeholder="Coating Rate" name="framecoat" />
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="shuttertype">Select Shutter:</label>
+                        <select id="shuttertype" name="shuttertype">
+                            {% for i in shutter %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="shuttersize">Select length:</label>
+                        <select id="shuttersize" name="shuttersize">
+                            {% for i in length %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel"
+                               list="shutterweight"
+                               step="any"
+                               placeholder="Weight"
+                               name="shutterweight"/>
+                        <datalist id="shutterweight">
+                            {% for i in length %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel" step="any" placeholder="Rate/kg" name="shutterrate" />
+                    </div>
+                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                        <input type="text" placeholder="Coating Rate" name="shuttercoat" />
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="lpattisize">Select I/L patti:</label>
+                        <select id="lpattisize" name="lpattisize">
+                            {% for i in ilpatti %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="lpattisize">Select length:</label>
+                        <select id="lpattisize" name="lpattisize">
+                            {% for i in length %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel"
+                               list="lpattiweight"
+                               step="any"
+                               placeholder="lpattiweight"
+                               name="lpattiweight"/>
+                        <datalist id="lpattiweight">
+                            {% for i in length %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel" step="any" placeholder="Rate/kg" name="lpattirate" />
+                    </div>
+                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                        <input type="text" placeholder="Coating Rate" name="lpatticoat" />
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="uchannel_type">Select Uchannel:</label>
+                        <select id="uchannel_type" name="uchannel_type">
+                            {% for i in uch %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="uchannel_size">Select length:</label>
+                        <select id="uchannel_size" name="uchannel_size">
+                            {% for i in length %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel"
+                               list="uchannel_weight"
+                               step="any"
+                               placeholder="uchannel_weight"
+                               name="uchannel_weight"/>
+                        <datalist id="uchannel_weight">
+                            {% for i in length %}
+                                <option value={{i}}>{{i }}
+                                </option>
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel" step="any" placeholder="Rate/kg" name="uchannel_rate" />
+                    </div>
+                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                        <input type="text" placeholder="Coating Rate" name="uchannel_coat" />
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-third input-group input-group-icon">
+                        <label for="glasstype">Select Glass:</label>
+                        <select id="glasstype" name="glasstype">
+                            {% for i in glass %}
+                                <option value="{{i}}">
+                                    {{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-third input-group input-group-icon">
+                        <input type="tel"
+                               step="any"
+                               placeholder="Glass Rate(Rs/sq.foot)"
+                               name="glassrate"/>
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-third input-group input-group-icon">
+                        <label for="nettype">Select Mosquito Net:</label>
+                        <select id="nettype" name="nettype">
+                            {% for i in net %}
+                                <option value="{{i}}">
+                                    {{i }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class=" col-third input-group input-group-icon">
+                        <input type="tel"
+                               step="any"
+                               placeholder="Net Rate(Rs/sq.foot)"
+                               name="netrate"/>
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-third input-group input-group-icon">
+                        <input type="text" placeholder="Add on Name" name="addon" />
+                    </div>
+                    <div class=" col-third input-group input-group-icon">
+                        <input type="tel"
+                               value="0"
+                               step="any"
+                               placeholder="Add on Rate"
+                               name="addonrate"/>
+                    </div>
+                    <div class=" col-third input-group input-group-icon">
+                        <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <h4>Frame Details</h4>
-                <div class="input-group">
-                    <label for="Product">Select Product:</label>
-                    <input type="text" list="Product" step="any" placeholder="Weight" name="shutterweight" />
-                    <datalist id="Product" name="Product">
-                        {% for i in products %}
-                        <option value={{i.code}}>{{i.name}}</option>
-                        {% endfor %}
-                    </datalist>
-                </div>
-
-            </div>
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <label for="coating">Select Frame:</label>
-                    <select id="product" name="coating">
-                        {% for i in coat %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            </div>
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-half input-group input-group-icon">
-                    <label for="frametype">Select Frame:</label>
-                    <select id="frametype" name="frametype">
-                        {% for i in frame %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <label for="framesize">Select length:</label>
-                    <select id="framesize" name="framesize">
-                        {% for i in length %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="tel" step="any" list="frameweight" placeholder="Weight" name="frameweight" />
-                    <datalist id="frameweight">
-                        {% for i in weight %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </datalist>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Rate/kg" name="framerate" />
-                </div>
-                <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Rate" name="framecoat" />
-                </div>
-            </div>
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-half input-group input-group-icon">
-                    <label for="shuttertype">Select Shutter:</label>
-                    <select id="shuttertype" name="shuttertype">
-                        {% for i in shutter %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <label for="shuttersize">Select length:</label>
-                    <select id="shuttersize" name="shuttersize">
-                        {% for i in length %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="tel" list="shutterweight" step="any" placeholder="Weight" name="shutterweight" />
-                    <datalist id="shutterweight">
-                        {% for i in length %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </datalist>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Rate/kg" name="shutterrate" />
-                </div>
-                <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Rate" name="shuttercoat" />
-                </div>
-            </div>
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-half input-group input-group-icon">
-                    <label for="lpattisize">Select I/L patti:</label>
-                    <select id="lpattisize" name="lpattisize">
-                        {% for i in ilpatti %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <label for="lpattisize">Select length:</label>
-                    <select id="lpattisize" name="lpattisize">
-                        {% for i in length %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="tel" list="lpattiweight" step="any" placeholder="lpattiweight" name="lpattiweight" />
-                    <datalist id="lpattiweight">
-                        {% for i in length %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </datalist>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Rate/kg" name="lpattirate" />
-                </div>
-                <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Rate" name="lpatticoat" />
-                </div>
-            </div>
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-half input-group input-group-icon">
-                    <label for="uchannel_type">Select Uchannel:</label>
-                    <select id="uchannel_type" name="uchannel_type">
-                        {% for i in uch %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <label for="uchannel_size">Select length:</label>
-                    <select id="uchannel_size" name="uchannel_size">
-                        {% for i in length %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="tel" list="uchannel_weight" step="any" placeholder="uchannel_weight" name="uchannel_weight" />
-                    <datalist id="uchannel_weight">
-                        {% for i in length %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </datalist> </div>
-                <div class=" col-half input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Rate/kg" name="uchannel_rate" />
-                </div>
-                <div class=" col-half input-group input-group-icon" style="float: right;">
-                    <input type="text" placeholder="Coating Rate" name="uchannel_coat" />
-                </div>
-            </div>
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-third input-group input-group-icon">
-                    <label for="glasstype">Select Glass:</label>
-                    <select id="glasstype" name="glasstype">
-                        {% for i in glass %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-third input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Glass Rate(Rs/sq.foot)" name="glassrate" />
-                </div>
-            </div>
-
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-third input-group input-group-icon">
-                    <label for="nettype">Select Mosquito Net:</label>
-                    <select id="nettype" name="nettype">
-                        {% for i in net %}
-                        <option value={{i}}>{{i}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class=" col-third input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Net Rate(Rs/sq.foot)" name="netrate" />
-                </div>
-            </div>
-
-            <div class="row" style="border: 1px solid #b9b9b9; padding: 5px; margin: 5px;">
-                <div class=" col-third input-group input-group-icon">
-                    <input type="text" placeholder="Add on Name" name="addon" />
-                </div>
-                <div class=" col-third input-group input-group-icon">
-                    <input type="tel" value="0" step="any" placeholder="Add on Rate" name="addonrate" />
-                </div>
-                <div class=" col-third input-group input-group-icon">
-                    <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
+            <div class="row" id="replace"
+                 style="border: 1px solid #b9b9b9;
+                        padding: 5px;
+                        margin: 5px;">
+                <div class="input-group input-group-icon">
+                    <button class="btn" type="button" hx-get="{% url 'app:partial' 1 %}" hx-target="#replace">Add Product</button>
                 </div>
             </div>
             <div class="row">
