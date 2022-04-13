@@ -9,7 +9,7 @@
               href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
               integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
               crossorigin="anonymous"/>
-        </link>
+       
     <style>
         /* 64ac15 */
         *,
@@ -179,6 +179,7 @@
 
         .input-group-icon input {
             padding-left: 4.4em;
+            min-height:51px;
         }
 
         .input-group-icon .input-icon {
@@ -239,9 +240,19 @@
         }
 
         .col-half {
-            padding-right: 10px;
+            padding: 10px;
             float: left;
             width: 20%;
+        }
+        .col-th {
+            padding: 10px;
+            float: left;
+            width: 45%;
+        }
+        .col-forth {
+            padding: 10px;
+            float: left;
+            width: 15%;
         }
 
         .col {
@@ -302,15 +313,26 @@
                         <label for="Product">Select Product:</label>
                         <select id="product" name="product">
                             {% for i in products %}
-                                <option value="{{ i.code }}">
-                                    {{i}}
-                                </option>
-                            {% endfor %}
+                            <option value="{{i.code}}-{{i}}">
+                                {{i.name}}
+                            </option>
+                        {% endfor %}
                         </select>
                         <div class="col-half input-group" style="float: right;">
                             <label for="qty">Quantity</label>
-                            <input id="qty" name="qty" type="number"/>
+                            <input id="qty" name="qty" type="number" value="1"/>
                         </div>
+
+                        <div class=" col-half input-group">
+                            <label for="Location">Location</label>
+                            <select id="location" name="location">
+                                {% for i in location %}
+                                    <option value={{i}}>{{i}}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
                     </div>
                 </div>
                 <div class="row"
@@ -318,7 +340,7 @@
                             padding: 5px;
                             margin: 5px;">
                     <div class=" col-half input-group input-group-icon" style="float: right;">
-                        <label for="coating">Select Frame:</label>
+                        <label for="coating">Select Coating:</label>
                         <select id="coating" name="coating">
                             {% for i in coat %}
                                 <option value='{{i}}'>
@@ -332,7 +354,7 @@
                      style="border: 1px solid #b9b9b9;
                             padding: 5px;
                             margin: 5px;">
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-th input-group input-group-icon">
                         <label for="frametype">Select Frame:</label>
                         <select id="frametype" name="frametype">
                             {% for i in frame %}
@@ -341,7 +363,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <label for="framesize">Select length:</label>
                         <select id="framesize" name="framesize">
                             {% for i in length %}
@@ -358,23 +380,23 @@
                                name="frameweight"/>
                         <datalist id="frameweight">
                             {% for i in weight %}
-                                <option value={{i}}>{{i }}
+                                <option value={{i}}>{{i}}
                                 </option>
                             {% endfor %}
                         </datalist>
                     </div>
                     <div class=" col-half input-group input-group-icon">
-                        <input type="tel" step="any" placeholder="Rate/kg" name="framerate" />
+                        <input type="tel" step="any" placeholder="Rate/kg" name="framerate"/>
                     </div>
-                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                    {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
                         <input type="text" placeholder="Coating Rate" name="framecoat" />
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
                             padding: 5px;
                             margin: 5px;">
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-th input-group input-group-icon">
                         <label for="shuttertype">Select Shutter:</label>
                         <select id="shuttertype" name="shuttertype">
                             {% for i in shutter %}
@@ -383,7 +405,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <label for="shuttersize">Select length:</label>
                         <select id="shuttersize" name="shuttersize">
                             {% for i in length %}
@@ -408,15 +430,15 @@
                     <div class=" col-half input-group input-group-icon">
                         <input type="tel" step="any" placeholder="Rate/kg" name="shutterrate" />
                     </div>
-                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                    {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
                         <input type="text" placeholder="Coating Rate" name="shuttercoat" />
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
                             padding: 5px;
                             margin: 5px;">
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-th input-group input-group-icon">
                         <label for="lpattisize">Select I/L patti:</label>
                         <select id="lpattisize" name="lpattisize">
                             {% for i in ilpatti %}
@@ -425,7 +447,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <label for="lpattisize">Select length:</label>
                         <select id="lpattisize" name="lpattisize">
                             {% for i in length %}
@@ -438,7 +460,7 @@
                         <input type="tel"
                                list="lpattiweight"
                                step="any"
-                               placeholder="lpattiweight"
+                               placeholder="Weight"
                                name="lpattiweight"/>
                         <datalist id="lpattiweight">
                             {% for i in length %}
@@ -450,15 +472,15 @@
                     <div class=" col-half input-group input-group-icon">
                         <input type="tel" step="any" placeholder="Rate/kg" name="lpattirate" />
                     </div>
-                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                    {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
                         <input type="text" placeholder="Coating Rate" name="lpatticoat" />
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
                             padding: 5px;
                             margin: 5px;">
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-th input-group input-group-icon">
                         <label for="uchannel_type">Select Uchannel:</label>
                         <select id="uchannel_type" name="uchannel_type">
                             {% for i in uch %}
@@ -467,10 +489,10 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <label for="uchannel_size">Select length:</label>
                         <select id="uchannel_size" name="uchannel_size">
-                            {% for i in length %}
+                            {% for i in length %}   
                                 <option value={{i}}>{{i }}
                                 </option>
                             {% endfor %}
@@ -480,7 +502,7 @@
                         <input type="tel"
                                list="uchannel_weight"
                                step="any"
-                               placeholder="uchannel_weight"
+                               placeholder="Weight"
                                name="uchannel_weight"/>
                         <datalist id="uchannel_weight">
                             {% for i in length %}
@@ -492,9 +514,9 @@
                     <div class=" col-half input-group input-group-icon">
                         <input type="tel" step="any" placeholder="Rate/kg" name="uchannel_rate" />
                     </div>
-                    <div class=" col-half input-group input-group-icon" style="float: right;">
+                    {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
                         <input type="text" placeholder="Coating Rate" name="uchannel_coat" />
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
@@ -538,6 +560,8 @@
                                name="netrate"/>
                     </div>
                 </div>
+
+
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
                             padding: 5px;
@@ -554,6 +578,31 @@
                     </div>
                     <div class=" col-third input-group input-group-icon">
                         <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
+                    </div>
+                </div>
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                            padding: 5px;
+                            margin: 5px;">
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="pushlock">Push Lock</label>
+                        
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel"
+                               step="any"
+                               placeholder="Rate"
+                               name="pushlock"/>
+                    </div>
+                    <div class="col-half input-group input-group-icon">
+                        <label for="handlelock">Handle Lock</label>
+                      
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                        <input type="tel"
+                               step="any"
+                               placeholder="Rate"
+                               name="handlelock"/>
                     </div>
                 </div>
             </div>

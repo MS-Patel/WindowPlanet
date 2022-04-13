@@ -1,6 +1,6 @@
 from django.db import models
 
-from app.models import Addon, Coat, Frame, Glass, Ilpatti, Length, Mnet, Product, Uchannel
+from app.models import Addon, Coat, Frame, Glass, Ilpatti, Length, Location, Mnet, Product, Uchannel
 
 
 class Products(models.Model):
@@ -29,7 +29,8 @@ class Products(models.Model):
         Coat, on_delete=models.PROTECT, verbose_name="Coating Type", max_length=30)
     coat_rate = models.FloatField(verbose_name="Coating Rate")
     qty= models.PositiveIntegerField(verbose_name="Quantity")
-
+    location=models.ForeignKey(
+        Location, on_delete=models.PROTECT, max_length=30)
 
 class Quotation(models.Model):
 
