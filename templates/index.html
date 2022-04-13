@@ -439,8 +439,8 @@
                             padding: 5px;
                             margin: 5px;">
                     <div class=" col-th input-group input-group-icon">
-                        <label for="lpattisize">Select I/L patti:</label>
-                        <select id="lpattisize" name="lpattisize">
+                        <label for="lpattitype">Select I/L patti:</label>
+                        <select id="lpattitype" name="lpattitype">
                             {% for i in ilpatti %}
                                 <option value={{i}}>{{i }}
                                 </option>
@@ -611,7 +611,7 @@
                         padding: 5px;
                         margin: 5px;">
                 <div class="input-group input-group-icon">
-                    <button class="btn" type="button" hx-get="{% url 'app:partial' 1 %}" hx-target="#replace">Add Product</button>
+                    <button class="btn" type="button" hx-get="{% url 'app:partial' 1 %}" hx-target="#replace" hx-swap = "outerHTML">Add Product</button>
                 </div>
             </div>
             <div class="row">

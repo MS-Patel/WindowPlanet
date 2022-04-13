@@ -1,5 +1,3 @@
-from functools import total_ordering
-from itertools import product
 from django.db import models
 
 # Create your models here.
@@ -90,12 +88,27 @@ class Addon(models.Model):
 
     def __str__(self):
         return self.item
-
-class Quotation(models.Model):
-    product_name=models.CharField(verbose_name="Product Name", max_length=50)
-    total=models.FloatField(verbose_name="Total")
-    coat_total=models.FloatField(verbose_name="Coat Total")
-    grand_total=models.FloatField(verbose_name="Grand Total")
-    product_id=models.ForeignKey(Product,on_delete=models.PROTECT,related_name="dispaly")
     
+class Quotation(models.Model):
+    id = models.CharField(max_length=10,primary_key=True)
+    total_qty = models.DecimalField(verbose_name="Total Qty", max_digits=5, decimal_places=0)
+    totalvalue=models.FloatField(verbose_name="Total Value")
 
+    def __str__(self):
+        return self.id
+
+class QuotationItems(models.Model):
+
+    qoutation = models.ForeignKey(Quotation,on_delete=models.PROTECT)
+    product_id=models.ForeignKey(Product,on_delete=models.PROTECT,related_name="dispaly")
+    section = models.CharField(max_length=50)
+    size = models.FloatField(verbose_name="item size")
+    location = models.CharField(max_length=25, verbose_name="Location")
+    shutter = models.CharField(max_length=50)
+    glass = models.CharField(max_length=50)
+    unitprice=models.FloatField(verbose_name="Total")
+    qty=models.DecimalField(verbose_name="Qty", max_digits=5, decimal_places=0)
+    value=models.FloatField(verbose_name="Value")
+
+    def __str__(self):
+        return self.qoutation.id

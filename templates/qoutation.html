@@ -17,6 +17,8 @@ body {
 <div class="container">
     <form action="/tab_content" method="post">
         {% csrf_token %}
+
+    {% for item in qoutes %}
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -43,10 +45,10 @@ body {
                         <div class="col-md-6">
                             <p class="font-weight-bold mb-4">Product Information</p>
                             
-                            <p class="mb-1">Product Type :<b>{{product}}</b></p>
-                            <p class="mb-1">Product code :<b>{{pd_code}}</b></p>
-                            <p class="mb-1">Product size :<b>{{w}}W x {{h}}H</b></p>
-                            <p class="mb-1">Location:<b>{{location}}</b></p>
+                            <p class="mb-1">Product Type :<b>{{item.1.product}}</b></p>
+                            <p class="mb-1">Product code :<b>{{item.1.pd_code}}</b></p>
+                            <p class="mb-1">Product size :<b>{{item.1.w}}W x {{item.1.h}}H</b></p>
+                            <p class="mb-1">Location:<b>{{item.1.location}}</b></p>
 
                         </div>
 
@@ -74,7 +76,7 @@ body {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for key,value in data.items %}
+                                    {% for key,value in item.0.items %}
                                     <tr>
                                         <td>1</td>
                                         <td>{{key}}</td>
@@ -93,24 +95,24 @@ body {
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Grand Total</div>
-                            <div class="h2 font-weight-light">{{grand_total}}</div>
+                            <div class="h2 font-weight-light">{{item.1.grand_total}}</div>
                         </div>
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Coating Total</div>
-                            <div class="h2 font-weight-light">{{coat_total}}</div>
+                            <div class="h2 font-weight-light">{{item.1.coat_total}}</div>
                         </div>
 
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Total amount</div>
-                            <div class="h2 font-weight-light">{{total}}</div>
+                            <div class="h2 font-weight-light">{{item.1.total}}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+    {% endfor %}
     <div class="text-light mt-5 mb-5 text-center small">
        
         <input id="submit" type="submit" class="btn" />
