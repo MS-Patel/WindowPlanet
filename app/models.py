@@ -1,8 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
-
 class Product(models.Model):
     code = models.CharField(verbose_name="Product Code", max_length=10, unique=True)
     name = models.CharField(verbose_name="Product Name", max_length=50)
@@ -81,15 +78,15 @@ class Clip(models.Model):
 
 
 class Addon(models.Model):
-    # product = models.ForeignKey(Product,on_delete=models.PROTECT, verbose_name="Product Name")
+
     item = models.CharField(verbose_name="Item Name", max_length=50)
-    # nos = models.CharField(verbose_name="Item Name", max_length=50)
     rate = models.FloatField(verbose_name="Rate")
 
     def __str__(self):
         return self.item
     
 class Quotation(models.Model):
+
     id = models.CharField(max_length=10,primary_key=True)
     total_qty = models.DecimalField(verbose_name="Total Qty", max_digits=5, decimal_places=0)
     totalvalue=models.FloatField(verbose_name="Total Value")
@@ -97,15 +94,17 @@ class Quotation(models.Model):
     def __str__(self):
         return self.id
 
-class QuotationItems(models.Model):
+class QuotationItem(models.Model):
 
     qoutation = models.ForeignKey(Quotation,on_delete=models.PROTECT)
-    product_id=models.ForeignKey(Product,on_delete=models.PROTECT,related_name="dispaly")
-    section = models.CharField(max_length=50)
+    product=models.ForeignKey(Product,on_delete=models.PROTECT,related_name="dispaly")
+    section = models.CharField(max_length=50, null=True)
+    h = models.FloatField(verbose_name="item height")
+    w = models.FloatField(verbose_name="item weight")
     size = models.FloatField(verbose_name="item size")
     location = models.CharField(max_length=25, verbose_name="Location")
-    shutter = models.CharField(max_length=50)
-    glass = models.CharField(max_length=50)
+    shutter = models.CharField(max_length=50, null=True)
+    glass = models.CharField(max_length=50, null=True)
     unitprice=models.FloatField(verbose_name="Total")
     qty=models.DecimalField(verbose_name="Qty", max_digits=5, decimal_places=0)
     value=models.FloatField(verbose_name="Value")

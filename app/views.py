@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 
-from app.models import Coat, Frame, Glass, Ilpatti, Length, Mnet, Product, Shutter, Uchannel, Location
+from app.models import Coat, Frame, Glass, Ilpatti, Length, Mnet, Product, Quotation, QuotationItem, Shutter, Uchannel, Location
 
 
 # Create your views here.
@@ -18,7 +18,6 @@ def home(request):
     length = Length.objects.all()
     location = Location.objects.all()
     net = Mnet.objects.all()
-
 
     return render(request,'index.html',{'products':prod, 'frame':frame,'shutter':shutter,'ilpatti':ilpatti,'uch':uch,'glass':glass,'net':net ,'coat':coat, 'length':length, 'location':location})
 
@@ -82,6 +81,7 @@ def qoute(request):
 
         fhlist              = request.POST.getlist('height')
         fwlist              = request.POST.getlist('width')
+        qtylist             = request.POST.getlist('qty')
 
         qoute = []
         for i,j in enumerate(productlist):
@@ -134,7 +134,7 @@ def qoute(request):
 
             fh                  = float(fhlist[i])
             fw                  = float(fwlist[i])
-
+            qty                 = float(qtylist[i])
             fm_size             = 0
             fm_weight           = 0  
             fm_coat             = 0
@@ -164,7 +164,6 @@ def qoute(request):
             grand_total         = 0
 
     #############################################################################################################       2 Track Window
-
             
             if product == "1":
 
@@ -204,7 +203,6 @@ def qoute(request):
 
 
     #############################################################################################################       3 Track Window(2+1)
-
             
             if product == "2":
 
@@ -243,7 +241,6 @@ def qoute(request):
                 grand_total         = round((coat_total +total),2)
 
     #############################################################################################################       3 Track Window
-
             
             if product == "3":
 
@@ -281,9 +278,7 @@ def qoute(request):
                 total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + addon_rate + labour_rate),2)
                 grand_total         = round((coat_total +total),2)
 
-
     #############################################################################################################       3 Track Window(4+2)
-
             
             if product == "4":
 
@@ -364,7 +359,6 @@ def qoute(request):
 
     #############################################################################################################       4 Track Window(3+1)
 
-            
             if product == "6":
 
                 fm_size             = ((fh*2)+(fw*2))
@@ -403,7 +397,6 @@ def qoute(request):
 
 
     #############################################################################################################       R-40 Signle shutter
-
             
             if product == "7":
 
@@ -540,7 +533,7 @@ def qoute(request):
                     'prize':labour_rate,
                     },
             }
-            total = {'w': fw,'h': fh,'product':product_name, 'pd_code':product,'location':location,'total':total ,'coat_total':coat_total,'grand_total':grand_total}
+            total = {'qty':qty,'w': fw,'h': fh,'product':product_name, 'pd_code':product,'location':location,'total':total ,'coat_total':coat_total,'grand_total':grand_total}
             item = [data,total]
             qoute.append(item)
         context = { 'qoutes':qoute}
@@ -550,5 +543,37 @@ def qoute(request):
 
 def tab_content(request):
   
-    print(request.POST)
-    return render(request,'tab_content.html')
+    if request.method == 'POST':
+
+        print(request.POST)
+
+        qt = Quotation()
+
+        productlist = request.POST.getlist('product')
+        wlist = request.POST.getlist('w')
+        hlist = request.POST.getlist('h')
+        locationlist = request.POST.getlist('location')
+        qtylist = request.POST.getlist('qty')
+        totallist= request.POST.getlist('total')
+
+        for i,j in enumerate(productlist):
+
+            product = Product.objects.get(code=j)
+            w = float(wlist[i])
+            h = float(hlist[i])
+            size = w*h
+            location = locationlist[i]
+            total = float(totallist[i])
+            qty = float(qtylist[i])
+            value = total * qty
+
+            QuotationItem.objects.create(qoutation=qt,
+                                            product=product,
+                                            h=h,
+                                            w=w,
+                                            size=size,
+                                            location=location,
+                                            qty=qty,
+                                            unitprice=total,
+                                            value=value)
+        return render(request,'tab_content.html')

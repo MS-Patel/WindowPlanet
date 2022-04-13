@@ -49,9 +49,13 @@ body {
                             <p class="mb-1">Product code :<b>{{item.1.pd_code}}</b></p>
                             <p class="mb-1">Product size :<b>{{item.1.w}}W x {{item.1.h}}H</b></p>
                             <p class="mb-1">Location:<b>{{item.1.location}}</b></p>
-
+                            <p class="mb-1">Quantity:<b>{{item.1.qty}}</b></p>
+                            <input value="{{item.1.pd_code}}" type="hidden" name="product" readonly/>
+                            <input value="{{item.1.w}}" type="hidden" name="w" readonly/>
+                            <input value="{{item.1.h}}" type="hidden" name="h" readonly/>
+                            <input value="{{item.1.location}}" type="hidden" name="location" readonly/>
+                            <input value="{{item.1.qty}}" type="hidden" name="qty" readonly/>
                         </div>
-
                         <div class="col-md-6 text-right">
                             <p class="font-weight-bold mb-4">Quatation Details</p>
                             <p class="mb-1"><span class="text-muted">Quatation ID: </span> 10253642</p>
@@ -96,6 +100,7 @@ body {
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Grand Total</div>
                             <div class="h2 font-weight-light">{{item.1.grand_total}}</div>
+                            <input value="{{item.1.grand_total}}" type="hidden" name ="total" readonly/>
                         </div>
 
                         <div class="py-3 px-5 text-right">
