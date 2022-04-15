@@ -1,17 +1,8 @@
 {% load static %}
-<style>
-    
-   /** body {
-        background: rgb(255, 255, 255);
-        
-       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-      
-    }**/
-    
-    
-  
+<style>  
         table {
             width:100%;
+            margin:30px 0px;
         }
         table, th, td {
             border: 1px solid black;
@@ -20,110 +11,105 @@
         th, td {
             padding: 5px;
             text-align: left;
-            width: 130px;
-            
+            max-width: 130px;
         }
-        table#t01 tr:nth-child(even) {
+        table tr:nth-child(even) {
             background-color: #fff;
         }
-        table#t01 tr:nth-child(odd) {
+        table tr:nth-child(odd) {
            background-color:#eee;
         }
-        table#t01 th	{
+        table th	{
             background-color: black;
             color: white;
         }
 
 </style>
-
-
-<table id="t01">
-   
-    <tr >
-        <td >Sr.No</td>
-        <td colspan="3">W01</td>
-        <td>Size</td>
-        <td>w001</td>
-        <td>HX2110</td>
-        <td></td>
-        
-    </tr>
-      <tr >
-                <td>Location</td>
-                <td colspan="3">W01</td>
-                <td>Section Details</td>
-                <td colspan="3" >WEATHERSEAL - 60MM SLIDING DOOR</td>
-                
-            </tr>
-            <tr >
-                <td colspan="4" style="text-align: center; background-color:white">1814</td>
-                
-                <td colspan="4">Computer Values</td>
-            </tr>
-            <tr >
-                
-                <td colspan="3" rowspan="6">
-                    {% comment %} {% if product.image != None %}
-                    <img src ="{{product.image.url}}">
-                    {% endif %} {% endcomment %}
-
-                   <img src ="{{product.image.url}}">
-                    </td>
-                
-                <td rowspan="6"  style="text-align: center; writing-mode: vertical-rl; width:20px; ">2110 </td>    
-                <td colspan="2" style="height: 20px;">Sq.Ft. per Window</td>            
-                <td > 41.20</td>
-                
-                <td>Sq.Ft.</td>
-
-            </tr>
-
-            <tr>
-              
-                <td  colspan="2" >Unit Price</td>
-                <td >64616.57</td>
-                <td>Rs.</td>
-            </tr>
-
-            <tr style="height: 20px;" >
-               
-                <td  colspan="2" >Quantity</td>
-                <td>1</td>
-                <td>PCs</td>
-            </tr>
-
-            <tr  style="height: 20px;">
-              
-                <td colspan="2">Value</td>
-                <td>64616.57</td>
-                <td>Rs.</td>
-            </tr>
-
-            <tr style="height: 20px;" >
-                
-                <td colspan="2" >Descriptions</td>
-               
-                <td colspan="2">Accessories</td>
-              
-
-            </tr>
-
-            <tr style="height: 150px;" >
-             
-                <td colspan="2"  >Profile Colour - Golden Oak
-                    Track - Sliding Three Track Frame 50mm
-                    X 106mm
-                    Sliding Ri - 229005-2.0mm
-                    Flyscreen Sash - 103366123
-                    Sliding Sash - 103374123
-                    Flymesh Type - Fiber
-                    6 mm Clear Toughened - 1
-                    Flymesh- 1</td>
-                
-                <td colspan="2">No. Of Mesh Sash - 1</td>
-               
-            </tr>
-  </table>
-  
-
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--Include the above in your HEAD tag -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    {% for item in data %}
+                        <table>
+                            <tr >
+                                <td colspan="1">Sr.No</td>
+                                <td colspan="3">W01</td>
+                                <td>Size</td>
+                                <td>W X{{ item.w }}</td>
+                                <td>H X{{ item.h }}</td>
+                                <td></td>
+                            </tr>
+                            <tr >
+                                <td colspan="1">Location</td>
+                                <td colspan="3">{{ item.location }}</td>
+                                <td>Section Details</td>
+                                <td colspan="3">{{ item.product.name }}</td>
+                            </tr>
+                            <tr >
+                                <td colspan="4" style="text-align: center; background-color:white">1814</td>
+                                <td colspan="4">Computer Values</td>
+                            </tr>
+                            <tr style="height: 30px;">
+                                <td colspan="3" rowspan="6" style="text-align: center; max-width:50%">
+                                    <img src ="{{ item.product.image }}" style="max-height:500px;">
+                                </td>
+                                <td rowspan="6"  style="text-align: center; writing-mode: vertical-rl;">2110</td>
+                                <td colspan="2">Sq.Ft. per Window</td>
+                                <td >{{ item.size }}</td>
+                                <td>Sq.Ft.</td>
+                            </tr>
+                            <tr style="height: 30px;">
+                                <td colspan="2">Unit Price</td>
+                                <td >{{ item.unitprice }}</td>
+                                <td>Rs.</td>
+                            </tr>
+                            <tr style="height: 30px;">
+                                <td colspan="2">Quantity</td>
+                                <td>{{ item.qty }}</td>
+                                <td>PCs</td>
+                            </tr>
+                            <tr style="height: 30px;">
+                                <td colspan="2">Value</td>
+                                <td>{{ item.value }}</td>
+                                <td>
+                                    Rs.
+                                </td>
+                            </tr>
+                            <tr style="height: 30px;">
+                                <td colspan="2">
+                                    Descriptions
+                                </td>
+                                <td colspan="2">
+                                    Accessories
+                                </td>
+                            </tr>
+                            <tr style="height: 300px;">
+                                <td colspan="2">
+                                    Profile Colour - Golden Oak
+                                    Track - Sliding Three Track Frame 50mm
+                                    X 106mm
+                                    Sliding Ri - 229005-2.0mm
+                                    Flyscreen Sash - 103366123
+                                    Sliding Sash - 103374123
+                                    Flymesh Type - Fiber
+                                    6 mm Clear Toughened - 1
+                                    Flymesh- 1
+                                </td>
+                                <td colspan="2">
+                                    No. Of Mesh Sash - 1
+                                </td>
+                            </tr>
+                        </table>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

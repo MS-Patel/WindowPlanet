@@ -40,6 +40,12 @@ def qoute(request):
 
     if request.method == 'POST':
 
+        qt = Quotation.objects.last()
+        if qt:
+            qouteid = int(qt.id) + 1
+        else:
+            qouteid = 1000
+
         productlist         = request.POST.getlist('product')
         locationlist        =request.POST.getlist('location')
         frame_typelist      = request.POST.getlist('frametype')
@@ -533,7 +539,7 @@ def qoute(request):
                     'prize':labour_rate,
                     },
             }
-            total = {'qty':qty,'w': fw,'h': fh,'product':product_name, 'pd_code':product,'location':location,'total':total ,'coat_total':coat_total,'grand_total':grand_total}
+            total = {'qouteid':qouteid,'qty':qty,'w': fw,'h': fh,'product':product_name, 'pd_code':product,'location':location,'total':total ,'coat_total':coat_total,'grand_total':grand_total}
             item = [data,total]
             qoute.append(item)
         context = { 'qoutes':qoute}
@@ -544,11 +550,12 @@ def qoute(request):
 def tab_content(request):
   
     if request.method == 'POST':
-
-        print(request.POST)
-
-        qt = Quotation()
-
+ 
+        qoute = request.POST.get('qouteid')
+        total_qty = 0
+        totalvalue = 0
+        if qoute:
+            qt = Quotation.objects.create(id=qoute, total_qty = total_qty, totalvalue=totalvalue)
         productlist = request.POST.getlist('product')
         wlist = request.POST.getlist('w')
         hlist = request.POST.getlist('h')
@@ -566,7 +573,8 @@ def tab_content(request):
             total = float(totallist[i])
             qty = float(qtylist[i])
             value = total * qty
-
+            total_qty +=qty
+            totalvalue +=value 
             QuotationItem.objects.create(qoutation=qt,
                                             product=product,
                                             h=h,
@@ -576,4 +584,12 @@ def tab_content(request):
                                             qty=qty,
                                             unitprice=total,
                                             value=value)
-        return render(request,'tab_content.html')
+        qt.total_qty = total_qty
+        qt.totalvalue = totalvalue
+        qt.save()
+
+        items= QuotationItem.objects.filter(qoutation=qt)
+
+        context = { 'data': items}
+
+        return render(request,'tab_content.html',context)

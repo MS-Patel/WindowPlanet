@@ -58,7 +58,9 @@ body {
                         </div>
                         <div class="col-md-6 text-right">
                             <p class="font-weight-bold mb-4">Quatation Details</p>
-                            <p class="mb-1"><span class="text-muted">Quatation ID: </span> 10253642</p>
+                            <p class="mb-1"><span class="text-muted">Quatation ID: </span>{{item.1.qouteid}}</p>
+                            <input value="{{item.1.qouteid}}" type="hidden" name="qouteid" readonly/>
+                            
                             {% comment %} <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
                             <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p> {% endcomment %}
                         </div>
