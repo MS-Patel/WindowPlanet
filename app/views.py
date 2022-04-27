@@ -206,7 +206,6 @@ def qoute(request):
             
             if product == "1":
 
-<<<<<<< HEAD
                 fm_size             = round((((fh*2)+(fw*2))/12) ,2)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round(((fm_size*coat.rate)/12),2)
@@ -229,30 +228,6 @@ def qoute(request):
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round(((uc_size * coat.rate)/12),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-=======
-                fm_size             = ((fh*2)+(fw*2))
-                fm_weight           = round(((fm_size/12 * frame_weight)/ frame_size),2)
-                fm_coat             = round(((fm_size/12 *coat.rate)/12),2)
-                frame_prize         = round((fm_weight*frame_rate),2)
-                
-                sh                  = fh-2.75
-                sw                  = (fw-0.375)/2
-                shtt_size           = (sh*4)+(sw*4) 
-                sh_coat             = round(((shtt_size/12 *coat.rate)/12),2)
-                sh_weight           = round(((shtt_size/12 * shutter_weight)/ shutter_size),2)
-                shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                il_size             = (sh*3)
-                il_weight           = round(((il_size/12 * lpatti_weight) / lpatti_size),2)
-                il_coat             = round(((il_size/12 *coat.rate)/12),2)
-                lpatti_prize        = round((il_weight * lpatti_rate),2)
-
-                uh                  = sh-5
-                uw                  = sw-5
-                uc_size             = (uh+uw)*2
-                uc_coat             = round(((uc_size/12 * coat.rate)/12),2)
-                uc_weight           = round(((uc_size/12 * uchannel_weight) / uchannel_size),2)
->>>>>>> 91e8ca7d54b305da016e2f7bf3eeb0ce685d9759
                 uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
@@ -289,7 +264,6 @@ def qoute(request):
             
             if product == "2":
 
-<<<<<<< HEAD
                 fm_size             = round((((fh*2)+(fw*2))/12) ,2)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round(((fm_size*coat.rate)/12),2)
@@ -312,30 +286,6 @@ def qoute(request):
                 uc_size             = round((((uh+uw)*2) / 12),2)                      
                 uc_coat             = round(((uc_size * coat.rate)/12),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-=======
-                fm_size             = ((fh*2)+(fw*2))
-                fm_weight           = round(((fm_size/12 * frame_weight)/ frame_size),2)
-                fm_coat             = round(((fm_size/12 *coat.rate)/12),2)
-                frame_prize         = round((fm_weight*frame_rate),2)
-                
-                sh                  = fh-2.75
-                sw                  = (fw-0.375)/2
-                shtt_size           = (sh*6)+(sw*6) 
-                sh_coat             = round(((shtt_size/12 *coat.rate)/12),2)
-                sh_weight           = round(((shtt_size/12 * shutter_weight)/ shutter_size),2)
-                shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                il_size             = (sh*4)
-                il_weight           = round(((il_size/12 * lpatti_weight) / lpatti_size),2)
-                il_coat             = round(((il_size/12 *coat.rate)/12),2)
-                lpatti_prize        = round((il_weight * lpatti_rate),2)
-
-                uh                  = sh-5
-                uw                  = sw-5
-                uc_size             = (uh+uw)*2                        
-                uc_coat             = round(((uc_size/12 * coat.rate)/12),2)
-                uc_weight           = round(((uc_size/12 * uchannel_weight) / uchannel_size),2)
->>>>>>> 91e8ca7d54b305da016e2f7bf3eeb0ce685d9759
                 uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
@@ -368,7 +318,6 @@ def qoute(request):
             
             if product == "3":
 
-<<<<<<< HEAD
                 fm_size             = round((((fh*2)+(fw*2))/12),2)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round(((fm_size*coat.rate)/12),2)
@@ -391,30 +340,6 @@ def qoute(request):
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round(((uc_size * coat.rate)/12),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-=======
-                fm_size             = ((fh*2)+(fw*2))
-                fm_weight           = round(((fm_size/12 * frame_weight)/ frame_size),2)
-                fm_coat             = round(((fm_size/12 *coat.rate)/12),2)
-                frame_prize         = round((fm_weight*frame_rate),2)
-                
-                sh                  = fh-2.75
-                sw                  = (fw+2.25)/3
-                shtt_size           = (sh*6)+(sw*6) 
-                sh_coat             = round(((shtt_size/12 *coat.rate)/12),2)
-                sh_weight           = round(((shtt_size/12 * shutter_weight)/ shutter_size),2)
-                shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                il_size             = (sh*4)
-                il_weight           = round(((il_size/12 * lpatti_weight) / lpatti_size),2)
-                il_coat             = round(((il_size/12 *coat.rate)/12),2)
-                lpatti_prize        = round((il_weight * lpatti_rate),2)
-
-                uh                  = sh-5
-                uw                  = sw-5
-                uc_size             = (uh+uw)*2
-                uc_coat             = round(((uc_size/12 * coat.rate)/12),2)
-                uc_weight           = round(((uc_size/12 * uchannel_weight) / uchannel_size),2)
->>>>>>> 91e8ca7d54b305da016e2f7bf3eeb0ce685d9759
                 uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
@@ -447,7 +372,6 @@ def qoute(request):
             
             if product == "4":
 
-<<<<<<< HEAD
                 fm_size             = round((((fh*2)+(fw*2))/12) ,2)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round(((fm_size*coat.rate)/12),2)
@@ -470,30 +394,6 @@ def qoute(request):
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round(((uc_size * coat.rate)/12),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-=======
-                fm_size             = ((fh*2)+(fw*2))
-                fm_weight           = round(((fm_size/12 * frame_weight)/ frame_size),2)
-                fm_coat             = round(((fm_size/12 *coat.rate)/12),2)
-                frame_prize         = round((fm_weight*frame_rate),2)
-                
-                sh                  = fh-2.75
-                sw                  = (fw+2)/4
-                shtt_size           = (sh*6)+(sw*6)
-                sh_coat             = round(((shtt_size/12 *coat.rate)/12),2)
-                sh_weight           = round(((shtt_size/12 * shutter_weight)/ shutter_size),2)
-                shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                il_size             = (sh*4)
-                il_weight           = round(((il_size/12 * lpatti_weight) / lpatti_size),2)
-                il_coat             = round(((il_size/12 *coat.rate)/12),2)
-                lpatti_prize        = round((il_weight * lpatti_rate),2)
-
-                uh                  = sh-5
-                uw                  = sw-5
-                uc_size             = (uh+uw)*2
-                uc_coat             = round(((uc_size/12 * coat.rate)/12),2)
-                uc_weight           = round(((uc_size/12 * uchannel_weight) / uchannel_size),2)
->>>>>>> 91e8ca7d54b305da016e2f7bf3eeb0ce685d9759
                 uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
@@ -528,7 +428,6 @@ def qoute(request):
             
             if product == "5":
 
-<<<<<<< HEAD
                 fm_size             = round((((fh*2)+(fw*2))/12) ,2)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round(((fm_size*coat.rate)/12),2)
@@ -551,30 +450,6 @@ def qoute(request):
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round(((uc_size * coat.rate)/12),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-=======
-                fm_size             = ((fh*2)+(fw*2))
-                fm_weight           = round(((fm_size/12 * frame_weight)/ frame_size),2)
-                fm_coat             = round(((fm_size/12 *coat.rate)/12),2)
-                frame_prize         = round((fm_weight*frame_rate),2)
-                
-                sh                  = fh-2.75
-                sw                  = (fw+4.75)/4
-                shtt_size           = (sh*8)+(sw*8)
-                sh_coat             = round(((shtt_size/12 *coat.rate)/12),2)
-                sh_weight           = round(((shtt_size/12 * shutter_weight)/ shutter_size),2)
-                shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                il_size             = (sh*5)
-                il_weight           = round(((il_size/12 * lpatti_weight) / lpatti_size),2)
-                il_coat             = round(((il_size/12 *coat.rate)/12),2)
-                lpatti_prize        = round((il_weight * lpatti_rate),2)
-
-                uh                  = sh-5
-                uw                  = sw-5
-                uc_size             = (uh+uw)*2
-                uc_coat             = round(((uc_size/12 * coat.rate)/12),2)
-                uc_weight           = round(((uc_size/12 * uchannel_weight) / uchannel_size),2)
->>>>>>> 91e8ca7d54b305da016e2f7bf3eeb0ce685d9759
                 uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
@@ -607,7 +482,6 @@ def qoute(request):
 
             if product == "6":
 
-<<<<<<< HEAD
                 fm_size             = round((((fh*2)+(fw*2))/12) ,2)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round(((fm_size*coat.rate)/12),2)
@@ -630,30 +504,6 @@ def qoute(request):
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round(((uc_size * coat.rate)/12),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-=======
-                fm_size             = ((fh*2)+(fw*2))
-                fm_weight           = round(((fm_size/12 * frame_weight)/ frame_size),2)
-                fm_coat             = round(((fm_size/12 *coat.rate)/12),2)
-                frame_prize         = round((fm_weight*frame_rate),2)
-                
-                sh                  = fh-2.75
-                sw                  = (fw+2.25)/3
-                shtt_size           = (sh*8)+(sw*8)
-                sh_coat             = round(((shtt_size/12 *coat.rate)/12),2)
-                sh_weight           = round(((shtt_size/12 * shutter_weight)/ shutter_size),2)
-                shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                il_size             = (sh*5)
-                il_weight           = round(((il_size/12 * lpatti_weight) / lpatti_size),2)
-                il_coat             = round(((il_size/12 *coat.rate)/12),2)
-                lpatti_prize        = round((il_weight * lpatti_rate),2)
-
-                uh                  = sh-5
-                uw                  = sw-5
-                uc_size             = (uh+uw)*2
-                uc_coat             = round(((uc_size/12 * coat.rate)/12),2)
-                uc_weight           = round(((uc_size/12 * uchannel_weight) / uchannel_size),2)
->>>>>>> 91e8ca7d54b305da016e2f7bf3eeb0ce685d9759
                 uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
@@ -686,7 +536,6 @@ def qoute(request):
             
             if product == "7":
 
-<<<<<<< HEAD
                 fm_size             = round((((fh*2)+(fw*2))/12) ,2)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round(((fm_size*coat.rate)/12),2)
@@ -705,26 +554,6 @@ def qoute(request):
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round(((uc_size * coat.rate)/12),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-=======
-                fm_size             = ((fh*2)+(fw*2))
-                fm_weight           = round(((fm_size/12 * frame_weight)/ frame_size),2)
-                fm_coat             = round(((fm_size/12 *coat.rate)/12),2)
-                frame_prize         = round((fm_weight*frame_rate),2)
-                
-                sh                  = fh-1.5
-                sw                   = fw-1.5
-                shtt_size           = (sh*2)+(sw*2)
-                sh_coat             = round(((shtt_size/12 *coat.rate)/12),2)
-                sh_weight           = round(((shtt_size/12 * shutter_weight)/ shutter_size),2)
-                shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                #uh use here as clip here
-                uh                  = sh-5
-                uw                  = sw-5
-                uc_size             = (uh+uw)*2
-                uc_coat             = round(((uc_size/12 * coat.rate)/12),2)
-                uc_weight           = round(((uc_size/12 * uchannel_weight) / uchannel_size),2)
->>>>>>> 91e8ca7d54b305da016e2f7bf3eeb0ce685d9759
                 uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
@@ -758,7 +587,6 @@ def qoute(request):
             
             if product == "8":
 
-<<<<<<< HEAD
                 fm_size             = round((((fh*2)+(fw*2))/12) ,2)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round(((fm_size*coat.rate)/12),2)
@@ -777,26 +605,6 @@ def qoute(request):
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round(((uc_size * coat.rate)/12),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-=======
-                fm_size             = ((fh*2)+(fw*2))
-                fm_weight           = round(((fm_size/12 * frame_weight)/ frame_size),2)
-                fm_coat             = round(((fm_size/12 *coat.rate)/12),2)
-                frame_prize         = round((fm_weight*frame_rate),2)
-                
-                sh                  = fh-2.75
-                sw                  = (fw-1.875)/2
-                shtt_size           = (sh*4)+(sw*4)
-                sh_coat             = round(((shtt_size/12 *coat.rate)/12),2)
-                sh_weight           = round(((shtt_size/12 * shutter_weight)/ shutter_size),2)
-                shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                #uh use here as clip here
-                uh                  = sh-5
-                uw                  = sw-5
-                uc_size             = (uh+uw)*2
-                uc_coat             = round(((uc_size/12 * coat.rate)/12),2)
-                uc_weight           = round(((uc_size/12 * uchannel_weight) / uchannel_size),2)
->>>>>>> 91e8ca7d54b305da016e2f7bf3eeb0ce685d9759
                 uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
