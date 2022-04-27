@@ -1,5 +1,12 @@
+
 <div class="form">
-    <hr style="border: 10px solid green;border-radius: 5px;"/>
+    {% comment %} {% csrf_token %}
+
+    {% for item in qoutes %}
+    <input value="{{item.0.Labour.prize}}" type="hidden" name="labourrate" readonly/>
+    <input value="{{item.0.Trans.prize}}" type="hidden" name="tranportrate" readonly/>
+    {% endfor %} {% endcomment %}
+    <hr style="border: 10px solid #f0a502;border-radius: 5px;"/>
     <div class="row">
         <h4>Frame Size</h4>
         <div class="col input-group input-group-icon">
@@ -18,10 +25,18 @@
             </div>
         </div>
     </div>
+
+    
     <div class="row">
         <h4>Frame Details</h4>
-        <div class="input-group">
-            <label for="Product">Select Product:</label>
+        <div class=" input-group input-group-icon" style="padding-top: 15px;
+        float: left;
+        width: 15%;">
+            <label for="Product">Select Product:</label></div>
+            <div class="input-group input-group-icon" style="padding: 11px;
+                        float: left;
+                        width: 40%;
+                        text-align: -webkit-left;">
             <select id="product{{no}}" name="product">
                 {% for i in products %}
                 <option value="{{i.code}}-{{i}}">
@@ -29,12 +44,17 @@
                 </option>
             {% endfor %}
             </select>
-            <div class="col-half input-group" style="float: right;">
+        </div>
+                    
+    </div>
+    <div class="row">
+
+        <div class="col-half input-group input-group-icon">
                 <label for="qty">Quantity</label>
                 <input id="qty{{no}}" name="qty" type="number" value="1"/>
             </div>
 
-            <div class=" col-half input-group">
+            <div class="col-half input-group input-group-icon" >
                 <label for="Location">Location</label>
                 <select id="location{{no}}" name="location">
                     {% for i in location %}
@@ -44,14 +64,8 @@
                 </select>
             </div>
 
-        </div>
-    </div>
-    <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
-        <div class=" col-half input-group input-group-icon" style="float: right;">
-            <label for="coating">Select Coating:</label>
+    <div class="col-half input-group input-group-icon">
+        <label for="coating">Select Coating:</label>
             <select id="coating{{no}}" name="coating">
                 {% for i in coat %}
                     <option value='{{i}}'>
@@ -61,11 +75,10 @@
             </select>
         </div>
     </div>
+
     <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
-        <div class=" col-th input-group input-group-icon">
+         style="border: 1px solid #b9b9b9;">
+         <div class="col-half input-group input-group-icon">
             <label for="frametype">Select Frame:</label>
             <select id="frametype{{no}}" name="frametype">
                 {% for i in frame %}
@@ -74,7 +87,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-forth input-group input-group-icon">
+        <div class=" col-half input-group input-group-icon">
             <label for="framesize">Select length:</label>
             <select id="framesize{{no}}" name="framesize">
                 {% for i in length %}
@@ -83,7 +96,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-half input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel"
                    step="any"
                    list="frameweight"
@@ -96,7 +109,7 @@
                 {% endfor %}
             </datalist>
         </div>
-        <div class=" col-half input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel" step="any" placeholder="Rate/kg" name="framerate"/>
         </div>
         {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
@@ -104,10 +117,8 @@
         </div> {% endcomment %}
     </div>
     <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
-        <div class=" col-th input-group input-group-icon">
+         style="border: 1px solid #b9b9b9;">
+         <div class=" col-half input-group input-group-icon">
             <label for="shuttertype">Select Shutter:</label>
             <select id="shuttertype{{no}}" name="shuttertype">
                 {% for i in shutter %}
@@ -116,7 +127,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-forth input-group input-group-icon">
+        <div class=" col-half input-group input-group-icon">
             <label for="shuttersize">Select length:</label>
             <select id="shuttersize{{no}}" name="shuttersize">
                 {% for i in length %}
@@ -125,7 +136,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-half input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel"
                    list="shutterweight"
                    step="any"
@@ -138,7 +149,7 @@
                 {% endfor %}
             </datalist>
         </div>
-        <div class=" col-half input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel" step="any" placeholder="Rate/kg" name="shutterrate" />
         </div>
         {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
@@ -146,10 +157,8 @@
         </div> {% endcomment %}
     </div>
     <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
-        <div class=" col-th input-group input-group-icon">
+         style="border: 1px solid #b9b9b9;">
+         <div class=" col-half input-group input-group-icon">
             <label for="lpattitype">Select I/L patti:</label>
             <select id="lpattitype{{no}}" name="lpattitype">
                 {% for i in ilpatti %}
@@ -158,7 +167,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-forth input-group input-group-icon">
+        <div class=" col-half input-group input-group-icon">
             <label for="lpattisize">Select length:</label>
             <select id="lpattisize{{no}}" name="lpattisize">
                 {% for i in length %}
@@ -167,7 +176,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-half input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel"
                    list="lpattiweight"
                    step="any"
@@ -180,7 +189,7 @@
                 {% endfor %}
             </datalist>
         </div>
-        <div class=" col-half input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel" step="any" placeholder="Rate/kg" name="lpattirate" />
         </div>
         {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
@@ -188,10 +197,8 @@
         </div> {% endcomment %}
     </div>
     <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
-        <div class=" col-th input-group input-group-icon">
+         style="border: 1px solid #b9b9b9;">
+         <div class=" col-half input-group input-group-icon">
             <label for="uchannel_type">Select Uchannel:</label>
             <select id="uchannel_type{{no}}" name="uchannel_type">
                 {% for i in uch %}
@@ -200,7 +207,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-forth input-group input-group-icon">
+        <div class=" col-half input-group input-group-icon">
             <label for="uchannel_size">Select length:</label>
             <select id="uchannel_size{{no}}" name="uchannel_size">
                 {% for i in length %}   
@@ -209,7 +216,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-half input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel"
                    list="uchannel_weight"
                    step="any"
@@ -222,7 +229,7 @@
                 {% endfor %}
             </datalist>
         </div>
-        <div class=" col-half input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel" step="any" placeholder="Rate/kg" name="uchannel_rate" />
         </div>
         {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
@@ -230,10 +237,8 @@
         </div> {% endcomment %}
     </div>
     <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
-        <div class=" col-third input-group input-group-icon">
+         style="border: 1px solid #b9b9b9;">
+         <div class=" col-half input-group input-group-icon">
             <label for="glasstype">Select Glass:</label>
             <select id="glasstype{{no}}" name="glasstype">
                 {% for i in glass %}
@@ -243,7 +248,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-third input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel"
                    step="any"
                    placeholder="Glass Rate(Rs/sq.foot)"
@@ -254,7 +259,7 @@
          style="border: 1px solid #b9b9b9;
                 padding: 5px;
                 margin: 5px;">
-        <div class=" col-third input-group input-group-icon">
+                <div class=" col-half input-group input-group-icon">
             <label for="nettype">Select Mosquito Net:</label>
             <select id="nettype{{no}}" name="nettype">
                 {% for i in net %}
@@ -264,7 +269,7 @@
                 {% endfor %}
             </select>
         </div>
-        <div class=" col-third input-group input-group-icon">
+        <div class=" col-forth input-group input-group-icon">
             <input type="tel"
                    step="any"
                    placeholder="Net Rate(Rs/sq.foot)"
@@ -274,54 +279,54 @@
 
 
     <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
-        <div class=" col-third input-group input-group-icon">
-            <input type="text" placeholder="Add on Name" name="addon" />
-        </div>
-        <div class=" col-third input-group input-group-icon">
-            <input type="tel"
-                   value="0"
-                   step="any"
-                   placeholder="Add on Rate"
-                   name="addonrate"/>
-        </div>
-        <div class=" col-third input-group input-group-icon">
-            <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
-        </div>
+    style="border: 1px solid #b9b9b9;
+        ">
+   {% comment %} <div class=" col-half input-group input-group-icon">
+       <input type="text" placeholder="Add on Name" name="extra" />
+   </div> {% endcomment %}
+   <div class=" col-half input-group input-group-icon">
+       <label for="qty">Enter Extra Charge</label>
+       <input type="tel"
+              step="any"
+              placeholder="Extra Charges"
+              name="extrarate"/>
+   </div>
+   <div class=" col-half input-group input-group-icon">
+    <label for="qty">Enter Labour Charge</label>
+    <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
+</div>
+<div class="col-half input-group input-group-icon">
+    <label for="qty">Enter Transport Charge</label>
+
+    <input type="tel" step="any" placeholder="Transport Charges" name="transportrate" />
     </div>
+</div>
     <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
+         style="border: 1px solid #b9b9b9;">
         <div class=" col-half input-group input-group-icon">
-            <label for="pushlock">Push Lock</label>
             
-        </div>
-        <div class=" col-half input-group input-group-icon">
-            <input type="tel"
-                   step="any"
-                   placeholder="Rate"
-                   name="pushlock"/>
-        </div>
-        <div class="col-half input-group input-group-icon">
-            <label for="handlelock">Handle Lock</label>
-          
-        </div>
-        <div class=" col-half input-group input-group-icon">
-            <input type="tel"
-                   step="any"
-                   placeholder="Rate"
-                   name="handlelock"/>
+            <label for="qty">Enter PushLock Rate</label>
+                <input type="tel"
+                       step="any"
+                       placeholder="Push Lock Rate"
+                       name="pushlock"/>
+            </div>
+        
+            <div class="col-half input-group input-group-icon">
+                       
+                    
+                <label for="qty">Enter HandleLock Rate</label>
+                <input type="tel"
+                       step="any"
+                       placeholder="Handle Lock Rate"
+                       name="handlelock"/>
+            </div>
         </div>
     </div>
-</div>
 <div class="row" id="replace"
-     style="border: 1px solid #b9b9b9;
-            padding: 5px;
-            margin: 5px;">
-    <div class="input-group input-group-icon">
-        <button class="btn" type="button" hx-get="{% url 'app:partial' no %}" hx-target="#replace" hx-swap = "outerHTML">Add Product</button>
+     style="border: 1px solid #b9b9b9;">
+    <div class="">
+        <button class="btn" type="button" hx-get="{% url 'app:partial' no %}" hx-target="#replace" hx-swap = "outerHTML">Add More Product</button>
     </div>
 </div>
+

@@ -3,7 +3,7 @@ from django.db import models
 class Product(models.Model):
     code = models.CharField(verbose_name="Product Code", max_length=10, unique=True)
     name = models.CharField(verbose_name="Product Name", max_length=50)
-    image=models.CharField(max_length=255,blank=True,null=True)
+    image = models.CharField(max_length=255,blank=True,null=True)
     def __str__(self):
         return self.name
 
@@ -86,28 +86,33 @@ class Addon(models.Model):
         return self.item
     
 class Quotation(models.Model):
-
-    id = models.CharField(max_length=10,primary_key=True)
-    total_qty = models.DecimalField(verbose_name="Total Qty", max_digits=5, decimal_places=0)
-    totalvalue=models.FloatField(verbose_name="Total Value")
-
-    def __str__(self):
-        return self.id
-
+     id = models.CharField(max_length=10,primary_key=True)
+     total_qty = models.DecimalField(verbose_name="Total Qty", max_digits=5, decimal_places=0)
+     totalvalue=models.FloatField(verbose_name="Total Value")
+     totalsize=models.FloatField(verbose_name="Total Size")
+     totallabour=models.FloatField(verbose_name="Total labour")
+     total_transport_charge=models.FloatField(verbose_name="Total Transport Charge")
+     finalvalue=models.FloatField(verbose_name="Total Value")
+     gst=models.FloatField(verbose_name="GST")
+     summery=models.FloatField(verbose_name="Grand Total")
+     def __str__(self):
+         return self.id
+         
 class QuotationItem(models.Model):
+     qoutation = models.ForeignKey(Quotation,on_delete=models.PROTECT)
+     product=models.ForeignKey(Product,on_delete=models.PROTECT,related_name="dispaly")
+     section = models.CharField(max_length=50, null=True)
+     h = models.FloatField(verbose_name="item height")
+     w = models.FloatField(verbose_name="item weight")
+     size = models.FloatField(verbose_name="item size")
+     location = models.CharField(max_length=25, verbose_name="Location")
+     shutter = models.CharField(max_length=50, null=True)
+     glass = models.CharField(max_length=50, null=True)
+     unitprice=models.FloatField(verbose_name="Total")
+     qty=models.DecimalField(verbose_name="Qty", max_digits=5, decimal_places=0)
+     value=models.FloatField(verbose_name="Value")
+     labour=models.FloatField(verbose_name="Labour")
+     transport_charge=models.FloatField(verbose_name="Transport Charge")
+     def __str__(self):
+         return self.qoutation.id
 
-    qoutation = models.ForeignKey(Quotation,on_delete=models.PROTECT)
-    product=models.ForeignKey(Product,on_delete=models.PROTECT,related_name="dispaly")
-    section = models.CharField(max_length=50, null=True)
-    h = models.FloatField(verbose_name="item height")
-    w = models.FloatField(verbose_name="item weight")
-    size = models.FloatField(verbose_name="item size")
-    location = models.CharField(max_length=25, verbose_name="Location")
-    shutter = models.CharField(max_length=50, null=True)
-    glass = models.CharField(max_length=50, null=True)
-    unitprice=models.FloatField(verbose_name="Total")
-    qty=models.DecimalField(verbose_name="Qty", max_digits=5, decimal_places=0)
-    value=models.FloatField(verbose_name="Value")
-
-    def __str__(self):
-        return self.qoutation.id

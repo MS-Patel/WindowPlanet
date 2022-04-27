@@ -9,5 +9,6 @@ urlpatterns = [
     path('qoute', views.qoute, name="qoute"),
     path('partial/<id>', views.partial, name="partial"),
     path('tab_content',views.tab_content,name="tab_content"),
+    
 ]
 

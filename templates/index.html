@@ -10,278 +10,293 @@
               integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
               crossorigin="anonymous"/>
        
-    <style>
-        /* 64ac15 */
-        *,
-        *:before,
-        *:after {
-            box-sizing: border-box;
-        }
+              <style>
+                /* 64ac15 */
+                *,
+                *:before,
+                *:after {
+                    box-sizing: border-box;
+                }
+        
+                body {
+                    padding: 1em;
+                    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+                    font-size: 15px;
+                    color: #b9b9b9;
+                    background-color:#f2f0f0;
+                }
+        
+                h4 {
+                    color: #f0a500;
+                }
+        
+                input,
+                input[type="radio"]+label,
+                input[type="checkbox"]+label:before,
+                select option,
+                select {
+                    width: 100%;
+                    padding: 5px;
+                    line-height: 2;
+                    background-color: #f9f9f9;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 3px;
+                    -webkit-transition: 0.35s ease-in-out;
+                    -moz-transition: 0.35s ease-in-out;
+                    -o-transition: 0.35s ease-in-out;
+                    transition: 0.35s ease-in-out;
+                    transition: all 0.35s ease-in-out;
+                }
+        
+                input:focus {
+                    outline: 0;
+                    border-color: #bd8200;
+                }
+        
+                input:focus+.input-icon i {
+                    color: #f0a500;
+                }
+        
+                input:focus+.input-icon:after {
+                    border-right-color: #f0a500;
+                }
+        
+                input[type="radio"] {
+                    display: none;
+                }
+        
+                input[type="radio"]+label,
+                select {
+                    display: inline-block;
+                    width: 50%;
+                    text-align: center;
+                    border-radius: 0;
+                }
+        
+                input[type="radio"]+label:first-of-type {
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                }
+        
+                input[type="radio"]+label:last-of-type {
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                }
+        
+                input[type="radio"]+label i {
+                    padding-right: 0.4em;
+                }
+        
+                input[type="radio"]:checked+label,
+                input:checked+label:before,
+                select:focus,
+                select:active {
+                    background-color: #f0a500;
+                    color: #fff;
+                    border-color: #bd8200;
+                }
+        
+                input[type="checkbox"] {
+                    display: none;
+                }select
+                
+        
+                input[type="checkbox"]+label:before {
+                    position: absolute;
+                    top: 0.2em;
+                    left: 0;
+                    display: block;
+                    width: 1em;
+                    height: 1em;
+                    padding: 0;
+                    content: "";
+                }
+        
+                input[type="checkbox"]+label:after {
+                    position: absolute;
+                    top: 0.45em;
+                    left: 0.2em;
+                    font-size: 0.8em;
+                    color: #fff;
+                    opacity: 0;
+                    font-family: FontAwesome;
+                    content: "\f00c";
+                }
+        
+                input:checked+label:after {
+                    opacity: 1;
+                }
+        
+                select {
+                    height: 2.4rem;
+                    line-height: 2;
+                   /* min-width: fit-content;*/
+                    min-width: -webkit-fill-available;
+                }
+        
+                select:first-of-type {
+                    border-top-left-radius: 3px;
+                    border-bottom-left-radius: 3px;
+                }
+        
+                select:last-of-type {
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                }
+        
+                select:focus,
+                select:active {
+                    outline: 0;
+                }
+        
+                select option {
+                    background-color: #f0a500;
+                    color: #fff;
+                }
+        
+                .input-group {
+                    margin-bottom: 1em;
+                    zoom: 1;
+                    width: 80%;
 
-        body {
-            padding: 1em;
-            font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 15px;
-            color: #b9b9b9;
-            background-color: #e3e3e3;
-        }
+                }
+        
+                .input-group:before,
+                .input-group:after {
+                    content: "";
+                    display: table;
+                }
+        
+                .input-group:after {
+                    clear: both;
+                }
+        
+                .input-group-icon {
+                   
+                    position: relative;
+                }
+        
+                .input-group-icon input {
+                   /* padding-left: 4.4em;*/
+                    min-height:35px;
+                    text-align: center;
+                }
+        
+                .input-group-icon .input-icon {
+                    position: absolute;
+                    top: -5px;
+                    left: 0;
+                    width: 3.4em;
+                    height: 2.8em;
+                    line-height: 3.4em;
+                    text-align: center;
+                    pointer-events: none;
+                }
+        
+                .input-group-icon .input-icon:after {
+                    position: absolute;
+                    top: 0.6em;
+                    bottom: 0.6em;
+                    left: 3.4em;
+                    display: block;
+                    border-right: 1px solid #e5e5e5;
+                    content: "";
+                    -webkit-transition: 0.35s ease-in-out;
+                    -moz-transition: 0.35s ease-in-out;
+                    -o-transition: 0.35s ease-in-out;
+                    transition: 0.35s ease-in-out;
+                    transition: all 0.35s ease-in-out;
+                }
+        
+                .input-group-icon .input-icon i {
+                    -webkit-transition: 0.35s ease-in-out;
+                    -moz-transition: 0.35s ease-in-out;
+                    -o-transition: 0.35s ease-in-out;
+                    transition: 0.35s ease-in-out;
+                    transition: all 0.35s ease-in-out;
+                }
+        
+                .container {
+                    max-width: 70em;
+                    padding: 1em 3em 2em 3em;
+                    margin: 0em auto;
+                    background-color: #fff;
+                    border-radius: 4.2px;
+                    box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
+                }
+        
+                .row {
+                    zoom: 1;
+                }
+        
+                .row:before,
+                .row:after {
+                    content: "";
+                    display: table;
+                }
+        
+                .row:after {
+                    clear: both;
+                }
+        
+                .col-half {
+                    padding: 10px;
+                    float: left;
+                    width: 30%;
+                }
+                .col-th {
+                    padding: 10px;
+                    float: left;
+                    width: 45%;
+                }
+                .col-forth {
+                    padding: 25px;
+                    float: left;
+                    width: 20%;
+                }
+        
+                .col {
+                    padding-right: 10px;
+                    float: left;
+                    width: 50%;
+                }
+        
+                .col-half:last-of-type {
+                    padding-right: 0;
+                }
+        
+                .col-third {
+                    padding-right: 10px;
+                    float: left;
+                    width: 28.33333333%;
+                }
+        
+                .col-third:last-of-type {
+                    padding-right: 0;
+                }
 
-        h4 {
-            color: #f0a500;
-        }
-
-        input,
-        input[type="radio"]+label,
-        input[type="checkbox"]+label:before,
-        select option,
-        select {
-            width: 100%;
-            padding: 5px;
-            line-height: 1.4;
-            background-color: #f9f9f9;
-            border: 1px solid #e5e5e5;
-            border-radius: 3px;
-            -webkit-transition: 0.35s ease-in-out;
-            -moz-transition: 0.35s ease-in-out;
-            -o-transition: 0.35s ease-in-out;
-            transition: 0.35s ease-in-out;
-            transition: all 0.35s ease-in-out;
-        }
-
-        input:focus {
-            outline: 0;
-            border-color: #bd8200;
-        }
-
-        input:focus+.input-icon i {
-            color: #f0a500;
-        }
-
-        input:focus+.input-icon:after {
-            border-right-color: #f0a500;
-        }
-
-        input[type="radio"] {
-            display: none;
-        }
-
-        input[type="radio"]+label,
-        select {
-            display: inline-block;
-            width: 50%;
-            text-align: center;
-            border-radius: 0;
-        }
-
-        input[type="radio"]+label:first-of-type {
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
-        }
-
-        input[type="radio"]+label:last-of-type {
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 3px;
-        }
-
-        input[type="radio"]+label i {
-            padding-right: 0.4em;
-        }
-
-        input[type="radio"]:checked+label,
-        input:checked+label:before,
-        select:focus,
-        select:active {
-            background-color: #f0a500;
-            color: #fff;
-            border-color: #bd8200;
-        }
-
-        input[type="checkbox"] {
-            display: none;
-        }
-
-        input[type="checkbox"]+label {
-            position: relative;
-            display: block;
-            padding-left: 1.6em;
-        }
-
-        input[type="checkbox"]+label:before {
-            position: absolute;
-            top: 0.2em;
-            left: 0;
-            display: block;
-            width: 1em;
-            height: 1em;
-            padding: 0;
-            content: "";
-        }
-
-        input[type="checkbox"]+label:after {
-            position: absolute;
-            top: 0.45em;
-            left: 0.2em;
-            font-size: 0.8em;
-            color: #fff;
-            opacity: 0;
-            font-family: FontAwesome;
-            content: "\f00c";
-        }
-
-        input:checked+label:after {
-            opacity: 1;
-        }
-
-        select {
-            height: 3.4em;
-            line-height: 2;
-            min-width: fit-content;
-        }
-
-        select:first-of-type {
-            border-top-left-radius: 3px;
-            border-bottom-left-radius: 3px;
-        }
-
-        select:last-of-type {
-            border-top-right-radius: 3px;
-            border-bottom-right-radius: 3px;
-        }
-
-        select:focus,
-        select:active {
-            outline: 0;
-        }
-
-        select option {
-            background-color: #f0a500;
-            color: #fff;
-        }
-
-        .input-group {
-            margin-bottom: 1em;
-            zoom: 1;
-        }
-
-        .input-group:before,
-        .input-group:after {
-            content: "";
-            display: table;
-        }
-
-        .input-group:after {
-            clear: both;
-        }
-
-        .input-group-icon {
-            position: relative;
-        }
-
-        .input-group-icon input {
-            padding-left: 4.4em;
-            min-height:51px;
-        }
-
-        .input-group-icon .input-icon {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3.4em;
-            height: 3.4em;
-            line-height: 3.4em;
-            text-align: center;
-            pointer-events: none;
-        }
-
-        .input-group-icon .input-icon:after {
-            position: absolute;
-            top: 0.6em;
-            bottom: 0.6em;
-            left: 3.4em;
-            display: block;
-            border-right: 1px solid #e5e5e5;
-            content: "";
-            -webkit-transition: 0.35s ease-in-out;
-            -moz-transition: 0.35s ease-in-out;
-            -o-transition: 0.35s ease-in-out;
-            transition: 0.35s ease-in-out;
-            transition: all 0.35s ease-in-out;
-        }
-
-        .input-group-icon .input-icon i {
-            -webkit-transition: 0.35s ease-in-out;
-            -moz-transition: 0.35s ease-in-out;
-            -o-transition: 0.35s ease-in-out;
-            transition: 0.35s ease-in-out;
-            transition: all 0.35s ease-in-out;
-        }
-
-        .container {
-            max-width: 70em;
-            padding: 1em 3em 2em 3em;
-            margin: 0em auto;
-            background-color: #fff;
-            border-radius: 4.2px;
-            box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.2);
-        }
-
-        .row {
-            zoom: 1;
-        }
-
-        .row:before,
-        .row:after {
-            content: "";
-            display: table;
-        }
-
-        .row:after {
-            clear: both;
-        }
-
-        .col-half {
-            padding: 10px;
-            float: left;
-            width: 20%;
-        }
-        .col-th {
-            padding: 10px;
-            float: left;
-            width: 45%;
-        }
-        .col-forth {
-            padding: 10px;
-            float: left;
-            width: 15%;
-        }
-
-        .col {
-            padding-right: 10px;
-            float: left;
-            width: 50%;
-        }
-
-        .col-half:last-of-type {
-            padding-right: 0;
-        }
-
-        .col-third {
-            padding-right: 10px;
-            float: left;
-            width: 33.33333333%;
-        }
-
-        .col-third:last-of-type {
-            padding-right: 0;
-        }
-
-        @media only screen and (max-width: 540px) {
-            .col-half {
-                width: 100%;
-                padding-right: 0;
-            }
-        }
-    </style>
+                button.btn {
+                    
+                    width: 100%;
+                    padding: 5px;
+                    line-height: 2;
+                    background-color: #f9f9f9;
+                    border: 1px solid #e5e5e5;
+                    border-radius: 3px;
+                    -webkit-transition: 0.35s ease-in-out;
+                    -moz-transition: 0.35s ease-in-out;
+                    -o-transition: 0.35s ease-in-out;
+                    transition: 0.35s ease-in-out;
+                    transition: all 0.35s ease-in-out;
+                }
+        
+                @media only screen and (max-width: 540px) {
+                    .col-half {
+                        width: 100%;
+                        padding-right: 0;
+                    }
+                }
+            </style>
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
 </head>
 <body>
@@ -292,7 +307,7 @@
                 <div class="row">
                     <h4>Frame Size</h4>
                     <div class="col input-group input-group-icon">
-                        <input type="tel" step="any" placeholder="Width Of Window/Door" name="width" />
+                        <input type="tel" step="any" placeholder="Width Of Window/Door" name="width"/>
                         <div class="input-icon">
                             <i class="fas fa-arrows-alt-h"></i>
                         </div>
@@ -309,8 +324,14 @@
                 </div>
                 <div class="row">
                     <h4>Frame Details</h4>
-                    <div class="input-group">
-                        <label for="Product">Select Product:</label>
+                    <div class=" input-group input-group-icon" style="padding-top: 15px;
+                    float: left;
+                    width: 15%;">
+                        <label for="Product">Select Product:</label></div>
+                        <div class="input-group input-group-icon" style="padding: 11px;
+                        float: left;
+                        width: 40%;
+                        text-align: -webkit-left;">
                         <select id="product" name="product">
                             {% for i in products %}
                             <option value="{{i.code}}-{{i}}">
@@ -318,42 +339,61 @@
                             </option>
                         {% endfor %}
                         </select>
-                        <div class="col-half input-group" style="float: right;">
-                            <label for="qty">Quantity</label>
-                            <input id="qty" name="qty" type="number" value="1"/>
-                        </div>
-                        <div class=" col-half input-group">
-                            <label for="Location">Location</label>
-                            <select id="location" name="location">
-                                {% for i in location %}
-                                    <option value={{i}}>{{i}}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        </div>
                     </div>
+                    
                 </div>
-                <div class="row"
-                     style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
-                    <div class=" col-half input-group input-group-icon" style="float: right;">
+
+                <div class="row">
+
+                    <div class="col-half input-group input-group-icon">
+                        <label for="qty">Quantity</label>
+                    
+                        <input id="qty" name="qty" type="number" value="1"/>
+                        </div>
+
+                    <div class="col-half input-group input-group-icon" >
+                        <label for="Location">Location</label>
+                    
+                        <select id="location" name="location">
+                            {% for i in location %}
+                                <option value={{i}}>{{i}}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-half input-group input-group-icon">
                         <label for="coating">Select Coating:</label>
                         <select id="coating" name="coating">
+                             {% for i in coat %}
+                                 <option value='{{i}}'>
+                                     {{i}}
+                                 </option>
+                             {% endfor %}
+                         </select>
+                        </div>
+
+                </div>
+<!-- 
+                <div class="row"
+                     style="border: 1px solid #b9b9b9;
+                           ">
+                    <div class="col-half input-group input-group-icon" style="float: right;">
+                       <label for="coating">Select Coating:</label>
+                       <select id="coating" name="coating">
                             {% for i in coat %}
                                 <option value='{{i}}'>
                                     {{i}}
                                 </option>
                             {% endfor %}
-                        </select>
+                        </select></div>
                     </div>
-                </div>
+                 -->
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
-                    <div class=" col-th input-group input-group-icon">
+                            ">
+                    <div class="col-half input-group input-group-icon">
                         <label for="frametype">Select Frame:</label>
+                        
                         <select id="frametype" name="frametype">
                             {% for i in frame %}
                                 <option value={{i}}>{{i }}
@@ -361,7 +401,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-forth input-group input-group-icon">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="framesize">Select length:</label>
                         <select id="framesize" name="framesize">
                             {% for i in length %}
@@ -370,7 +410,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel"
                                step="any"
                                list="frameweight"
@@ -383,18 +423,17 @@
                             {% endfor %}
                         </datalist>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel" step="any" placeholder="Rate/kg" name="framerate"/>
                     </div>
-                    {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
-                        <input type="text" placeholder="Coating Rate" name="framecoat" />
-                    </div> {% endcomment %}
+                        {% comment %} <div class=" col-th input-group input-group-icon" style="float: right;">
+                            <input type="text" placeholder="Coating Rate" name="framecoat" />
+                        </div> {% endcomment %}
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
-                    <div class=" col-th input-group input-group-icon">
+                          ">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="shuttertype">Select Shutter:</label>
                         <select id="shuttertype" name="shuttertype">
                             {% for i in shutter %}
@@ -403,7 +442,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-forth input-group input-group-icon">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="shuttersize">Select length:</label>
                         <select id="shuttersize" name="shuttersize">
                             {% for i in length %}
@@ -412,7 +451,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel"
                                list="shutterweight"
                                step="any"
@@ -425,7 +464,7 @@
                             {% endfor %}
                         </datalist>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel" step="any" placeholder="Rate/kg" name="shutterrate" />
                     </div>
                     {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
@@ -434,9 +473,8 @@
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
-                    <div class=" col-th input-group input-group-icon">
+                            ">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="lpattitype">Select I/L patti:</label>
                         <select id="lpattitype" name="lpattitype">
                             {% for i in ilpatti %}
@@ -445,7 +483,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-forth input-group input-group-icon">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="lpattisize">Select length:</label>
                         <select id="lpattisize" name="lpattisize">
                             {% for i in length %}
@@ -454,7 +492,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel"
                                list="lpattiweight"
                                step="any"
@@ -467,7 +505,7 @@
                             {% endfor %}
                         </datalist>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel" step="any" placeholder="Rate/kg" name="lpattirate" />
                     </div>
                     {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
@@ -476,9 +514,8 @@
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
-                    <div class=" col-th input-group input-group-icon">
+                           ">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="uchannel_type">Select Uchannel:</label>
                         <select id="uchannel_type" name="uchannel_type">
                             {% for i in uch %}
@@ -487,7 +524,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-forth input-group input-group-icon">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="uchannel_size">Select length:</label>
                         <select id="uchannel_size" name="uchannel_size">
                             {% for i in length %}   
@@ -496,7 +533,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel"
                                list="uchannel_weight"
                                step="any"
@@ -509,18 +546,17 @@
                             {% endfor %}
                         </datalist>
                     </div>
-                    <div class=" col-half input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel" step="any" placeholder="Rate/kg" name="uchannel_rate" />
                     </div>
-                    {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
+                     <!-- <div class=" col-half input-group input-group-icon" style="float: right;">
                         <input type="text" placeholder="Coating Rate" name="uchannel_coat" />
-                    </div> {% endcomment %}
+                    </div>  -->
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
-                    <div class=" col-third input-group input-group-icon">
+                            ">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="glasstype">Select Glass:</label>
                         <select id="glasstype" name="glasstype">
                             {% for i in glass %}
@@ -530,18 +566,19 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-third input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
+                        
                         <input type="tel"
                                step="any"
                                placeholder="Glass Rate(Rs/sq.foot)"
                                name="glassrate"/>
                     </div>
+
+                    
                 </div>
                 <div class="row"
-                     style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
-                    <div class=" col-third input-group input-group-icon">
+                     style="border: 1px solid #b9b9b9; ">
+                    <div class=" col-half input-group input-group-icon">
                         <label for="nettype">Select Mosquito Net:</label>
                         <select id="nettype" name="nettype">
                             {% for i in net %}
@@ -551,7 +588,7 @@
                             {% endfor %}
                         </select>
                     </div>
-                    <div class=" col-third input-group input-group-icon">
+                    <div class=" col-forth input-group input-group-icon">
                         <input type="tel"
                                step="any"
                                placeholder="Net Rate(Rs/sq.foot)"
@@ -562,58 +599,57 @@
 
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
-                    <div class=" col-third input-group input-group-icon">
-                        <input type="text" placeholder="Add on Name" name="addon" />
-                    </div>
-                    <div class=" col-third input-group input-group-icon">
+                         ">
+                    {% comment %} <div class=" col-half input-group input-group-icon">
+                        <input type="text" placeholder="Add on Name" name="extra" />
+                    </div> {% endcomment %}
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="qty">Enter Extra Charge</label>
                         <input type="tel"
-                               value="0"
                                step="any"
-                               placeholder="Add on Rate"
-                               name="addonrate"/>
+                               placeholder="Extra Charges"
+                               name="extrarate"/>
                     </div>
-                    <div class=" col-third input-group input-group-icon">
+                    <div class=" col-half input-group input-group-icon">
+                        <label for="qty">Enter Labour Charge</label>
                         <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
                     </div>
+                    <div class="col-half input-group input-group-icon">
+                        <label for="qty">Enter Transport Charge</label>
+                    
+                        <input type="tel" step="any" placeholder="Transport Charges" name="transportrate" />
+                        </div>
                 </div>
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
-                            padding: 5px;
-                            margin: 5px;">
+                            ">
                     <div class=" col-half input-group input-group-icon">
-                        <label for="pushlock">Push Lock</label>
-                        
-                    </div>
-                    <div class=" col-half input-group input-group-icon">
+                        <label for="qty">Enter PushLock Rate</label>
                         <input type="tel"
                                step="any"
-                               placeholder="Rate"
+                               placeholder="Push Lock Rate"
                                name="pushlock"/>
                     </div>
                     <div class="col-half input-group input-group-icon">
-                        <label for="handlelock">Handle Lock</label>
-                      
-                    </div>
-                    <div class=" col-half input-group input-group-icon">
+                        <label for="qty">Enter HandleLock Rate</label>
+                    
                         <input type="tel"
                                step="any"
-                               placeholder="Rate"
+                               placeholder="Handle Lock Rate"
                                name="handlelock"/>
                     </div>
                 </div>
             </div>
             <div class="row" id="replace"
                  style="border: 1px solid #b9b9b9;
-                        padding: 5px;
-                        margin: 5px;">
-                <div class="input-group input-group-icon">
-                    <button class="btn" type="button" hx-get="{% url 'app:partial' 1 %}" hx-target="#replace" hx-swap = "outerHTML">Add Product</button>
+                      ">
+                <div class="">
+                    <button class="btn" type="button" hx-get="{% url 'app:partial' 1 %}" hx-target="#replace" hx-swap = "outerHTML">Add More Product</button>
                 </div>
+                
             </div>
             <div class="row">
-                <div class="input-group">
+                <div class="">
                     <input id="terms" type="submit" />
                 </div>
             </div>
@@ -621,3 +657,5 @@
     </div>
 </body>
 </html>
+
+    

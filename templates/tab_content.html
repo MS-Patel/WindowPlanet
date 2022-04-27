@@ -12,12 +12,13 @@
             padding: 5px;
             text-align: left;
             max-width: 130px;
+            color:black;
         }
         table tr:nth-child(even) {
             background-color: #fff;
         }
         table tr:nth-child(odd) {
-           background-color:#eee;
+           background-color:#e5e9f3;
         }
         table th	{
             background-color: black;
@@ -39,58 +40,59 @@
                     {% for item in data %}
                         <table>
                             <tr >
-                                <td colspan="1">Sr.No</td>
-                                <td colspan="3">W01</td>
-                                <td>Size</td>
+                                <td colspan="1"><b>Sr.No</b></td>
+                                <td colspan="3">w{{forloop.counter}}</td>
+                                <td><b>Size</b></td>
                                 <td>W X{{ item.w }}</td>
                                 <td>H X{{ item.h }}</td>
-                                <td></td>
+                                <td>{{today}}</td>
                             </tr>
                             <tr >
-                                <td colspan="1">Location</td>
+                                <td colspan="1"><b>Location</b></td>
                                 <td colspan="3">{{ item.location }}</td>
-                                <td>Section Details</td>
+                                <td><b>Section Details</b></td>
                                 <td colspan="3">{{ item.product.name }}</td>
                             </tr>
                             <tr >
-                                <td colspan="4" style="text-align: center; background-color:white">1814</td>
-                                <td colspan="4">Computer Values</td>
+                                <td colspan="4" style="text-align: center; background-color:#fff">{%widthratio item.w 1 25.4%}</td>
+                                <td colspan="4" style="background-color:#b0c4de"><b>Computer Values</b></td>
                             </tr>
-                            <tr style="height: 30px;">
+                            <tr style="height: 20px;">
                                 <td colspan="3" rowspan="6" style="text-align: center; max-width:50%">
                                     <img src ="{{ item.product.image }}" style="max-height:500px;">
                                 </td>
-                                <td rowspan="6"  style="text-align: center; writing-mode: vertical-rl;">2110</td>
+                                <td rowspan="6"  style="text-align: center; writing-mode: vertical-rl;">{%widthratio item.h 1 25.4%}</td>
                                 <td colspan="2">Sq.Ft. per Window</td>
                                 <td >{{ item.size }}</td>
                                 <td>Sq.Ft.</td>
                             </tr>
-                            <tr style="height: 30px;">
+                            <tr style="height: 20px;background:#fff">
                                 <td colspan="2">Unit Price</td>
                                 <td >{{ item.unitprice }}</td>
                                 <td>Rs.</td>
                             </tr>
-                            <tr style="height: 30px;">
+                            <tr style="height: 20px; background:#e5e9f3">
                                 <td colspan="2">Quantity</td>
                                 <td>{{ item.qty }}</td>
                                 <td>PCs</td>
                             </tr>
-                            <tr style="height: 30px;">
+                            
+                            <tr style="height: 20px;background:white">
                                 <td colspan="2">Value</td>
                                 <td>{{ item.value }}</td>
                                 <td>
                                     Rs.
                                 </td>
                             </tr>
-                            <tr style="height: 30px;">
+                            <tr style="height: 20px; background:#b0c4de" >
                                 <td colspan="2">
-                                    Descriptions
+                                    <b>Descriptions</b>
                                 </td>
                                 <td colspan="2">
-                                    Accessories
+                                    <b>Accessories</b>
                                 </td>
                             </tr>
-                            <tr style="height: 300px;">
+                            <tr style="height: 200px;background:white">
                                 <td colspan="2">
                                     Profile Colour - Golden Oak
                                     Track - Sliding Three Track Frame 50mm
@@ -105,10 +107,90 @@
                                 <td colspan="2">
                                     No. Of Mesh Sash - 1
                                 </td>
+
                             </tr>
+                            
                         </table>
+
+                        
                     {% endfor %}
                 </div>
+               <!-- *************************************************-->
+
+               <table>
+                   <tr>
+                   <th colspan="3" style="background-color:#b0c4de">Quote Total</th>
+                   <tr>
+
+
+                    <tr style="background-color:##e5e9f3">
+                        <td>Total No. of Windows</td>
+                         <td>
+                            {{ qty}}
+                         </td>
+                         <td>PCS</td>
+                     </tr>
+
+                     <tr style="background-color:#e5e9f3">
+                        <td>Total Area in SQFT</td>
+                         <td>
+                            {{ sqft}}
+                         </td>
+                         <td>SQFT</td>
+                     </tr>
+
+                     <tr>
+                        <td>Basic Value</td>
+                         <td>
+                            {{total}}
+                         </td>
+                         <td>INR</td>
+                     </tr>
+
+                     <tr style="background-color:##e5e9f3">
+                        <td>Average Value per SQFT</td>
+                         <td>
+                            {{avgvalue}}
+                         </td>
+                         <td>INR</td>
+                     </tr>
+                     <tr>
+                        <td>Installation Labour</td>
+                         <td>
+                            {{totallabour}}
+                         </td>
+                         <td>INR</td>
+                     </tr>
+                     <tr>
+                        
+                        <td>Transportation Charges</td>
+                         <td>
+                            {{total_transport_charge}}
+                         </td>
+                         <td>INR</td>
+                     </tr>
+                     
+                 <tr>
+                     <td>Value</td> <!--total of all values-->
+                     <td> {{ finalvalue}}</td>
+                     <td>INR</td>
+                 </tr>
+
+                 <tr>
+                    <td>GST ( CGST + SGST ) 18%</td> <!--total of all values-->
+                    <td> {{gst}}</td>
+                    <td>INR</td>
+                </tr>
+
+                <tr style="background-color:#e5e9f3">
+                    <td><b>Grand Total</b></td> <!--total of all values-->
+                    <td><b> {{summery}}</b></td>
+                    <td>INR</td>
+                </tr>
+
+                 
+             </table>
+               <!-- *****************************************************-->
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Addon, Coat, Frame, Glass, Ilpatti, Length, Location, Mnet, Product, QuotationItem, Shutter, Uchannel, Quotation
+from app.models import Addon, Coat, Quotation, QuotationItem, Frame, Glass, Ilpatti, Length, Location, Mnet, Product, Shutter, Uchannel
 
 # Register your models here.
 
