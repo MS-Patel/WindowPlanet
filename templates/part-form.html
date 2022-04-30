@@ -254,12 +254,7 @@
                    placeholder="Glass Rate(Rs/sq.foot)"
                    name="glassrate"/>
         </div>
-    </div>
-    <div class="row"
-         style="border: 1px solid #b9b9b9;
-                padding: 5px;
-                margin: 5px;">
-                <div class=" col-half input-group input-group-icon">
+        <div class=" col-half input-group input-group-icon">
             <label for="nettype">Select Mosquito Net:</label>
             <select id="nettype{{no}}" name="nettype">
                 {% for i in net %}
@@ -276,52 +271,45 @@
                    name="netrate"/>
         </div>
     </div>
-
+   
 
     <div class="row"
     style="border: 1px solid #b9b9b9;
         ">
-   {% comment %} <div class=" col-half input-group input-group-icon">
-       <input type="text" placeholder="Add on Name" name="extra" />
-   </div> {% endcomment %}
-   <div class=" col-half input-group input-group-icon">
-       <label for="qty">Enter Extra Charge</label>
-       <input type="tel"
-              step="any"
-              placeholder="Extra Charges"
-              name="extrarate"/>
-   </div>
-   <div class=" col-half input-group input-group-icon">
-    <label for="qty">Enter Labour Charge</label>
-    <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
-</div>
-<div class="col-half input-group input-group-icon">
-    <label for="qty">Enter Transport Charge</label>
+   
 
-    <input type="tel" step="any" placeholder="Transport Charges" name="transportrate" />
+
+    <div class=" col-half input-group input-group-icon">
+            
+        <label for="qty">Enter PushLock Rate</label>
+            <input type="tel"
+                   step="any"
+                   value="0"
+                   name="pushlock"/>
+        </div>
+    
+        <div class="col-half input-group input-group-icon">
+                   
+                
+            <label for="qty">Enter HandleLock Rate</label>
+            <input type="tel"
+                   step="any"
+                   value="0"
+                   name="handlelock"/>
+        </div>
     </div>
-</div>
+    </div>
     <div class="row"
          style="border: 1px solid #b9b9b9;">
-        <div class=" col-half input-group input-group-icon">
-            
-            <label for="qty">Enter PushLock Rate</label>
-                <input type="tel"
-                       step="any"
-                       placeholder="Push Lock Rate"
-                       name="pushlock"/>
+         <div class=" col-half input-group input-group-icon">
+            <label for="qty">Enter Labour Charge Per sq.ft</label>
+            <input type="tel" step="any" value="0" name="labourrate" />
             </div>
-        
             <div class="col-half input-group input-group-icon">
-                       
-                    
-                <label for="qty">Enter HandleLock Rate</label>
-                <input type="tel"
-                       step="any"
-                       placeholder="Handle Lock Rate"
-                       name="handlelock"/>
+            <label for="qty">Enter Transport Charge</label>
+        
+            <input type="tel" step="any" value="0" name="transportrate" />
             </div>
-        </div>
     </div>
 <div class="row" id="replace"
      style="border: 1px solid #b9b9b9;">

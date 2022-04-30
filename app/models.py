@@ -4,6 +4,7 @@ class Product(models.Model):
     code = models.CharField(verbose_name="Product Code", max_length=10, unique=True)
     name = models.CharField(verbose_name="Product Name", max_length=50)
     image = models.CharField(max_length=255,blank=True,null=True)
+    discription=models.CharField(max_length=500)
     def __str__(self):
         return self.name
 
@@ -95,6 +96,7 @@ class Quotation(models.Model):
      finalvalue=models.FloatField(verbose_name="Total Value")
      gst=models.FloatField(verbose_name="GST")
      summery=models.FloatField(verbose_name="Grand Total")
+     quotation_date= models.DateField(auto_now_add=False)
      def __str__(self):
          return self.id
          
@@ -113,6 +115,8 @@ class QuotationItem(models.Model):
      value=models.FloatField(verbose_name="Value")
      labour=models.FloatField(verbose_name="Labour")
      transport_charge=models.FloatField(verbose_name="Transport Charge")
+     pl = models.CharField(max_length=50, null=True)
+     hl = models.CharField(max_length=50, null=True)
      def __str__(self):
          return self.qoutation.id
 

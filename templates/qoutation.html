@@ -80,6 +80,11 @@
                     <input value="{{item.1.qty}}" type="hidden" name="qty" readonly/>
                     <input value="{{item.0.Labour.prize}}" type="hidden" name="labourrate" readonly/>
                     <input value="{{item.0.Trans.prize}}" type="hidden" name="tranportrate" readonly/>
+                    <input value="{{item.0.Frame.type}}" type="hidden" name="framerate" readonly/>
+                    <input value="{{item.0.Glass.type}}" type="hidden" name="glassrate" readonly/>
+                    <input value="{{item.1.coating}}" type="hidden" name="coating" readonly/>
+                    <input value="{{item.1.pl}}" type="hidden" name="pl" readonly/>
+                    <input value="{{item.1.hl}}" type="hidden" name="hl" readonly/>
                 </div>
                 <div class="col-md-6 text-right">
                     <p class="font-weight-bold mb-4">Quatation Details</p>
@@ -130,27 +135,34 @@
             </div>
             <div class="row pb-5 p-5">
             <div class="col-md-12 d-flex flex-row-reverse bg-dark text-white">
-                <div class="px-5 text-right">
+                <div class="px-4 text-right">
+                    <div class="mb-2">Enter Margin Rate</div>
+                 
+                    
+                    <input type="tel" step="any" name ="m" value="0" style="width:80px;" />
+                </div>
+                <div class="px-4 text-right">
                     <div class="mb-2">Grand Total</div>
                     <div class="h4 font-weight-light">{{item.1.grand_total}}</div>
                     <input value="{{item.1.grand_total}}" type="hidden" name ="total" readonly/>
+                    
                 </div>
 
-                <div class=" px-5 text-right">
+                <div class=" px-4 text-right">
                     <div class="mb-2">Coating Total</div>
                     <div class="h4 font-weight-light">{{item.1.coat_total}}</div>
                 </div>
 
-                <div class="px-5 text-right">
+                <div class="px-4 text-right">
                     <div class="mb-2">Total amount</div>
                     <div class="h4 font-weight-light">{{item.1.total}}</div>
                 </div>
 
 
-                <div class="px-5 text-right">
+                <div class="px-4 text-right">
                     <div class="mb-2">Addon  Total</div>
                     <div class="h4 font-weight-light">{{item.1.addon_total}}</div>
-                    <input value="{{item.1.addon_total}}" type="hidden" name ="total" readonly/>
+                    <input value="{{item.1.addon_total}}" type="hidden" name ="addontotal" readonly/>
                 </div>
             </div>
         </div>

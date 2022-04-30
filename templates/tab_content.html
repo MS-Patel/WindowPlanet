@@ -11,7 +11,7 @@
         th, td {
             padding: 5px;
             text-align: left;
-            max-width: 130px;
+            max-width: 220px;
             color:black;
         }
         table tr:nth-child(even) {
@@ -23,6 +23,11 @@
         table th	{
             background-color: black;
             color: white;
+        }
+        li{
+           
+            line-height: 2.5;
+
         }
 
 </style>
@@ -45,13 +50,13 @@
                                 <td><b>Size</b></td>
                                 <td>W X{{ item.w }}</td>
                                 <td>H X{{ item.h }}</td>
-                                <td>{{today}}</td>
+                                <td>{{today|date:'d-m-y'}}</td>
                             </tr>
                             <tr >
                                 <td colspan="1"><b>Location</b></td>
                                 <td colspan="3">{{ item.location }}</td>
                                 <td><b>Section Details</b></td>
-                                <td colspan="3">{{ item.product.name }}</td>
+                                <td colspan="3">{{ item.section}}</td>
                             </tr>
                             <tr >
                                 <td colspan="4" style="text-align: center; background-color:#fff">{%widthratio item.w 1 25.4%}</td>
@@ -93,19 +98,30 @@
                                 </td>
                             </tr>
                             <tr style="height: 200px;background:white">
-                                <td colspan="2">
-                                    Profile Colour - Golden Oak
-                                    Track - Sliding Three Track Frame 50mm
-                                    X 106mm
-                                    Sliding Ri - 229005-2.0mm
-                                    Flyscreen Sash - 103366123
-                                    Sliding Sash - 103374123
-                                    Flymesh Type - Fiber
-                                    6 mm Clear Toughened - 1
-                                    Flymesh- 1
+                                <td colspan="2" style="
+                                vertical-align: top;
+                            ">
+                                        <ul>
+                                        <li> {{ item.product.discription }}</li>
+                                            <li>{{ item.shutter}}</li>
+                                                <li>{{ item.glass }} Glass Clear </li>
+                                        </ul>
                                 </td>
-                                <td colspan="2">
-                                    No. Of Mesh Sash - 1
+                                <td colspan="2" style="
+                                vertical-align: top;
+                            ">
+                                    <ul>
+                                {% if item.pl !=  '0.0' %}
+                                    <li>pushlock</li>
+                                    {% endif %}
+                                {% if item.hl !=  '0.0' %}
+                                  <li>  handlelock</li>
+                                    {% endif %}
+                                   
+                                   <li> Multipoint Locking System</li>
+                                    <li> Heavy Bearings</li>
+                                        <li> Standard Hardware</li>
+                                    </ul>
                                 </td>
 
                             </tr>
@@ -117,13 +133,13 @@
                 </div>
                <!-- *************************************************-->
 
-               <table>
+              <table>
                    <tr>
                    <th colspan="3" style="background-color:#b0c4de">Quote Total</th>
                    <tr>
 
 
-                    <tr style="background-color:##e5e9f3">
+                    <tr style="background-color:#e5e9f3">
                         <td>Total No. of Windows</td>
                          <td>
                             {{ qty}}
@@ -147,14 +163,14 @@
                          <td>INR</td>
                      </tr>
 
-                     <tr style="background-color:##e5e9f3">
+                     <tr style="background-color:#e5e9f3">
                         <td>Average Value per SQFT</td>
                          <td>
                             {{avgvalue}}
                          </td>
                          <td>INR</td>
                      </tr>
-                     <tr>
+                     {% comment %} <tr>
                         <td>Installation Labour</td>
                          <td>
                             {{totallabour}}
@@ -168,7 +184,7 @@
                             {{total_transport_charge}}
                          </td>
                          <td>INR</td>
-                     </tr>
+                     </tr> {% endcomment %}
                      
                  <tr>
                      <td>Value</td> <!--total of all values-->

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quotation</title>
+        <title>Quatation</title>
         <link rel="stylesheet"
               href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
               integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
@@ -574,10 +574,6 @@
                                name="glassrate"/>
                     </div>
 
-                    
-                </div>
-                <div class="row"
-                     style="border: 1px solid #b9b9b9; ">
                     <div class=" col-half input-group input-group-icon">
                         <label for="nettype">Select Mosquito Net:</label>
                         <select id="nettype" name="nettype">
@@ -593,53 +589,55 @@
                                step="any"
                                placeholder="Net Rate(Rs/sq.foot)"
                                name="netrate"/>
-                    </div>
+                    </div>                    
                 </div>
+               
 
 
-                <div class="row"
-                     style="border: 1px solid #b9b9b9;
-                         ">
-                    {% comment %} <div class=" col-half input-group input-group-icon">
-                        <input type="text" placeholder="Add on Name" name="extra" />
-                    </div> {% endcomment %}
-                    <div class=" col-half input-group input-group-icon">
-                        <label for="qty">Enter Extra Charge</label>
-                        <input type="tel"
-                               step="any"
-                               placeholder="Extra Charges"
-                               name="extrarate"/>
-                    </div>
-                    <div class=" col-half input-group input-group-icon">
-                        <label for="qty">Enter Labour Charge</label>
-                        <input type="tel" step="any" placeholder="Labour Charges" name="labourrate" />
-                    </div>
-                    <div class="col-half input-group input-group-icon">
-                        <label for="qty">Enter Transport Charge</label>
-                    
-                        <input type="tel" step="any" placeholder="Transport Charges" name="transportrate" />
-                        </div>
-                </div>
+               
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
                             ">
                     <div class=" col-half input-group input-group-icon">
-                        <label for="qty">Enter PushLock Rate</label>
+                        <label for="qty">Enter PushLock Nos.</label>
                         <input type="tel"
                                step="any"
-                               placeholder="Push Lock Rate"
+                               value="0"
                                name="pushlock"/>
                     </div>
                     <div class="col-half input-group input-group-icon">
-                        <label for="qty">Enter HandleLock Rate</label>
+                        <label for="qty">Enter HandleLock Nos.</label>
                     
                         <input type="tel"
                                step="any"
-                               placeholder="Handle Lock Rate"
+                               value="0"
                                name="handlelock"/>
                     </div>
                 </div>
             </div>
+            <div class="row"
+            style="border: 1px solid #b9b9b9;
+                ">
+            {% comment %} <div class=" col-half input-group input-group-icon">
+               <input type="text" placeholder="Add on Name" name="extra" />
+           </div>  {% endcomment %}
+           {% comment %} <div class=" col-half input-group input-group-icon">
+               <label for="qty">Enter Extra Charge</label>
+               <input type="tel"
+                      step="any"
+                      value="0"
+                      name="extrarate"/>
+           </div> {% endcomment %}
+           <div class=" col-half input-group input-group-icon">
+               <label for="qty">Enter Labour Charge Per sq.ft</label>
+               <input type="tel" step="any" value="0" name="labourrate" />
+           </div>
+           <div class="col-half input-group input-group-icon">
+               <label for="qty">Enter Transport Charge</label>
+           
+               <input type="tel" step="any" value="0" name="transportrate" />
+               </div>
+       </div>
             <div class="row" id="replace"
                  style="border: 1px solid #b9b9b9;
                       ">
