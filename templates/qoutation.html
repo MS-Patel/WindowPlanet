@@ -18,177 +18,238 @@
         color: #f0a500;
     }
 
-.btn{
+    .btn {
 
-    background-color: #f9f9f9;
-    padding: 8px;
-    width: 100%;
-}
+        background-color: #f9f9f9;
+        padding: 8px;
+        width: 100%;
+    }
 
 
-.row {
-    zoom: 1;
-}
+    .row {
+        zoom: 1;
+    }
 
-.row:before,
-.row:after {
-    content: "";
-    display: table;
-}
+    .row:before,
+    .row:after {
+        content: "";
+        display: table;
+    }
 
-.row:after {
-    clear: both;
-}
+    .row:after {
+        clear: both;
+    }
 
-.container {
-    width: 70%;
-    padding-right: 15px
-;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
+    .container {
+        width: 70%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
 
+    label {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        width: 33%;
+    }
 </style>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--Include the above in your HEAD tag -->
+
 <body style="background-color: #f2f0f0;">
-<div class="container" style="width:100%">
-    <form action="/tab_content" method="post">
-        {% csrf_token %}
+    <div class="container" style="width:100%">
+        <form action="/tab_content" method="post">
+            {% csrf_token %}
 
-    {% for item in qoutes %}
-    <div class="card">
-        <div class="card-body my-5">
-           
+
 
             <div class="row pb-5 p-5">
-                <div class="col-md-6">
-                    <p class="font-weight-bold mb-4">Product Information</p>
-                    <p class="mb-1">Product Type :<b>{{item.1.product}}</b></p>
-                    <p class="mb-1">Product code :<b>{{item.1.pd_code}}</b></p>
-                    <p class="mb-1">Product size :<b>{{item.1.w}}W x {{item.1.h}}H</b></p>
-                    <p class="mb-1">Location:<b>{{item.1.location}}</b></p>
-                    <p class="mb-1">Quantity:<b>{{item.1.qty}}</b></p>
-                    <input value="{{item.1.qouteid}}" type="hidden" name="qouteid" readonly/>
-                    <input value="{{item.1.pd_code}}" type="hidden" name="product" readonly/>
-                    <input value="{{item.1.w}}" type="hidden" name="w" readonly/>
-                    <input value="{{item.1.h}}" type="hidden" name="h" readonly/>
-                    <input value="{{item.1.location}}" type="hidden" name="location" readonly/>
-                    <input value="{{item.1.qty}}" type="hidden" name="qty" readonly/>
-                    <input value="{{item.0.Labour.prize}}" type="hidden" name="labourrate" readonly/>
-                    <input value="{{item.0.Trans.prize}}" type="hidden" name="tranportrate" readonly/>
-                    <input value="{{item.0.Frame.type}}" type="hidden" name="framerate" readonly/>
-                    <input value="{{item.0.Glass.type}}" type="hidden" name="glassrate" readonly/>
-                    <input value="{{item.1.coating}}" type="hidden" name="coating" readonly/>
-                    <input value="{{item.1.pl}}" type="hidden" name="pl" readonly/>
-                    <input value="{{item.1.hl}}" type="hidden" name="hl" readonly/>
-                </div>
-                <div class="col-md-6 text-right">
-                    <p class="font-weight-bold mb-4">Quatation Details</p>
+                <div class=" col-12  bg-dark text-white">
+                    <div class="row p-3 text-center">
+                        Quotations
+                    </div>
+                    <div class="row p-3">
+                        <div class="col ml-2">
+                            
+                         <input type="tel" step="any" name="to" value="" placeholder="To" style="width:200px;" required />
+                         <input type="tel" step="any" name="to_address_line_1" value="" placeholder="Enter To Address Line 1" style="width:300px;" required />
+                         <input type="tel" step="any" name="to_address_line_2" value="" placeholder="Enter To Address Line 2 " style="width:300px;" required />
+                         <input type="tel" step="any" name="to_address_line_3" value="" placeholder="Enter To Address Line 3 " style="width:300px;" required />
+                         <input type="tel" step="any" name="to_contact_no" value="" placeholder="Enter To Contact No" style="width:300px;" required />
+                        </div>
+                        <div class="col ml-2">
+                         <input type="tel" step="any" name="deliver_to" value="" placeholder="Deliver To" style="width:200px;" required />
+                         <input type="tel" step="any" name="deliver_to_address_line_1" value="" placeholder="Enter Deliver To Address Line 1" style="width:300px;" required />
+                         <input type="tel" step="any" name="deliver_to_address_line_2" value="" placeholder="Enter Deliver To Address Line 2 " style="width:300px;" required />
+                         <input type="tel" step="any" name="deliver_to_address_line_3" value="" placeholder="Enter Deliver To Address Line 3 " style="width:300px;" required />
+                         <input type="tel" step="any" name="deliver_to_contact_no" value="" placeholder="Enter Deliver To Contact No" style="width:300px;" required />
+                        </div>
+                        <div class="col ml-2">
+                            <br>
+                            <br>
+                            <input type="tel" step="any" name="customer_reference" value="" placeholder="Enter Customer Reference Name" style="width:250px;" required />
+                            <br>
+                            
+                            <br>
+                            <input type="tel" step="any" name="responsible" value="" placeholder="Enter Responsible Person Name" style="width: 250px;" required />
+                        </div>
+                    </div>
+                    
+                    
                     
 
-                    <p class="mb-1">Quatation ID:<b>{{item.1.qouteid}}</b></p>
-                    <p class="mb-1">Quatation Date:<b>{{today}}</b></p>
-                    <input value="{{item.1.qouteid}}" type="hidden" name="qouteid" readonly/>
-                    
-                    {% comment %} <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
-                    <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p> {% endcomment %}
-                </div>
-            </div>
-       
-            <div class="row pb-5 p-5">
-                <div class="col-md-12">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="border-0 text-uppercase small font-weight-bold bg-dark text-white">ID</th>
-                                <th class="border-0 text-uppercase small font-weight-bold bg-dark text-white">Item</th>
-                                <th class="border-0 text-uppercase small font-weight-bold bg-dark text-white">Description</th>
-                                <th class="border-0 text-uppercase small font-weight-bold bg-dark text-white">Quantity</th>
-                                <th class="border-0 text-uppercase small font-weight-bold bg-dark text-white">Weight</th>
-                                <th class="border-0 text-uppercase small font-weight-bold bg-dark text-white">Unit Cost</th>
-                                <th class="border-0 text-uppercase small font-weight-bold bg-dark text-white">Coating Cost</th>
-                                <th class="border-0 text-uppercase small font-weight-bold bg-dark text-white">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for key,value in item.0.items %}
-                            <tr>
-                                <td>1</td>
-                                <td>{{key}}</td>
-                                <td>{{value.type}}</td>
-                                <td>{{value.size}}</td>
-                                <td>{{value.weight}}</td>
-                                <td>{{value.rate}}</td>
-                                <td>{{value.coat}}</td>
-                                <td>{{value.prize}}</td>
-
-
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="row pb-5 p-5">
-            <div class="col-md-12 d-flex flex-row-reverse bg-dark text-white">
-                <div class="px-4 text-right">
-                    <div class="mb-2">Enter Margin Rate</div>
-                 
-                    
-                    <input type="tel" step="any" name ="m" value="0" style="width:80px;" />
-                </div>
-                <div class="px-4 text-right">
-                    <div class="mb-2">Grand Total</div>
-                    <div class="h4 font-weight-light">{{item.1.grand_total}}</div>
-                    <input value="{{item.1.grand_total}}" type="hidden" name ="total" readonly/>
-                    
-                </div>
-
-                <div class=" px-4 text-right">
-                    <div class="mb-2">Coating Total</div>
-                    <div class="h4 font-weight-light">{{item.1.coat_total}}</div>
-                </div>
-
-                <div class="px-4 text-right">
-                    <div class="mb-2">Total amount</div>
-                    <div class="h4 font-weight-light">{{item.1.total}}</div>
-                </div>
-
-
-                <div class="px-4 text-right">
-                    <div class="mb-2">Addon  Total</div>
-                    <div class="h4 font-weight-light">{{item.1.addon_total}}</div>
-                    <input value="{{item.1.addon_total}}" type="hidden" name ="addontotal" readonly/>
-                </div>
-            </div>
-        </div>
-        </div>
-    </div>
-    
-    {% endfor %}
-
-
-    <table>
-        <tr>
-            <td></td>
-        </tr>
-    </table>
-    <div class="row pb-5 py-5">
-        <div class="col-md-12">
-              
-            <input id="submit" type="submit" class="btn" />
-        </div>  
             
-    </div>
-</div>
 
-</form>
-
-  
+                    {% for item in qoutes %}
+                    <div class="card">
+                        <div class="card-body my-2">
 
 
 
+
+                            <div class="row pb-5 p-5">
+                                <div class="col-md-6" style="color: black;">
+                                    <p class="font-weight-bold mb-4 ">Product Information</p>
+                                    <p class="mb-1">Product Type :<b>{{item.1.product}}</b></p>
+                                    <p class="mb-1">Product code :<b>{{item.1.pd_code}}</b></p>
+                                    <p class="mb-1">Product size :<b>{{item.1.w}}W x {{item.1.h}}H</b></p>
+                                    <p class="mb-1">Location:<b>{{item.1.location}}</b></p>
+                                    <p class="mb-1">Quantity:<b>{{item.1.qty}}</b></p>
+                                    <input value="{{item.1.qouteid}}" type="hidden" name="qouteid" readonly />
+                                    <input value="{{item.1.pd_code}}" type="hidden" name="product" readonly />
+                                    <input value="{{item.1.w}}" type="hidden" name="w" readonly />
+                                    <input value="{{item.1.h}}" type="hidden" name="h" readonly />
+                                    <input value="{{item.1.location}}" type="hidden" name="location" readonly />
+                                    <input value="{{item.1.qty}}" type="hidden" name="qty" readonly />
+                                    <input value="{{item.0.Labour.prize}}" type="hidden" name="labourrate" readonly />
+                                    <input value="{{item.0.Trans.prize}}" type="hidden" name="tranportrate" readonly />
+                                    <input value="{{item.0.Frame.type}}" type="hidden" name="framerate" readonly />
+                                    <input value="{{item.0.Glass.type}}" type="hidden" name="glassrate" readonly />
+                                    <input value="{{item.1.coating}}" type="hidden" name="coating" readonly />
+                                    <input value="{{item.1.pl}}" type="hidden" name="pl" readonly />
+                                    <input value="{{item.1.hl}}" type="hidden" name="hl" readonly />
+                                </div>
+                                <div class="col-md-6 text-right" style="color: black;">
+                                    <p class="font-weight-bold mb-4">Quatation Details</p>
+
+
+                                    <p class="mb-1">Quatation ID:<b>{{item.1.qouteid}}</b></p>
+                                    <p class="mb-1">Quatation Date:<b>{{today}}</b></p>
+                                    <input value="{{item.1.qouteid}}" type="hidden" name="qouteid" readonly />
+
+                                    {% comment %} <p class="mb-1"><span class="text-muted">Payment Type: </span> Root
+                                    </p>
+                                    <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p> {% endcomment %}
+                                </div>
+                            </div>
+
+                            <div class="row pb-5 p-5">
+                                <div class="col-md-12">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="border-0 text-uppercase small font-weight-bold bg-dark text-white">
+                                                    ID
+                                                </th>
+                                                <th
+                                                    class="border-0 text-uppercase small font-weight-bold bg-dark text-white">
+                                                    Item</th>
+                                                <th
+                                                    class="border-0 text-uppercase small font-weight-bold bg-dark text-white">
+                                                    Description</th>
+                                                <th
+                                                    class="border-0 text-uppercase small font-weight-bold bg-dark text-white">
+                                                    Quantity</th>
+                                                <th
+                                                    class="border-0 text-uppercase small font-weight-bold bg-dark text-white">
+                                                    Weight</th>
+                                                <th
+                                                    class="border-0 text-uppercase small font-weight-bold bg-dark text-white">
+                                                    Unit Cost</th>
+                                                <th
+                                                    class="border-0 text-uppercase small font-weight-bold bg-dark text-white">
+                                                    Coating Cost</th>
+                                                <th
+                                                    class="border-0 text-uppercase small font-weight-bold bg-dark text-white">
+                                                    Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for key,value in item.0.items %}
+                                            <tr>
+                                                <td>1</td>
+                                                <td>{{key}}</td>
+                                                <td>{{value.type}}</td>
+                                                <td>{{value.size}}</td>
+                                                <td>{{value.weight}}</td>
+                                                <td>{{value.rate}}</td>
+                                                <td>{{value.coat}}</td>
+                                                <td>{{value.prize}}</td>
+
+
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row pb-5 p-5">
+                                <div class="col-md-12 d-flex flex-row-reverse bg-dark text-black">
+                                    <div class="px-4 text-right text-white">
+                                        <div class="mb-2">Enter Margin Rate</div>
+
+
+                                        <input type="tel" step="any" name="m" value="0" style="width:80px;" />
+                                    </div>
+                                    <div class="px-4 text-right text-white">
+                                        <div class="mb-2">Grand Total</div>
+                                        <div class="h4 font-weight-light">{{item.1.grand_total}}</div>
+                                        <input value="{{item.1.grand_total}}" type="hidden" name="total" readonly />
+
+                                    </div>
+
+                                    <div class=" px-4 text-right text-white">
+                                        <div class="mb-2">Coating Total</div>
+                                        <div class="h4 font-weight-light">{{item.1.coat_total}}</div>
+                                    </div>
+
+                                    <div class="px-4 text-right text-white">
+                                        <div class="mb-2">Total amount</div>
+                                        <div class="h4 font-weight-light">{{item.1.total}}</div>
+                                    </div>
+
+
+                                    <div class="px-4 text-right text-white">
+                                        <div class="mb-2">Addon Total</div>
+                                        <div class="h4 font-weight-light">{{item.1.addon_total}}</div>
+                                        <input value="{{item.1.addon_total}}" type="hidden" name="addontotal"
+                                            readonly />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+
+                    <table>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <div class="row pb-5 py-5">
+                        <div class="col-md-12">
+
+                            <input id="submit" type="submit" class="btn" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>

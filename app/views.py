@@ -1,8 +1,5 @@
-from audioop import ratecv
-from dataclasses import dataclass
+from django.http import HttpResponse
 import datetime
-from sre_constants import GROUPREF_EXISTS
-from types import FrameType
 from django.shortcuts import render
 from app.models import Addon, Coat, Frame, Glass, Ilpatti, Length, Mnet, Product, Quotation, QuotationItem, Shutter, Uchannel, Location
 
@@ -24,6 +21,10 @@ def home(request):
 
     return render(request,'index.html',{'products':prod, 'frame':frame,'shutter':shutter,'ilpatti':ilpatti,'uch':uch,'glass':glass,'net':net ,'coat':coat, 'length':length, 'location':location})
 
+def delpartial(request):
+
+    return HttpResponse("")
+
 def partial(request, id):
     
     prod = Product.objects.all()
@@ -42,6 +43,7 @@ def partial(request, id):
 def qoute(request):
 
     if request.method == 'POST':
+        
 
         qt = Quotation.objects.last()
         if qt:
@@ -646,7 +648,7 @@ def qoute(request):
                 """Shows todays current time and date."""
                 today               = datetime.date.today()
                  
-
+                
             data = {
                 "Frame":
                     {
@@ -691,14 +693,14 @@ def qoute(request):
                 "Net":
                     {
                     'type':net_type,
-                    'size':str(net_size)+ ' sq.foot',
+                    'size':str(net_size)+ ' sq.ft',
                     'rate':net_rate,
                     'prize':net_prize,
                     },
                 "Glass":
                     {
                     'type':glass_type,
-                    'size':str(glass_size)+ ' sq.foot',
+                    'size':str(glass_size)+ ' sq.ft',
                     'rate':glass_rate,
                     'prize':glass_prize,
                     },
@@ -716,8 +718,6 @@ def qoute(request):
                 
                 
             } 
-
-            
             total = {'qouteid':qouteid,'qty':qty,'w': fw,'h': fh,'product':product_name, 'pd_code':product,'location':location,'pl':pl,'hl':hl,'coating':coating,'total':total ,'coat_total':coat_total,'grand_total':grand_total,'addon_total':addon_total}
             item = [data,total]
             qoute.append(item)
@@ -731,8 +731,20 @@ def tab_content(request):
     if request.method == 'POST':
         
         quotation_date=datetime.date.today()
-        print(request.POST)
         qoute = request.POST.get('qouteid')
+        to  =request.POST.get('to')
+        to_address_line_1  =request.POST.get('to_address_line_1')
+        to_address_line_2  =request.POST.get('to_address_line_2')
+        to_address_line_3  =request.POST.get('to_address_line_3')
+        to_contact_no  =request.POST.get('to_contact_no')
+        deliver_to  =request.POST.get('deliver_to')
+        deliver_to_address_line_1  =request.POST.get('deliver_to_address_line_1')
+        deliver_to_address_line_2  =request.POST.get('deliver_to_address_line_2')
+        deliver_to_address_line_3  =request.POST.get('deliver_to_address_line_3')
+        deliver_to_contact_no  =request.POST.get('deliver_to_contact_no')
+        customer_reference  =request.POST.get('customer_reference')
+        responsible  =request.POST.get('responsible')
+        
         total_qty = 0
         totalvalue = 0
         totalsize=0
@@ -742,21 +754,23 @@ def tab_content(request):
         gst=0
         summery = 0
         if qoute:
-            qt = Quotation.objects.create(id=qoute,quotation_date=quotation_date,total_transport_charge=total_transport_charge,finalvalue=finalvalue,gst=gst,summery=summery,totalsize=totalsize,totallabour=totallabour,total_qty = total_qty, totalvalue=totalvalue)
+            qt = Quotation.objects.create(id=qoute,quotation_date=quotation_date,total_transport_charge=total_transport_charge,finalvalue=finalvalue,gst=gst,summery=summery,totalsize=totalsize,totallabour=totallabour,total_qty = total_qty, totalvalue=totalvalue,to=to,deliver_to=deliver_to,customer_reference=customer_reference,responsible=responsible,to_address_line_1=to_address_line_1,to_address_line_2=to_address_line_2,to_address_line_3=to_address_line_3,to_contact_no=to_contact_no,deliver_to_address_line_1=deliver_to_address_line_1,deliver_to_address_line_2=deliver_to_address_line_2,deliver_to_address_line_3=deliver_to_address_line_3,deliver_to_contact_no=deliver_to_contact_no)
             productlist = request.POST.getlist('product')
-        wlist = request.POST.getlist('w')
-        hlist = request.POST.getlist('h')
+        # qlist = request.POST.getlist('q')
+        wlist = request.POST.getlist('w') #width
+        hlist = request.POST.getlist('h') #height
         mlist = request.POST.getlist('m')
-        locationlist = request.POST.getlist('location')
-        qtylist = request.POST.getlist('qty')
+        locationlist = request.POST.getlist('location') #location
+        qtylist = request.POST.getlist('qty') #quantity
         totallist= request.POST.getlist('total')
         lablist = request.POST.getlist('labourrate')
         translist = request.POST.getlist('tranportrate')
-        framelist = request.POST.getlist('framerate')
+        framelist = request.POST.getlist('framerate') #section details
         glasslist = request.POST.getlist('glassrate')
         coatinglist = request.POST.getlist('coating')
         pllist = request.POST.getlist('pl')
-        hllist = request.POST.getlist('hl')
+        hllist = request.POST.getlist('hl') 
+
         
 
 
@@ -765,61 +779,71 @@ def tab_content(request):
         for i,j in enumerate(productlist):
 
             product = Product.objects.get(code=j)
-            w = float(wlist[i])
-            h = float(hlist[i])
-            m = float(mlist[i])
-            size = (w*h)/144
-            location = locationlist[i]
+            # q = float(qlist[i])
+            w = float(wlist[i])#width
+            h = float(hlist[i]) #height
+            m = float(mlist[i]) 
+            size = round(( (w*h)/144),2)  #Sq.Ft. per Window
+            location = locationlist[i]   #location
             pl = pllist[i]
             hl = hllist[i]
             total =float(totallist[i])
-            ma=  total+((total * m ) /100)
-            qty = float(qtylist[i])
+            ma= round(( total+((total * m ) /100)),2)
+            qty = float(qtylist[i]) #quantity
             labt = float(lablist[i])
-            frame = framelist[i]
+            frame = framelist[i]  #section details
             coating = coatinglist[i]
             glass = glasslist[i]
-            value = ma * qty 
-            total_qty +=qty
-            totalvalue +=ma
-            totalsize +=size
+            value = round(( ma * qty),2)
+            # total_qid = q 
+            total_qty += round((qty),2) # end quantity
+            totalvalue += round((ma),2)
+            totalsize +=round((size),2) # end total area  Sq.Ft. per Window
             average_value = round((totalvalue / totalsize),2)
-            totallabour += labt
+            totallabour += round((labt),2)
            
             
             transt = float(translist[i])
-            total_transport_charge += transt
-            finalvalue= round((totalvalue),2)
+            total_transport_charge += round(( transt),2)
+            finalvalue += round((value),2)
             gst=round(((finalvalue * 18 ) /100),2)
             summery = round((finalvalue+gst),2)
-
-
+           
             QuotationItem.objects.create(qoutation=qt,
                                             product=product,
-                                            h=h,
-                                            w=w,
-                                            size=size,
+                                            h=h, #height
+                                            w=w, #width
+                                            size=size, #size sq.per window 
                                             location=location,
                                             pl=pl,
                                             hl=hl,
-                                            qty=qty,
+                                            qty=qty, #quantity
                                             unitprice=ma,
                                             value=value,
                                             labour=labt,
-                                            section=frame,
+                                            section=frame,  #section details
                                             shutter=coating,
                                             glass=glass,
                                             transport_charge=transt,
                                             )
-       
-        qt.total_qty = total_qty
+        qt.quotation_date=quotation_date                                    
+        qt.qoute = qoute
+        qt.total_qty = total_qty # total qty
         qt.totalvalue = totalvalue
-        print(totalvalue )
-        print(totalsize )
-        qt.totalsize = totalsize
+        qt.to =to
+        qt.to_address_line_1 =to_address_line_1
+        qt.to_address_line_2 =to_address_line_2
+        qt.to_address_line_3 =to_address_line_3
+        qt.to_contact_no =to_contact_no
+        qt.deliver_to =deliver_to
+        qt.deliver_to_address_line_1 =deliver_to_address_line_1
+        qt.deliver_to_address_line_2 =deliver_to_address_line_2
+        qt.deliver_to_address_line_3 =deliver_to_address_line_3
+        qt.deliver_to_contact_no =deliver_to_contact_no
+        qt.customer_reference =customer_reference
+        qt.responsible =responsible
+        qt.totalsize = totalsize # total size sq.ft per window
         qt.totallabour = totallabour
-        print(totalsize )
-        print(total_transport_charge )
         qt.total_transport_charge = total_transport_charge
         qt.finalvalue = finalvalue
         qt.gst = gst    
@@ -832,6 +856,6 @@ def tab_content(request):
         for i in items:
             print(i.pl)
         today= datetime.date.today()
-        context = { 'data': items,'today':today, 'total': totalvalue, 'qty' : total_qty ,'sqft' : totalsize, 'avgvalue':average_value ,'totallabour':totallabour,'finalvalue':finalvalue ,'total_transport_charge':total_transport_charge,'gst':gst,'summery':summery } 
+        context = { 'data': items,'to':to,'to_address_line_1':to_address_line_1,'to_address_line_2':to_address_line_2,'to_address_line_3':to_address_line_3,'to_contact_no':to_contact_no,'deliver_to_address_line_1':deliver_to_address_line_1,'deliver_to_address_line_2':deliver_to_address_line_2,'deliver_to_address_line_3':deliver_to_address_line_3,'deliver_to_contact_no':deliver_to_contact_no,'deliver_to':deliver_to,'customer_reference':customer_reference,'responsible':responsible,'today':today,'quotation_date':quotation_date, 'qoute':qoute , 'total': totalvalue, 'qty' : total_qty ,'sqft' : totalsize, 'avgvalue':average_value ,'totallabour':totallabour,'finalvalue':finalvalue ,'total_transport_charge':total_transport_charge,'gst':gst,'summery':summery } 
 
         return render(request,'tab_content.html',context)

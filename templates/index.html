@@ -356,7 +356,7 @@
                     
                         <select id="location" name="location">
                             {% for i in location %}
-                                <option value={{i}}>{{i}}
+                                <option value='{{i.name}}'>{{i}}
                                 </option>
                             {% endfor %}
                         </select>
@@ -365,7 +365,7 @@
                         <label for="coating">Select Coating:</label>
                         <select id="coating" name="coating">
                              {% for i in coat %}
-                                 <option value='{{i}}'>
+                                 <option value='{{i.name}}'>
                                      {{i}}
                                  </option>
                              {% endfor %}
@@ -381,7 +381,7 @@
                        <label for="coating">Select Coating:</label>
                        <select id="coating" name="coating">
                             {% for i in coat %}
-                                <option value='{{i}}'>
+                                <option value='{{i.name}}'>
                                     {{i}}
                                 </option>
                             {% endfor %}
@@ -396,8 +396,7 @@
                         
                         <select id="frametype" name="frametype">
                             {% for i in frame %}
-                                <option value={{i}}>{{i }}
-                                </option>
+                                <option value=" {{ i.name }} "> {{i.name}} </option>
                             {% endfor %}
                         </select>
                     </div>
@@ -405,8 +404,7 @@
                         <label for="framesize">Select length:</label>
                         <select id="framesize" name="framesize">
                             {% for i in length %}
-                                <option value={{i}}>{{i }}
-                                </option>
+                                <option value='{{i.name}}'> {{i}} </option>
                             {% endfor %}
                         </select>
                     </div>
@@ -418,7 +416,7 @@
                                name="frameweight"/>
                         <datalist id="frameweight">
                             {% for i in weight %}
-                                <option value={{i}}>{{i}}
+                                <option value='{{i.name}}'>{{i}}
                                 </option>
                             {% endfor %}
                         </datalist>
@@ -437,7 +435,7 @@
                         <label for="shuttertype">Select Shutter:</label>
                         <select id="shuttertype" name="shuttertype">
                             {% for i in shutter %}
-                                <option value={{i}}>{{i }}
+                                <option value='{{i.name}}'>{{i}}
                                 </option>
                             {% endfor %}
                         </select>
@@ -446,7 +444,7 @@
                         <label for="shuttersize">Select length:</label>
                         <select id="shuttersize" name="shuttersize">
                             {% for i in length %}
-                                <option value={{i}}>{{i }}
+                                <option value='{{i.name}}'>{{i}}
                                 </option>
                             {% endfor %}
                         </select>
@@ -459,7 +457,7 @@
                                name="shutterweight"/>
                         <datalist id="shutterweight">
                             {% for i in length %}
-                                <option value={{i}}>{{i }}
+                                <option value="{{i}}">{{i}}
                                 </option>
                             {% endfor %}
                         </datalist>
@@ -478,7 +476,7 @@
                         <label for="lpattitype">Select I/L patti:</label>
                         <select id="lpattitype" name="lpattitype">
                             {% for i in ilpatti %}
-                                <option value={{i}}>{{i }}
+                                <option value="{{i}}">{{i}}
                                 </option>
                             {% endfor %}
                         </select>
@@ -487,7 +485,7 @@
                         <label for="lpattisize">Select length:</label>
                         <select id="lpattisize" name="lpattisize">
                             {% for i in length %}
-                                <option value={{i}}>{{i }}
+                                <option value="{{i}}">{{i}}
                                 </option>
                             {% endfor %}
                         </select>
@@ -500,7 +498,7 @@
                                name="lpattiweight"/>
                         <datalist id="lpattiweight">
                             {% for i in length %}
-                                <option value={{i}}>{{i }}
+                                <option value="{{i}}">{{i}}
                                 </option>
                             {% endfor %}
                         </datalist>
@@ -519,7 +517,7 @@
                         <label for="uchannel_type">Select Uchannel:</label>
                         <select id="uchannel_type" name="uchannel_type">
                             {% for i in uch %}
-                                <option value={{i}}>{{i }}
+                                <option value="{{i}}">{{i}}
                                 </option>
                             {% endfor %}
                         </select>
@@ -528,7 +526,7 @@
                         <label for="uchannel_size">Select length:</label>
                         <select id="uchannel_size" name="uchannel_size">
                             {% for i in length %}   
-                                <option value={{i}}>{{i }}
+                                <option value="{{i}}">{{i}}
                                 </option>
                             {% endfor %}
                         </select>
@@ -541,7 +539,7 @@
                                name="uchannel_weight"/>
                         <datalist id="uchannel_weight">
                             {% for i in length %}
-                                <option value={{i}}>{{i }}
+                                <option value="{{i}}">{{i}}
                                 </option>
                             {% endfor %}
                         </datalist>
@@ -560,8 +558,8 @@
                         <label for="glasstype">Select Glass:</label>
                         <select id="glasstype" name="glasstype">
                             {% for i in glass %}
-                                <option value="{{i}}">
-                                    {{i }}
+                                <option value='{{i.name}}'>
+                                    {{i}}
                                 </option>
                             {% endfor %}
                         </select>
@@ -578,7 +576,7 @@
                         <label for="nettype">Select Mosquito Net:</label>
                         <select id="nettype" name="nettype">
                             {% for i in net %}
-                                <option value="{{i}}">
+                                <option value='{{i.name}}'>
                                     {{i }}
                                 </option>
                             {% endfor %}

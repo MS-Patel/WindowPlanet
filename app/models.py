@@ -93,10 +93,24 @@ class Quotation(models.Model):
      totalsize=models.FloatField(verbose_name="Total Size")
      totallabour=models.FloatField(verbose_name="Total labour")
      total_transport_charge=models.FloatField(verbose_name="Total Transport Charge")
-     finalvalue=models.FloatField(verbose_name="Total Value")
+     finalvalue=models.FloatField(verbose_name="Final Value")
      gst=models.FloatField(verbose_name="GST")
      summery=models.FloatField(verbose_name="Grand Total")
      quotation_date= models.DateField(auto_now_add=False)
+     to = models.CharField(verbose_name="To", max_length=50)
+     to_address_line_1 = models.CharField(verbose_name="To Address Line 1", max_length=20)
+     to_address_line_2 = models.CharField(verbose_name="To Address Line 2", max_length=20)
+     to_address_line_3 = models.CharField(verbose_name="To Address Line 3", max_length=20)
+     to_contact_no = models.DecimalField(verbose_name="To Contact No", max_digits=12 , decimal_places=0)
+     deliver_to = models.CharField(verbose_name="Deliver To", max_length=50)
+     deliver_to_address_line_1  = models.CharField(verbose_name="Deliver To Address Line 1", max_length=20)
+     deliver_to_address_line_2  = models.CharField(verbose_name="Deliver To Address Line 2", max_length=20)
+     deliver_to_address_line_3  = models.CharField(verbose_name="Deliver To Address Line 3", max_length=20)
+     deliver_to_contact_no  = models.DecimalField(verbose_name="Deliver To Contact No", max_digits=12 , decimal_places=0)
+     customer_reference = models.CharField(verbose_name="Customer Reference", max_length=50)
+     responsible = models.CharField(verbose_name="Responsible", max_length=50)
+     
+
      def __str__(self):
          return self.id
          

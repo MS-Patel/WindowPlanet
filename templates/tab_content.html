@@ -1,212 +1,630 @@
 {% load static %}
-<style>  
-        table {
-            width:100%;
-            margin:30px 0px;
-        }
-        table, th, td {
-            border: 1px solid black;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 5px;
-            text-align: left;
-            max-width: 220px;
-            color:black;
-        }
-        table tr:nth-child(even) {
-            background-color: #fff;
-        }
-        table tr:nth-child(odd) {
-           background-color:#e5e9f3;
-        }
-        table th	{
-            background-color: black;
-            color: white;
-        }
-        li{
-           
-            line-height: 2.5;
+<style>
+    table {
+        width: 100%;
+        margin: 30px 0px;
+    }
 
-        }
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
 
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+        max-width: 220px;
+        color: black;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #fff;
+    }
+
+    table tr:nth-child(odd) {
+        background-color: #e5e9f3;
+    }
+
+    table th {
+        background-color: black;
+        color: white;
+    }
+
+    li {
+
+        line-height: 2.5;
+
+    }
+
+    pre {
+        display: block;
+        font-size: 87.5%;
+        color: #212529;
+        /*text-align: right;*/
+    }
+
+    .center {
+        display: block;
+        width: 100%;
+        margin-top: -35px;
+    }
+
+    .row:before,
+    .row:after {
+        content: "";
+        display: table;
+    }
+
+    .row:after {
+        clear: both;
+    }
+
+    p {
+        line-height: 30px;
+        font-size: large;
+    }
+
+    footer {
+        text-align: center;
+        padding: 3px;
+        background-color: DarkSalmon;
+        color: white;
+    }
+
+    ol {
+        counter-reset: item
+    }
+
+    li {
+        display: block
+    }
+
+    li:before {
+        content: counters(item, ".") " ";
+        counter-increment: item
+    }
 </style>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-      rel="stylesheet"
-      id="bootstrap-css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!--Include the above in your HEAD tag -->
+<div class="container">
+    <div class="row ">
+
+        <div class="col-12">
+            <table>
+                <tr>
+                    <td colspan="2" style="background-color: white;     border: solid white;">
+                        <img src="/static/logo.jpg" alt="Paris" class="center">
+                    </td>
+                    <td colspan="2" style="background-color: white;     border: solid white;">
+                        <pre>
+                        Windows Planet
+                        118 Lotus Elite Near Osia Mall, 
+                        Gotri - Sevasi Rd,
+                        Vadodara-391101
+                        Gujarat, India
+                        Tel. +91 9428 7722 12
+                        Email info@windowsplanet.com</pre>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background-color: white;    border: solid white;"><b>Quotation</b></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background-color: lightgray;     border-color:lightgray"> To </td>
+                    <td colspan="2" style="background-color: lightgray;    border-color:lightgray"> Deliver To</td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background-color: white;  border-color:lightgray">
+                        <b>{{to}}</b><br>
+                        {{to_address_line_1}}<br>
+                        {{to_address_line_2}}<br>
+                        {{to_address_line_3}}<br>
+                        {{to_contact_no}}
+                    </td>
+                    <td colspan="2" style="background-color: white;    border-color:lightgray">
+                        <b>{{deliver_to}}</b><br>
+                        {{deliver_to_address_line_1}}<br>
+                        {{deliver_to_address_line_2}}<br>
+                        {{deliver_to_address_line_3}}<br>
+                        {{deliver_to_contact_no}}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color: lightgray;    border-color:lightgray">Quote No.</td>
+                    <td style="background-color: lightgray;    border-color:lightgray">Date</td>
+                    <td style="background-color: lightgray;    border-color:lightgray">Customer Ref.</td>
+                    <td style="background-color: lightgray;    border-color:lightgray">Responsible</td>
+
+                <tr>
+                    <td style="background-color: white; border-color:lightgray   "><p class="mb-1"><b>{{qoute}}</b></p></td>
+                    <td style="background-color: white; border-color:lightgray   ">{{quotation_date}}</td>
+                    <td style="background-color: white; border-color:lightgray   ">{{customer_reference}}</td>
+                    <td style="background-color: white; border-color:lightgray   ">{{responsible}}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" style="background-color: white; border-color: white;">
+
+                        <br><br>
+                        <p> Dear sir/madam,</p><br><br>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background-color: white; border-color: white;">
+                        <p> Thank you for your interest in Vadodara Window’s uPVC windows & doors!<br>
+                            We are one of the leading manufacturers of premium uPVC windows and doors with<br>
+                            focus on product quality and customer service.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background-color: white; border-color: white;">
+                        <p> In this proposal, we have enclosed the following:</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background-color: white; border-color: white;">
+                        <ol>
+                            <li> Our products' unique advantages</li>
+                            <li>Product Designs, related specification and</li>
+                            <li>Our terms and conditions</li>
+
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background-color: white; border-color: white;">
+                        <p> Thank you for considering Vadodara Windows, and considering to join an elite group of
+                            customers.</p>
+                    </td>
+                </tr>
+
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+<!-- <div class="container">
+    <div class="row ">
+
+        <div class="col-12">
+            <table>
+                <tr>
+                    <td style="text-align: center;"><img src="/static/partner1.png" width="75%" alt="" class="src"></td>
+                    <td style="text-align: center;"><img src="/static/partner2.png" width="75%" alt="" class="src"></td>
+                    <td style="text-align: center;"><img src="/static/partner3.png" width="75%" alt="" class="src"></td>
+                    <td style="text-align: center;"><img src="/static/partner4.png" width="75%" alt="" class="src"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div> -->
+
+
 <div class="container">
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body p-0">
                     {% for item in data %}
-                        <table>
-                            <tr >
-                                <td colspan="1"><b>Sr.No</b></td>
-                                <td colspan="3">w{{forloop.counter}}</td>
-                                <td><b>Size</b></td>
-                                <td>W X{{ item.w }}</td>
-                                <td>H X{{ item.h }}</td>
-                                <td>{{today|date:'d-m-y'}}</td>
-                            </tr>
-                            <tr >
-                                <td colspan="1"><b>Location</b></td>
-                                <td colspan="3">{{ item.location }}</td>
-                                <td><b>Section Details</b></td>
-                                <td colspan="3">{{ item.section}}</td>
-                            </tr>
-                            <tr >
-                                <td colspan="4" style="text-align: center; background-color:#fff">{%widthratio item.w 1 25.4%}</td>
-                                <td colspan="4" style="background-color:#b0c4de"><b>Computer Values</b></td>
-                            </tr>
-                            <tr style="height: 20px;">
-                                <td colspan="3" rowspan="6" style="text-align: center; max-width:50%">
-                                    <img src ="{{ item.product.image }}" style="max-height:500px;">
-                                </td>
-                                <td rowspan="6"  style="text-align: center; writing-mode: vertical-rl;">{%widthratio item.h 1 25.4%}</td>
-                                <td colspan="2">Sq.Ft. per Window</td>
-                                <td >{{ item.size }}</td>
-                                <td>Sq.Ft.</td>
-                            </tr>
-                            <tr style="height: 20px;background:#fff">
-                                <td colspan="2">Unit Price</td>
-                                <td >{{ item.unitprice }}</td>
-                                <td>Rs.</td>
-                            </tr>
-                            <tr style="height: 20px; background:#e5e9f3">
-                                <td colspan="2">Quantity</td>
-                                <td>{{ item.qty }}</td>
-                                <td>PCs</td>
-                            </tr>
-                            
-                            <tr style="height: 20px;background:white">
-                                <td colspan="2">Value</td>
-                                <td>{{ item.value }}</td>
-                                <td>
-                                    Rs.
-                                </td>
-                            </tr>
-                            <tr style="height: 20px; background:#b0c4de" >
-                                <td colspan="2">
-                                    <b>Descriptions</b>
-                                </td>
-                                <td colspan="2">
-                                    <b>Accessories</b>
-                                </td>
-                            </tr>
-                            <tr style="height: 200px;background:white">
-                                <td colspan="2" style="
+                    <table>
+                        <tr>
+                            <td colspan="1"><b>Sr.No</b></td>
+                            <td colspan="3">w{{forloop.counter}}</td>
+                            <td><b>Size</b></td>
+                            <td>W X{{ item.w }}</td>
+                            <td>H X{{ item.h }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1"><b>Location</b></td>
+                            <td colspan="3">{{ item.location }}</td>
+                            <td><b>Section Details</b></td>
+                            <td colspan="3">{{ item.section}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align: center; background-color:#fff">
+                                {%widthratio item.w 1 25.4%}</td>
+                            <td colspan="4" style="background-color:#b0c4de"><b>Computer Values</b></td>
+                        </tr>
+                        <tr style="height: 20px;">
+                            <td colspan="3" rowspan="6" style="text-align: center; max-width:50%">
+                                <img src="{{ item.product.image }}" style="max-height:500px;">
+                            </td>
+                            <td rowspan="6" style="text-align: center; writing-mode: vertical-rl;">
+                                {%widthratio item.h 1 25.4%}</td>
+                            <td colspan="2">Sq.Ft. per Window</td>
+                            <td>{{ item.size }}</td>
+                            <td>Sq.Ft.</td>
+                        </tr>
+                        <tr style="height: 20px;background:#fff">
+                            <td colspan="2">Unit Price</td>
+                            <td>{{ item.unitprice }}</td>
+                            <td>Rs.</td>
+                        </tr>
+                        <tr style="height: 20px; background:#e5e9f3">
+                            <td colspan="2">Quantity</td>
+                            <td>{{ item.qty }}</td>
+                            <td>PCs</td>
+                        </tr>
+
+                        <tr style="height: 20px;background:white">
+                            <td colspan="2">Value</td>
+                            <td>{{ item.value }}</td>
+                            <td>
+                                Rs.
+                            </td>
+                        </tr>
+                        <tr style="height: 20px; background:#b0c4de">
+                            <td colspan="2">
+                                <b>Descriptions</b>
+                            </td>
+                            <td colspan="2">
+                                <b>Accessories</b>
+                            </td>
+                        </tr>
+                        <tr style="height: 200px;background:white">
+                            <td colspan="2" style="
                                 vertical-align: top;
                             ">
-                                        <ul>
-                                        <li> {{ item.product.discription }}</li>
-                                            <li>{{ item.shutter}}</li>
-                                                <li>{{ item.glass }} Glass Clear </li>
-                                        </ul>
-                                </td>
-                                <td colspan="2" style="
+                                <ul>
+                                    <li> {{ item.product.discription }}</li>
+                                    <li>{{ item.shutter}}</li>
+                                    <li>{{ item.glass }} Glass Clear </li>
+                                </ul>
+                            </td>
+                            <td colspan="2" style="
                                 vertical-align: top;
                             ">
-                                    <ul>
-                                {% if item.pl !=  '0.0' %}
+                                <ul>
+                                    {% if item.pl !=  '0.0' %}
                                     <li>pushlock</li>
                                     {% endif %}
-                                {% if item.hl !=  '0.0' %}
-                                  <li>  handlelock</li>
+                                    {% if item.hl !=  '0.0' %}
+                                    <li> handlelock</li>
                                     {% endif %}
-                                   
-                                   <li> Multipoint Locking System</li>
+
+                                    <li> Multipoint Locking System</li>
                                     <li> Heavy Bearings</li>
-                                        <li> Standard Hardware</li>
-                                    </ul>
-                                </td>
+                                    <li> Standard Hardware</li>
+                                </ul>
+                            </td>
 
-                            </tr>
-                            
-                        </table>
+                        </tr>
 
-                        
+                    </table>
+
+
                     {% endfor %}
                 </div>
-               <!-- *************************************************-->
+                <!-- *************************************************-->
 
-              <table>
-                   <tr>
-                   <th colspan="3" style="background-color:#b0c4de">Quote Total</th>
-                   <tr>
+                <table>
+                    <tr>
+                        <th colspan="3" style="background-color:#b0c4de">Quote Total</th>
+                    <tr>
 
 
                     <tr style="background-color:#e5e9f3">
                         <td>Total No. of Windows</td>
-                         <td>
-                            {{ qty}}
-                         </td>
-                         <td>PCS</td>
-                     </tr>
+                        <td>
+                            {{qty}}
+                        </td>
+                        <td>PCS</td>
+                    </tr>
 
-                     <tr style="background-color:#e5e9f3">
+                    <tr style="background-color:#e5e9f3">
                         <td>Total Area in SQFT</td>
-                         <td>
+                        <td>
                             {{ sqft}}
-                         </td>
-                         <td>SQFT</td>
-                     </tr>
+                        </td>
+                        <td>SQFT</td>
+                    </tr>
 
-                     <tr>
+                    <tr>
                         <td>Basic Value</td>
-                         <td>
+                        <td>
                             {{total}}
-                         </td>
-                         <td>INR</td>
-                     </tr>
+                        </td>
+                        <td>INR</td>
+                    </tr>
 
-                     <tr style="background-color:#e5e9f3">
+                    <tr style="background-color:#e5e9f3">
                         <td>Average Value per SQFT</td>
-                         <td>
+                        <td>
                             {{avgvalue}}
-                         </td>
-                         <td>INR</td>
-                     </tr>
-                     {% comment %} <tr>
+                        </td>
+                        <td>INR</td>
+                    </tr>
+                    {% comment %} <tr>
                         <td>Installation Labour</td>
-                         <td>
+                        <td>
                             {{totallabour}}
-                         </td>
-                         <td>INR</td>
-                     </tr>
-                     <tr>
-                        
+                        </td>
+                        <td>INR</td>
+                    </tr>
+                    <tr>
+
                         <td>Transportation Charges</td>
-                         <td>
+                        <td>
                             {{total_transport_charge}}
-                         </td>
-                         <td>INR</td>
-                     </tr> {% endcomment %}
-                     
-                 <tr>
-                     <td>Value</td> <!--total of all values-->
-                     <td> {{ finalvalue}}</td>
-                     <td>INR</td>
-                 </tr>
+                        </td>
+                        <td>INR</td>
+                    </tr> {% endcomment %}
 
-                 <tr>
-                    <td>GST ( CGST + SGST ) 18%</td> <!--total of all values-->
-                    <td> {{gst}}</td>
-                    <td>INR</td>
-                </tr>
+                    <tr>
+                        <td>Value</td>
+                        <!--total of all values-->
+                        <td> {{ finalvalue}}</td>
+                        <td>INR</td>
+                    </tr>
 
-                <tr style="background-color:#e5e9f3">
-                    <td><b>Grand Total</b></td> <!--total of all values-->
-                    <td><b> {{summery}}</b></td>
-                    <td>INR</td>
-                </tr>
+                    <tr>
+                        <td>GST ( CGST + SGST ) 18%</td>
+                        <!--total of all values-->
+                        <td> {{gst}}</td>
+                        <td>INR</td>
+                    </tr>
 
-                 
-             </table>
-               <!-- *****************************************************-->
+                    <tr style="background-color:#e5e9f3">
+                        <td><b>Grand Total</b></td>
+                        <!--total of all values-->
+                        <td><b> {{summery}}</b></td>
+                        <td>INR</td>
+                    </tr>
+
+
+                </table>
+                <!-- *****************************************************-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <br>
+
+                            <div>*The area calculation will be accurate only for simple rectangular frames</div>
+<br>
+                            <div><b>TERMS & CONDITIONS</b></div>
+
+                            <div>
+                                <ol>
+                                    <li> SPECIFICATIONS
+                                        <ol>
+                                            <li>We use only European u-PVC profiles for manufacturing all our doors &
+                                                windows.</li>
+                                            <li> All our doors & windows are manufactured in accordance with the
+                                                technical specifications laid down by our European
+                                                profile & system partners.</li>
+                                            <li> Glass is a bought out item for us and is provided on customer's demand
+                                                as per the desired specification
+                                                which are indicated on our quote along with the glass prices.</li>
+                                        </ol>
+                                    </li>
+
+                                    <li> PRICING
+                                        <ol>
+                                            <li> All basic prices in the quotation are for white profile systems, unless
+                                                specified otherwise, as per the
+                                                sizes mentioned therein. The quote is submitted as per the initial
+                                                understanding of the requirement. Quotation will be
+                                                believed to have been understood in all respects, technical &
+                                                commercial, once the approval is accorded on the same.
+                                                No discussion in any regard will be entertained once the job is sent for
+                                                production. Any special requirement,
+                                                if any, is requested to be submitted before the final approval of the
+                                                quote.</li>
+                                            <li>The costing of the window is based on the "hole in the wall" and not the
+                                                frame dimension.
+                                            </li>
+                                            <li>The rate of tax as prevalent is shown in the above quotation. The rate
+                                                of tax as prevalent at the time of delivery
+                                                & billing shall be charged. We are not liable to issue any advance /
+                                                interim notice effecting this change, the
+                                                same being statutory in nature.
+                                            </li>
+                                            <li> Cost of freight, warehousing & carting at site, power & scaffolding not
+                                                included in the quoted price.
+                                        </ol>
+                                    </li>
+                                    <li>VALIDITY
+                                        <ol>
+                                            <li>
+                                                This quote is valid for acceptance within 30 Days from the date of this
+                                                quote.</li>
+                                        </ol>
+                                   </li>
+
+                                    <li>PAYMENT
+                                        <ol>
+                                            <li> 100% advance is payable by the customers for order value less than or
+                                                equal to INR Three (3) Lacs.</li>
+                                            <li>60% of the quote as advance along with the signed copy of the quotation
+                                                confirming the technical specs & commercial
+                                                terms at the time of order confirmation.
+                                            </li>
+                                            <li> 40% before dispatch on intimation of material ready for dispatch. On
+                                                intimation, goods can be inspected at
+                                                our works in Vadodara.
+                                            </li>
+                                            <li> Cheque / Demand draft payable at Vadodara in favor of 'Vadodara Windows
+                                                Pvt. Ltd .'. For RTGS/NEFT you may make
+                                                the transfer at; HDFC, Arun Complex, 36, Alkapuri Society, Alkapuri, R C
+                                                Dutt Road, Vadodara 390007, A/c No.
+                                                50200001200233, IFSC: HDFC0000033.
+                                            </li>
+                                            <li> Interest @ 18% p.a. shall be charged on payment delayed beyond 15 days
+                                                from the date of intimation to the
+                                                customer about the material being ready for dispatch. Interest @ 18%
+                                                p.a. shall be charged on all dues whatsoever.
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li>OFFER APPROVAL
+                                        <ol>
+
+                                            <li> The customer is requested to check the elevation, technical specs. &
+                                        locking arrangement of all the windows/doors
+                                        submitted in the quote.</li>
+                                        <li> The customer is requested to get all the pages & each window along with the
+                                        terms & conditions given in this
+                                        quote dulystamped and signed as a mark of his understanding & confirmation.</li>
+                                        <li>Vadodara Windows reserves the sole right to agree and/or honor any verbal
+                                        commitment whatsoever by any of its
+                                        representatives. No discussion shall be entertained in this regard from the
+                                        customer and/or the said representative.</li>
+                                        <li>Where the order is placed on the basis of this quotation then this
+                                        quotation and its terms and conditions
+                                        will be deemed as accepted by the customer notwithstanding any signed return of
+                                        the said documents as per para 5.2.</li>
+                                        <li> All orders undertaken by Vadodara Windows are as per the Terms and
+                                        Conditions of this document and cannot be
+                                        superceded by the customer order, unless explicitly accepted in writing by
+                                        Vadodara Windows.</li>
+
+                                        </ol>
+                                    </li>
+                                    <li>FABRICATION
+                                        <ol>
+
+                                        <li>The order (doors & windows) shall be put to fabrication only after final
+                                        site measurement of each window by our
+                                        authorized representative is approved by the site in-charge. The site in-charge
+                                        is requested to sign on each window
+                                        measurement after duly checking the window/door elevation, technical specs &
+                                        locking arrangement. No discussion shall
+                                        be entertained later in any of the said relation and all windows manufactured as
+                                        per approved quote will be
+                                        billed to the customer.</li>
+                                        <li> Changes if any, in design/specifications of doors and windows as against
+                                        the approved quotation will have
+                                        to be intimated by the customer in writing before the final measurement. A
+                                        revised quote incorporating the
+                                        said changes shall be submitted for fresh approval. This is mandatory to avoid
+                                        any discrepancies later before
+                                        approved final measurement & site preparedness report is submitted by our
+                                        representative.</li>
+                                        <li>Where the survey sizes are greater than 5 mm in either the width or the
+                                        height, the additional dimensions
+                                        will be charged to the customer at the same rate charged for the relevant
+                                        windows.
+
+                                        </ol>
+                                    </li>
+                                    <li>DELIVERIES
+                                        <ol>
+
+                                        <li> Ex-Works, Savli GIDC, Vadodara.</li>
+                                            <li>Minimum Six to Eight weeks from the date of order confirmation with quote &
+                                        measurement confirmation and advance
+                                        payment as per our quote, whichever is later.</li>
+                                        <li> Local cartage on actuals shall be intimated before the delivery & shall be
+                                        payable directly by the customer at
+                                        site to the transporter.</li>
+                                        <li>Outstation freight shall be as per actual to be paid by the customer at
+                                        site directly to the transporter.
+                                        Transport worthy packing & Insurance of goods if required, will have to be
+                                        separately requested and shall be chargeable.</li>
+                                        <li> Customer will be responsible to take delivery of the goods on arrival at
+                                        site & get the same warehoused in covered
+                                        safe place. Vadodara Windows shall not be responsible for the safe keeping of
+                                        the goods after dispatch from its
+                                        works in Vadodara.</li>
+                                        <li>Delay in deliveries due to Force Majeure and transit delays due to reasons
+                                        beyond our control cannot be
+                                        attributed to Vadodara Windows.</li>
+                                        <li> Vadodara Windows cannot be held responsible for delays in delivery of glass
+                                        products since the same is a bought
+                                        out item for us & at times beyond our control.</li>
+                                        </ol>
+                                    </li>
+                                    <li>CLAIMS AFTER DELIVERY
+<ol>
+                                        <li> The buyer will inspect the goods delivered by Vadodara Windows within three
+                                        working days of taking the delivery and
+                                        duly inform Vadodara Windows in writing for any deviation from the approved
+                                        drawings/specifications immediately.
+                                        Claims pertaining to deviation from the approved quote shall only be
+                                        entertained.</li>
+                                        <li> Vadodara Windows will not be liable for any transit damage and would
+                                        request & advice the customer to insure
+                                        the goods</li>
+                                        </ol>
+                                    </li>
+                                    <li>INSTALLATION
+                                    <ol>
+                                        <li> Vadodara Windows will mobilize manpower for installation of the delivered
+                                        doors/windows. A minimum lead time of 7
+                                        working days is requested after the receipt of written information on site
+                                        preparedness from the site in-charge. If the
+                                        installation is delayed due to non-availability of window fronts/openings or
+                                        necessary support required at the customer
+                                        end such as power, scaffolding, etc. the team will be recalled and a fresh
+                                        installation schedule shall be called for.
+                                        For outstation sites either a charge at the rate of Rs.400/per man-day for the
+                                        waiting period and/or travel
+                                        allowance for the next trip shall be charged.</li>
+                                        <li> Electricity connection required for installation shall be provided free of
+                                        cost by the customer on each floor
+                                        of the building.</li>
+                                        <li> Scaffolding, if required, is to be provided free of cost by the customer.</li>
+                                        <li>For outstation installations rail/road fare as well as the lodging and
+                                        boarding for installation supervisor/workers will have to be provided by the 
+                                        customer free of cost.</li>
+                                            </ol>
+                                    </li>
+                                    <li>AFTER SALES SUPPORT
+                                    <ol>
+                                        <li>Vadodara Windows in consonance with its European profile suppliers will
+                                        extend a warranty of 10 years on our White
+                                        profiles and 7 years on Foiled profiles for any discoloration and/or dimensional
+                                        defect in accordance of the warranty
+                                        terms & conditions laid down.</li>
+                                        <li>Vadodara Windows shall provide an operational warranty against any
+                                        manufacturing defect in the window up to a
+                                        period of twelve months from the date of supply. The terms & conditions of
+                                        warranty as specified by the hardware
+                                        manufacturer will apply.</li>
+                                        <li>Vadodara Windows would attend any problem within 72 hours from the time
+                                        complaint is logged with them. The
+                                        nature of the complaint has to be specified explicitly at the time of lodging
+                                        any such complaint. If there is any
+                                        replacement, which has been specified at the time of complaint, will be replaced
+                                        in the subsequent visit
+                                        (outstation visits will be chargeable), the time schedule for the same will be
+                                        specified by the technician after
+                                        inspection, depending on the availability of the said part in our stock.</li>
+                                        <li>Glass has to be insured by the customer after delivery as there is no
+                                        warranty or guarantee on
+                                        glass which is a bought out item.</li>
+                                        <li>After sales service support towards any manufacturing defect is free of any
+                                        labour charges for the first
+                                        twelve months from the date of supply.</li>
+</ol>
+                                    </li>
+                                    <li>Force Majeure
+                                        <ol>
+
+                                        <li>All deliveries & after sales service support are subject to Force Majeure</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- *****************************************************-->
             </div>
         </div>
     </div>
