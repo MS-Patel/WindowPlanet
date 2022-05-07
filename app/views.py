@@ -309,8 +309,8 @@ def qoute(request):
                 addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
                 addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
                 addon_total         += (4 * Addon.objects.get(item="bearing").rate)
-                grand_total         = (coat_total +total+addon_total)
-                addon_total         = addon_total
+                grand_total          = round(coat_total +total+addon_total,2)
+                addon_total         = round(addon_total,2)
                 today               = datetime.date.today() 
 
 
@@ -367,8 +367,8 @@ def qoute(request):
                 addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
                 addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
                 addon_total         += (4 * Addon.objects.get(item="bearing").rate)
-                grand_total         = (coat_total +total+addon_total)
-                addon_total         = addon_total
+                grand_total          = round(coat_total +total+addon_total,2)
+                addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
     #############################################################################################################       3 Track Window
             
@@ -423,8 +423,8 @@ def qoute(request):
                 addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
                 addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
                 addon_total         += (4 * Addon.objects.get(item="bearing").rate)
-                grand_total         = (coat_total +total+addon_total)
-                addon_total         = addon_total
+                grand_total          = round(coat_total +total+addon_total,2)
+                addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
     #############################################################################################################       3 Track Window(4+2)
             
@@ -479,8 +479,8 @@ def qoute(request):
                 addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
                 addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
                 addon_total         += (4 * Addon.objects.get(item="bearing").rate)
-                grand_total         = (coat_total +total+addon_total)
-                addon_total         = addon_total
+                grand_total          = round(coat_total +total+addon_total,2)
+                addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
 
     #############################################################################################################       4 Track Window
@@ -537,8 +537,8 @@ def qoute(request):
                 addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
                 addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
                 addon_total         += (4 * Addon.objects.get(item="bearing").rate)
-                grand_total         = (coat_total +total+addon_total)
-                addon_total         = addon_total
+                grand_total          = round(coat_total +total+addon_total,2)
+                addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
     #############################################################################################################       4 Track Window(3+1)
 
@@ -592,8 +592,8 @@ def qoute(request):
                 addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
                 addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
                 addon_total         += (4 * Addon.objects.get(item="bearing").rate)
-                grand_total         =  (coat_total +total+addon_total)
-                addon_total         = addon_total
+                grand_total          = round(coat_total +total+addon_total,2)
+                addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
     #############################################################################################################       R-40 Signle shutter
             
@@ -645,8 +645,8 @@ def qoute(request):
                 addon_total         +=(gr_ft * Addon.objects.get(item="pvc").rate)
                 addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
                 addon_total         += (4 * Addon.objects.get(item="bearing").rate)
-                grand_total         =  (coat_total +total+addon_total)
-                addon_total         = addon_total
+                grand_total          = round(coat_total +total+addon_total,2)
+                addon_total         = round(addon_total,2)
                 today               = datetime.date.today()       
     #############################################################################################################       R-40 Double Shutter
 
@@ -700,8 +700,8 @@ def qoute(request):
                 addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
                 addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
                 addon_total         += (4 * Addon.objects.get(item="bearing").rate)
-                grand_total          = (coat_total +total+addon_total)
-                addon_total         = addon_total
+                grand_total          = round(coat_total +total+addon_total,2)
+                addon_total         = round(addon_total,2)
                 """Shows todays current time and date."""
                 today               = datetime.date.today()
                  
