@@ -2,12 +2,18 @@
 
     <img src="/static/close.png" width="4%" align="right" alt="" class="btn" type="button"
         hx-get="{% url 'app:deletepartial' %}" hx-target="#part" hx-swap="outerHTML" style="text-align: right;">
-    {% comment %} {% csrf_token %}
+    {% csrf_token %}
 
     {% for item in qoutes %}
     <input value="{{item.0.Labour.prize}}" type="hidden" name="labourrate" readonly />
     <input value="{{item.0.Trans.prize}}" type="hidden" name="tranportrate" readonly />
-    {% endfor %} {% endcomment %}
+    
+    <input value="{{item.0.Frame.type}}" type="hidden" name="framerate" readonly />
+    <input value="{{item.0.Glass.type}}" type="hidden" name="glassrate" readonly />
+    <input value="{{item.1.coating}}" type="hidden" name="coating" readonly />
+    <input value="{{item.1.pl}}" type="hidden" name="pl" readonly />
+    <input value="{{item.1.hl}}" type="hidden" name="hl" readonly />
+    {% endfor %}
     <hr style="border: 10px solid #f0a502;border-radius: 5px;" />
     <div class="row">
         <h4>Frame Size</h4>
@@ -36,7 +42,7 @@
                         float: left;
                         width: 40%;
                         text-align: -webkit-left;">
-            <select id="product{{no}}" name="product">
+            <select id="product{{no}}" name="product" onchange="ddlselect{{no}}();">
                 {% for i in products %}
                 <option value="{{i.code}}-{{i}}">
                     {{i.name}}
@@ -144,7 +150,7 @@
             <input type="text" placeholder="Coating Rate" name="shuttercoat" />
         </div> {% endcomment %}
     </div>
-    <div class="row" style="border: 1px solid #b9b9b9;">
+    <div id="ilpatti{{no}}" class="row"  style="border: 1px solid #b9b9b9;">
         <div class=" col-half input-group input-group-icon">
             <label for="lpattitype">Select I/L patti:</label>
             <select id="lpattitype{{no}}" name="lpattitype">
@@ -179,7 +185,7 @@
             <input type="text" placeholder="Coating Rate" name="lpatticoat" />
         </div> {% endcomment %}
     </div>
-    <div class="row" style="border: 1px solid #b9b9b9;">
+    <div id="uchannel{{no}}" class="row" style="border: 1px solid #b9b9b9;">
         <div class=" col-half input-group input-group-icon">
             <label for="uchannel_type">Select Uchannel:</label>
             <select id="uchannel_type{{no}}" name="uchannel_type">
@@ -214,6 +220,50 @@
             <input type="text" placeholder="Coating Rate" name="uchannel_coat" />
         </div> {% endcomment %}
     </div>
+
+    <div id="clip{{no}}" class="row"
+                    style="border: 1px solid #b9b9b9; display:none;
+                        ">
+                    <div class=" col-half input-group input-group-icon">
+                    <label  for="cliptype">Select Clip:</label>
+                    <select id="cliptype{{no}}" name="cliptype">
+                        {% for i in clip %}
+                            <option value="{{i.name}}">{{i}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                    <label for="clipsize">Select length:</label>
+                    <select id="clipsize{{no}}" name="clipsize">
+                        {% for i in length %}
+                            <option value="{{i.name}}">{{i}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    <div class=" col-forth input-group input-group-icon">
+                    <input type="tel"
+                            list="clipweight"
+                            step="any"
+                            placeholder="Weight"
+                            name="clipweight"/>
+                    <datalist id="clipweight{{no}}">
+                        {% for i in length %}
+                            <option value="{{i}}">{{i}}
+                            </option>
+                        {% endfor %}
+                    </datalist>
+                    </div>
+                    <div class=" col-forth input-group input-group-icon">
+                    <input type="tel" step="any" placeholder="Rate/kg" name="cliprate" />
+                    </div>
+                    {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
+                    <input type="text" placeholder="Coating Rate" name="lpatticoat" />
+                    </div> {% endcomment %}
+                    </div>
+
+                    
     <div class="row" style="border: 1px solid #b9b9b9;">
         <div class=" col-half input-group input-group-icon">
             <label for="glasstype">Select Glass:</label>
@@ -276,3 +326,27 @@
             hx-swap="outerHTML">Add More Product</button>
     </div>
 </div>
+
+
+<script>
+    function ddlselect{{no}}()
+       {
+           var d = document.getElementById("product{{no}}");
+           var prd = d.value.split("-")[0];
+
+           if (prd === '7' || prd ==='8' ){
+            document.getElementById("ilpatti{{no}}").style.display = "none";
+            document.getElementById("uchannel{{no}}").style.display = "none";
+            document.getElementById("clip{{no}}").style.display = "block";
+           }
+           else{
+            document.getElementById("ilpatti{{no}}").style.display = "block";
+            document.getElementById("uchannel{{no}}").style.display = "block";
+            document.getElementById("clip{{no}}").style.display = "none";
+          
+           }
+
+        }
+
+
+  </script>

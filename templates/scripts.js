@@ -14,4 +14,16 @@
         }
       });
     }
+
+
+
+      function ddlselect()
+         {
+             var d=document.getElementById("product");
+             var displaytext=d.options[d.selectedIndex].text;
+             document.getElementById("lpattitype").value=venila;
+                   
+          }
+
+
     </script>

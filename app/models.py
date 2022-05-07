@@ -56,6 +56,12 @@ class Uchannel(models.Model):
     def __str__(self):
         return self.name
 
+class Clip(models.Model):
+    name = models.CharField(verbose_name="Clip Name", max_length=50)
+
+    def __str__(self):
+        return self.name
+
 
 class Glass(models.Model):
     name = models.CharField(verbose_name="Glass Name", max_length=50)

@@ -35,7 +35,8 @@
 
     li {
 
-        line-height: 2.5;
+        line-height: 1.5;
+        padding-right: 25px;
 
     }
 
@@ -63,7 +64,7 @@
     }
 
     p {
-        line-height: 30px;
+        line-height: 20px;
         font-size: large;
     }
 
@@ -73,16 +74,18 @@
         background-color: DarkSalmon;
         color: white;
     }
+    
+    .test {width: 100%; background-color: #f1f1f1;}
 
-    ol {
+    ol.terms {
         counter-reset: item
     }
 
-    li {
+    .terms li {
         display: block
     }
 
-    li:before {
+    .terms li:before {
         content: counters(item, ".") " ";
         counter-increment: item
     }
@@ -100,15 +103,17 @@
                     <td colspan="2" style="background-color: white;     border: solid white;">
                         <img src="/static/logo.jpg" alt="Paris" class="center">
                     </td>
-                    <td colspan="2" style="background-color: white;     border: solid white;">
-                        <pre>
-                        Windows Planet
-                        118 Lotus Elite Near Osia Mall, 
-                        Gotri - Sevasi Rd,
-                        Vadodara-391101
-                        Gujarat, India
-                        Tel. +91 9428 7722 12
-                        Email info@windowsplanet.com</pre>
+                    <td colspan="2" style="text-align: right;
+                    border: solid white;
+                    background-color: white;">
+                        
+                        <p style="margin-bottom: 0rem;">Windows Planet</p>
+                       <p style="margin-bottom: 0rem;"> 118 Lotus Elite Near Osia Mall, </p>
+                       <p style="margin-bottom: 0rem;">  Gotri - Sevasi Rd,</p>
+                       <p style="margin-bottom: 0rem;"> Vadodara-391101</p>
+                       <p style="margin-bottom: 0rem;"> Gujarat, India</p>
+                       <p style="margin-bottom: 0rem;"> Tel. +91 9428 7722 12</p>
+                       <p style="margin-bottom: 0rem;">Email info@windowsplanet.com</p>
                     </td>
                 </tr>
                 <tr>
@@ -139,35 +144,34 @@
                     <td style="background-color: lightgray;    border-color:lightgray">Date</td>
                     <td style="background-color: lightgray;    border-color:lightgray">Customer Ref.</td>
                     <td style="background-color: lightgray;    border-color:lightgray">Responsible</td>
-
+                </tr>
                 <tr>
-                    <td style="background-color: white; border-color:lightgray   "><p class="mb-1"><b>{{qoute}}</b></p></td>
-                    <td style="background-color: white; border-color:lightgray   ">{{quotation_date}}</td>
-                    <td style="background-color: white; border-color:lightgray   ">{{customer_reference}}</td>
-                    <td style="background-color: white; border-color:lightgray   ">{{responsible}}</td>
+                    <td style="background-color: white; border-color:lightgray   ">
+                        <p class="mb-1"><b>{{qoute}}</b></p>
+                    </td>
+                    <td style="background-color: white; border-color:lightgray   "><b>{{quotation_date}}</b></td>
+                    <td style="background-color: white; border-color:lightgray   "><b>{{customer_reference}}</b></td>
+                    <td style="background-color: white; border-color:lightgray   "><b>{{responsible}}</b></td>
                 </tr>
 
                 <tr>
                     <td colspan="4" style="background-color: white; border-color: white;">
-
-                        <br><br>
-                        <p> Dear sir/madam,</p><br><br>
+                        <br>
+                        <p> Dear sir/madam,</p>
                 </tr>
                 <tr>
                     <td colspan="4" style="background-color: white; border-color: white;">
-                        <p> Thank you for your interest in Vadodara Window’s uPVC windows & doors!<br>
-                            We are one of the leading manufacturers of premium uPVC windows and doors with<br>
+                        <p> Thank you for your interest in Vadodara Window’s uPVC windows & doors!
+                            We are one of the leading manufacturers of premium uPVC windows and doors with
                             focus on product quality and customer service.</p>
+
+                            <p> In this proposal, we have enclosed the following:</p>
                     </td>
                 </tr>
+               
                 <tr>
                     <td colspan="4" style="background-color: white; border-color: white;">
-                        <p> In this proposal, we have enclosed the following:</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="4" style="background-color: white; border-color: white;">
-                        <ol>
+                        <ol  class="terms">
                             <li> Our products' unique advantages</li>
                             <li>Product Designs, related specification and</li>
                             <li>Our terms and conditions</li>
@@ -189,26 +193,7 @@
 
     </div>
 
-
-
-
 </div>
-
-<!-- <div class="container">
-    <div class="row ">
-
-        <div class="col-12">
-            <table>
-                <tr>
-                    <td style="text-align: center;"><img src="/static/partner1.png" width="75%" alt="" class="src"></td>
-                    <td style="text-align: center;"><img src="/static/partner2.png" width="75%" alt="" class="src"></td>
-                    <td style="text-align: center;"><img src="/static/partner3.png" width="75%" alt="" class="src"></td>
-                    <td style="text-align: center;"><img src="/static/partner4.png" width="75%" alt="" class="src"></td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</div> -->
 
 
 <div class="container">
@@ -221,7 +206,7 @@
                         <tr>
                             <td colspan="1"><b>Sr.No</b></td>
                             <td colspan="3">w{{forloop.counter}}</td>
-                            <td><b>Size</b></td>
+                            <td colspan="2"><b>Size</b></td>
                             <td>W X{{ item.w }}</td>
                             <td>H X{{ item.h }}</td>
                         </tr>
@@ -330,13 +315,13 @@
                         <td>SQFT</td>
                     </tr>
 
-                    <tr>
+                    {% comment %} <tr>
                         <td>Basic Value</td>
                         <td>
                             {{total}}
                         </td>
                         <td>INR</td>
-                    </tr>
+                    </tr> {% endcomment %}
 
                     <tr style="background-color:#e5e9f3">
                         <td>Average Value per SQFT</td>
@@ -388,16 +373,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <br>
+                            <div class="test">
 
                             <div>*The area calculation will be accurate only for simple rectangular frames</div>
-<br>
+                            <br>
                             <div><b>TERMS & CONDITIONS</b></div>
 
                             <div>
-                                <ol>
+                                <ol  class="terms">
                                     <li> SPECIFICATIONS
-                                        <ol>
+                                        <ol  class="terms">
                                             <li>We use only European u-PVC profiles for manufacturing all our doors &
                                                 windows.</li>
                                             <li> All our doors & windows are manufactured in accordance with the
@@ -410,7 +395,7 @@
                                     </li>
 
                                     <li> PRICING
-                                        <ol>
+                                        <ol  class="terms">
                                             <li> All basic prices in the quotation are for white profile systems, unless
                                                 specified otherwise, as per the
                                                 sizes mentioned therein. The quote is submitted as per the initial
@@ -435,15 +420,15 @@
                                         </ol>
                                     </li>
                                     <li>VALIDITY
-                                        <ol>
+                                        <ol  class="terms">
                                             <li>
                                                 This quote is valid for acceptance within 30 Days from the date of this
                                                 quote.</li>
                                         </ol>
-                                   </li>
+                                    </li>
 
                                     <li>PAYMENT
-                                        <ol>
+                                        <ol  class="terms">
                                             <li> 100% advance is payable by the customers for order value less than or
                                                 equal to INR Three (3) Lacs.</li>
                                             <li>60% of the quote as advance along with the signed copy of the quotation
@@ -468,157 +453,196 @@
                                         </ol>
                                     </li>
                                     <li>OFFER APPROVAL
-                                        <ol>
+                                        <ol  class="terms">
 
                                             <li> The customer is requested to check the elevation, technical specs. &
-                                        locking arrangement of all the windows/doors
-                                        submitted in the quote.</li>
-                                        <li> The customer is requested to get all the pages & each window along with the
-                                        terms & conditions given in this
-                                        quote dulystamped and signed as a mark of his understanding & confirmation.</li>
-                                        <li>Vadodara Windows reserves the sole right to agree and/or honor any verbal
-                                        commitment whatsoever by any of its
-                                        representatives. No discussion shall be entertained in this regard from the
-                                        customer and/or the said representative.</li>
-                                        <li>Where the order is placed on the basis of this quotation then this
-                                        quotation and its terms and conditions
-                                        will be deemed as accepted by the customer notwithstanding any signed return of
-                                        the said documents as per para 5.2.</li>
-                                        <li> All orders undertaken by Vadodara Windows are as per the Terms and
-                                        Conditions of this document and cannot be
-                                        superceded by the customer order, unless explicitly accepted in writing by
-                                        Vadodara Windows.</li>
+                                                locking arrangement of all the windows/doors
+                                                submitted in the quote.</li>
+                                            <li> The customer is requested to get all the pages & each window along with
+                                                the
+                                                terms & conditions given in this
+                                                quote dulystamped and signed as a mark of his understanding &
+                                                confirmation.</li>
+                                            <li>Vadodara Windows reserves the sole right to agree and/or honor any
+                                                verbal
+                                                commitment whatsoever by any of its
+                                                representatives. No discussion shall be entertained in this regard from
+                                                the
+                                                customer and/or the said representative.</li>
+                                            <li>Where the order is placed on the basis of this quotation then this
+                                                quotation and its terms and conditions
+                                                will be deemed as accepted by the customer notwithstanding any signed
+                                                return of
+                                                the said documents as per para 5.2.</li>
+                                            <li> All orders undertaken by Vadodara Windows are as per the Terms and
+                                                Conditions of this document and cannot be
+                                                superceded by the customer order, unless explicitly accepted in writing
+                                                by
+                                                Vadodara Windows.</li>
 
                                         </ol>
                                     </li>
                                     <li>FABRICATION
-                                        <ol>
+                                        <ol  class="terms">
 
-                                        <li>The order (doors & windows) shall be put to fabrication only after final
-                                        site measurement of each window by our
-                                        authorized representative is approved by the site in-charge. The site in-charge
-                                        is requested to sign on each window
-                                        measurement after duly checking the window/door elevation, technical specs &
-                                        locking arrangement. No discussion shall
-                                        be entertained later in any of the said relation and all windows manufactured as
-                                        per approved quote will be
-                                        billed to the customer.</li>
-                                        <li> Changes if any, in design/specifications of doors and windows as against
-                                        the approved quotation will have
-                                        to be intimated by the customer in writing before the final measurement. A
-                                        revised quote incorporating the
-                                        said changes shall be submitted for fresh approval. This is mandatory to avoid
-                                        any discrepancies later before
-                                        approved final measurement & site preparedness report is submitted by our
-                                        representative.</li>
-                                        <li>Where the survey sizes are greater than 5 mm in either the width or the
-                                        height, the additional dimensions
-                                        will be charged to the customer at the same rate charged for the relevant
-                                        windows.
+                                            <li>The order (doors & windows) shall be put to fabrication only after final
+                                                site measurement of each window by our
+                                                authorized representative is approved by the site in-charge. The site
+                                                in-charge
+                                                is requested to sign on each window
+                                                measurement after duly checking the window/door elevation, technical
+                                                specs &
+                                                locking arrangement. No discussion shall
+                                                be entertained later in any of the said relation and all windows
+                                                manufactured as
+                                                per approved quote will be
+                                                billed to the customer.</li>
+                                            <li> Changes if any, in design/specifications of doors and windows as
+                                                against
+                                                the approved quotation will have
+                                                to be intimated by the customer in writing before the final measurement.
+                                                A
+                                                revised quote incorporating the
+                                                said changes shall be submitted for fresh approval. This is mandatory to
+                                                avoid
+                                                any discrepancies later before
+                                                approved final measurement & site preparedness report is submitted by
+                                                our
+                                                representative.</li>
+                                            <li>Where the survey sizes are greater than 5 mm in either the width or the
+                                                height, the additional dimensions
+                                                will be charged to the customer at the same rate charged for the
+                                                relevant
+                                                windows.
 
                                         </ol>
                                     </li>
                                     <li>DELIVERIES
-                                        <ol>
+                                        <ol  class="terms">
 
-                                        <li> Ex-Works, Savli GIDC, Vadodara.</li>
-                                            <li>Minimum Six to Eight weeks from the date of order confirmation with quote &
-                                        measurement confirmation and advance
-                                        payment as per our quote, whichever is later.</li>
-                                        <li> Local cartage on actuals shall be intimated before the delivery & shall be
-                                        payable directly by the customer at
-                                        site to the transporter.</li>
-                                        <li>Outstation freight shall be as per actual to be paid by the customer at
-                                        site directly to the transporter.
-                                        Transport worthy packing & Insurance of goods if required, will have to be
-                                        separately requested and shall be chargeable.</li>
-                                        <li> Customer will be responsible to take delivery of the goods on arrival at
-                                        site & get the same warehoused in covered
-                                        safe place. Vadodara Windows shall not be responsible for the safe keeping of
-                                        the goods after dispatch from its
-                                        works in Vadodara.</li>
-                                        <li>Delay in deliveries due to Force Majeure and transit delays due to reasons
-                                        beyond our control cannot be
-                                        attributed to Vadodara Windows.</li>
-                                        <li> Vadodara Windows cannot be held responsible for delays in delivery of glass
-                                        products since the same is a bought
-                                        out item for us & at times beyond our control.</li>
+                                            <li> Ex-Works, Savli GIDC, Vadodara.</li>
+                                            <li>Minimum Six to Eight weeks from the date of order confirmation with
+                                                quote &
+                                                measurement confirmation and advance
+                                                payment as per our quote, whichever is later.</li>
+                                            <li> Local cartage on actuals shall be intimated before the delivery & shall
+                                                be
+                                                payable directly by the customer at
+                                                site to the transporter.</li>
+                                            <li>Outstation freight shall be as per actual to be paid by the customer at
+                                                site directly to the transporter.
+                                                Transport worthy packing & Insurance of goods if required, will have to
+                                                be
+                                                separately requested and shall be chargeable.</li>
+                                            <li> Customer will be responsible to take delivery of the goods on arrival
+                                                at
+                                                site & get the same warehoused in covered
+                                                safe place. Vadodara Windows shall not be responsible for the safe
+                                                keeping of
+                                                the goods after dispatch from its
+                                                works in Vadodara.</li>
+                                            <li>Delay in deliveries due to Force Majeure and transit delays due to
+                                                reasons
+                                                beyond our control cannot be
+                                                attributed to Vadodara Windows.</li>
+                                            <li> Vadodara Windows cannot be held responsible for delays in delivery of
+                                                glass
+                                                products since the same is a bought
+                                                out item for us & at times beyond our control.</li>
                                         </ol>
                                     </li>
                                     <li>CLAIMS AFTER DELIVERY
-<ol>
-                                        <li> The buyer will inspect the goods delivered by Vadodara Windows within three
-                                        working days of taking the delivery and
-                                        duly inform Vadodara Windows in writing for any deviation from the approved
-                                        drawings/specifications immediately.
-                                        Claims pertaining to deviation from the approved quote shall only be
-                                        entertained.</li>
-                                        <li> Vadodara Windows will not be liable for any transit damage and would
-                                        request & advice the customer to insure
-                                        the goods</li>
+                                        <ol  class="terms">
+                                            <li> The buyer will inspect the goods delivered by Vadodara Windows within
+                                                three
+                                                working days of taking the delivery and
+                                                duly inform Vadodara Windows in writing for any deviation from the
+                                                approved
+                                                drawings/specifications immediately.
+                                                Claims pertaining to deviation from the approved quote shall only be
+                                                entertained.</li>
+                                            <li> Vadodara Windows will not be liable for any transit damage and would
+                                                request & advice the customer to insure
+                                                the goods</li>
                                         </ol>
                                     </li>
                                     <li>INSTALLATION
-                                    <ol>
-                                        <li> Vadodara Windows will mobilize manpower for installation of the delivered
-                                        doors/windows. A minimum lead time of 7
-                                        working days is requested after the receipt of written information on site
-                                        preparedness from the site in-charge. If the
-                                        installation is delayed due to non-availability of window fronts/openings or
-                                        necessary support required at the customer
-                                        end such as power, scaffolding, etc. the team will be recalled and a fresh
-                                        installation schedule shall be called for.
-                                        For outstation sites either a charge at the rate of Rs.400/per man-day for the
-                                        waiting period and/or travel
-                                        allowance for the next trip shall be charged.</li>
-                                        <li> Electricity connection required for installation shall be provided free of
-                                        cost by the customer on each floor
-                                        of the building.</li>
-                                        <li> Scaffolding, if required, is to be provided free of cost by the customer.</li>
-                                        <li>For outstation installations rail/road fare as well as the lodging and
-                                        boarding for installation supervisor/workers will have to be provided by the 
-                                        customer free of cost.</li>
-                                            </ol>
+                                        <ol  class="terms">
+                                            <li> Vadodara Windows will mobilize manpower for installation of the
+                                                delivered
+                                                doors/windows. A minimum lead time of 7
+                                                working days is requested after the receipt of written information on
+                                                site
+                                                preparedness from the site in-charge. If the
+                                                installation is delayed due to non-availability of window
+                                                fronts/openings or
+                                                necessary support required at the customer
+                                                end such as power, scaffolding, etc. the team will be recalled and a
+                                                fresh
+                                                installation schedule shall be called for.
+                                                For outstation sites either a charge at the rate of Rs.400/per man-day
+                                                for the
+                                                waiting period and/or travel
+                                                allowance for the next trip shall be charged.</li>
+                                            <li> Electricity connection required for installation shall be provided free
+                                                of
+                                                cost by the customer on each floor
+                                                of the building.</li>
+                                            <li> Scaffolding, if required, is to be provided free of cost by the
+                                                customer.</li>
+                                            <li>For outstation installations rail/road fare as well as the lodging and
+                                                boarding for installation supervisor/workers will have to be provided by
+                                                the
+                                                customer free of cost.</li>
+                                        </ol>
                                     </li>
                                     <li>AFTER SALES SUPPORT
-                                    <ol>
-                                        <li>Vadodara Windows in consonance with its European profile suppliers will
-                                        extend a warranty of 10 years on our White
-                                        profiles and 7 years on Foiled profiles for any discoloration and/or dimensional
-                                        defect in accordance of the warranty
-                                        terms & conditions laid down.</li>
-                                        <li>Vadodara Windows shall provide an operational warranty against any
-                                        manufacturing defect in the window up to a
-                                        period of twelve months from the date of supply. The terms & conditions of
-                                        warranty as specified by the hardware
-                                        manufacturer will apply.</li>
-                                        <li>Vadodara Windows would attend any problem within 72 hours from the time
-                                        complaint is logged with them. The
-                                        nature of the complaint has to be specified explicitly at the time of lodging
-                                        any such complaint. If there is any
-                                        replacement, which has been specified at the time of complaint, will be replaced
-                                        in the subsequent visit
-                                        (outstation visits will be chargeable), the time schedule for the same will be
-                                        specified by the technician after
-                                        inspection, depending on the availability of the said part in our stock.</li>
-                                        <li>Glass has to be insured by the customer after delivery as there is no
-                                        warranty or guarantee on
-                                        glass which is a bought out item.</li>
-                                        <li>After sales service support towards any manufacturing defect is free of any
-                                        labour charges for the first
-                                        twelve months from the date of supply.</li>
-</ol>
+                                        <ol  class="terms">
+                                            <li>Vadodara Windows in consonance with its European profile suppliers will
+                                                extend a warranty of 10 years on our White
+                                                profiles and 7 years on Foiled profiles for any discoloration and/or
+                                                dimensional
+                                                defect in accordance of the warranty
+                                                terms & conditions laid down.</li>
+                                            <li>Vadodara Windows shall provide an operational warranty against any
+                                                manufacturing defect in the window up to a
+                                                period of twelve months from the date of supply. The terms & conditions
+                                                of
+                                                warranty as specified by the hardware
+                                                manufacturer will apply.</li>
+                                            <li>Vadodara Windows would attend any problem within 72 hours from the time
+                                                complaint is logged with them. The
+                                                nature of the complaint has to be specified explicitly at the time of
+                                                lodging
+                                                any such complaint. If there is any
+                                                replacement, which has been specified at the time of complaint, will be
+                                                replaced
+                                                in the subsequent visit
+                                                (outstation visits will be chargeable), the time schedule for the same
+                                                will be
+                                                specified by the technician after
+                                                inspection, depending on the availability of the said part in our stock.
+                                            </li>
+                                            <li>Glass has to be insured by the customer after delivery as there is no
+                                                warranty or guarantee on
+                                                glass which is a bought out item.</li>
+                                            <li>After sales service support towards any manufacturing defect is free of
+                                                any
+                                                labour charges for the first
+                                                twelve months from the date of supply.</li>
+                                        </ol>
                                     </li>
                                     <li>Force Majeure
-                                        <ol>
+                                        <ol  class="terms">
 
-                                        <li>All deliveries & after sales service support are subject to Force Majeure</li>
+                                            <li>All deliveries & after sales service support are subject to Force
+                                                Majeure</li>
                                         </ol>
                                     </li>
                                 </ol>
 
                             </div>
-
+                            </div>
                         </div>
                     </div>
                 </div>

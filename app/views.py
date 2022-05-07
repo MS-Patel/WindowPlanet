@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 import datetime
 from django.shortcuts import render
-from app.models import Addon, Coat, Frame, Glass, Ilpatti, Length, Mnet, Product, Quotation, QuotationItem, Shutter, Uchannel, Location
+from app.models import Addon, Coat, Frame, Glass, Ilpatti, Length, Mnet, Product, Quotation, QuotationItem, Shutter, Uchannel, Location, Clip
 
 
 # Create your views here.
@@ -12,6 +12,7 @@ def home(request):
     frame = Frame.objects.all()
     shutter = Shutter.objects.all()
     ilpatti = Ilpatti.objects.all()
+    clip = Clip.objects.all()
     uch = Uchannel.objects.all()
     glass = Glass.objects.all()
     coat = Coat.objects.all()
@@ -19,18 +20,19 @@ def home(request):
     location = Location.objects.all()
     net = Mnet.objects.all()
 
-    return render(request,'index.html',{'products':prod, 'frame':frame,'shutter':shutter,'ilpatti':ilpatti,'uch':uch,'glass':glass,'net':net ,'coat':coat, 'length':length, 'location':location})
+    return render(request,'index.html',{'products':prod, 'frame':frame,'shutter':shutter,'ilpatti':ilpatti,'clip':clip,'uch':uch,'glass':glass,'net':net ,'coat':coat, 'length':length, 'location':location})
 
 def delpartial(request):
 
     return HttpResponse("")
 
 def partial(request, id):
-    
+    id = int(id) + 1 
     prod = Product.objects.all()
     frame = Frame.objects.all()
     shutter = Shutter.objects.all()
     ilpatti = Ilpatti.objects.all()
+    clip = Clip.objects.all()
     uch = Uchannel.objects.all()
     glass = Glass.objects.all()
     coat = Coat.objects.all()
@@ -38,7 +40,7 @@ def partial(request, id):
     location = Location.objects.all()
     net = Mnet.objects.all()
 
-    return render(request, 'part-form.html', {'no':id,'products':prod, 'frame':frame,'shutter':shutter,'ilpatti':ilpatti,'uch':uch,'glass':glass,'net':net ,'coat':coat, 'length':length, 'location':location })
+    return render(request, 'part-form.html', {'no':id,'products':prod, 'frame':frame,'shutter':shutter,'ilpatti':ilpatti,'clip':clip,'uch':uch,'glass':glass,'net':net ,'coat':coat, 'length':length, 'location':location })
 
 def qoute(request):
 
@@ -77,6 +79,13 @@ def qoute(request):
         uchannel_ratelist   = request.POST.getlist('uchannel_rate')
         uchannel_weightlist = request.POST.getlist('uchannel_weight')
         # coat.rate   = float(request.POST.getlist('coat.rate'))
+
+        clip_typelist     = request.POST.getlist('cliptype')
+        clip_sizelist     = request.POST.getlist('clipsize')
+        clip_ratelist     = request.POST.getlist('cliprate')
+        clip_weightlist   = request.POST.getlist('clipweight')
+        # coat.rate     = float(request.POST.getlist('clipcoat'))
+
 
         glass_typelist      = request.POST.getlist('glasstype')
         glass_ratelist      = request.POST.getlist('glassrate')
@@ -125,15 +134,45 @@ def qoute(request):
 
             lpatti_type     = lpatti_typelist[i]
             lpatti_size     = float(lpatti_sizelist[i])
-            lpatti_rate     = float(lpatti_ratelist[i])
-            lpatti_weight   = float(lpatti_weightlist[i])
+
+            if lpatti_ratelist[i]:
+                lpatti_rate = float(lpatti_ratelist[i])
+            else:
+                lpatti_rate = 0
+
+            if lpatti_weightlist[i]:    
+                lpatti_weight   = float(lpatti_weightlist[i])
+            else:
+                lpatti_weight = 0
             # coat.rate     = float(request.POST.getlist('lpatticoat'))
             
             uchannel_type   = uchannel_typelist[i]
             uchannel_size   = float(uchannel_sizelist[i])
-            uchannel_rate   = float(uchannel_ratelist[i])
-            uchannel_weight = float(uchannel_weightlist[i])
+
+            if uchannel_ratelist[i]:
+                uchannel_rate   = float(uchannel_ratelist[i])
+            else:
+                uchannel_rate = 0
+
+            if uchannel_weightlist[i]:
+                uchannel_weight = float(uchannel_weightlist[i])
+            else:
+                uchannel_weight=0
             # coat.rate   = float(request.POST.getlist('coat.rate'))
+
+            clip_type     = clip_typelist[i]
+            clip_size     = float(clip_sizelist[i])
+
+            if clip_ratelist[i]:
+                clip_rate     = float(clip_ratelist[i])
+            else:
+                clip_rate = 0
+            
+            if clip_weightlist[i]:
+                clip_weight   = float(clip_weightlist[i])
+            else:
+                clip_weight = 0
+            # coat.rate     = float(request.POST.getlist('lpatticoat'))
 
             glass_type      = glass_typelist[i]
             glass_rate      = float(glass_ratelist[i])
@@ -187,7 +226,13 @@ def qoute(request):
             il_size             = 0
             il_weight           = 0  
             il_coat             = 0
-            lpatti_prize        = 0   
+            lpatti_prize        = 0  
+            ch                  = 0
+            cw                  = 0 
+            cl_size             = 0
+            cl_weight           = 0  
+            cl_coat             = 0
+            clip_prize          = 0  
             uh                  = 0 
             uw                  = 0 
             uc_size             = 0
@@ -210,13 +255,13 @@ def qoute(request):
             
             if product == "1":
 
-                fm_size             = round((((fh*2)+(fw*2))/12) ,2)
+                fm_size             = (((fh*2)+(fw*2))/12) 
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2) #frame_size=freame_length
                 fm_coat             = round((fm_size*coat.rate),2)
                 frame_prize         = round((fm_weight*frame_rate),2)
                 
-                sh                  = round((fh-2.75),2)
-                sw                  = round(((fw-0.375)/2),2)
+                sh                  = (fh-2.75)
+                sw                  = ((fw-0.375)/2)
                 shtt_size           = round((((sh*4)+(sw*4))/12),2)
                 sh_coat             = round((shtt_size*coat.rate),2)
                 sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
@@ -227,8 +272,10 @@ def qoute(request):
                 il_coat             = round((il_size*coat.rate),2)
                 lpatti_prize        = round((il_weight * lpatti_rate),2)
 
-                uh                  = round((sh-5),2)
-                uw                  = round((sw-5),2)
+                
+
+                uh                  = (sh-5)
+                uw                  = (sw-5)
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round((uc_size * coat.rate),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
@@ -243,25 +290,25 @@ def qoute(request):
 
                 labour_rate         = round((fm_size*lab_rate) ,2)
 
-                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize +  labour_rate + transport_rate),2)
+                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat+cl_coat),2)
+                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + clip_prize + labour_rate + transport_rate),2)
                 
                
                 
 
                 
-                addon_total         += round((pl * Addon.objects.get(item="PushLock").rate),2)
-                addon_total         += round((hl * Addon.objects.get(item="HandleLock").rate),2)
-                addon_total         += round((Addon.objects.get(item="silicone").rate),2)
-                addon_total         += round((Addon.objects.get(item="screw").rate),2)
-                addon_total         += round((16 * Addon.objects.get(item="lcorner").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="malefemale").rate),2)
-                addon_total         += round((2 * Addon.objects.get(item="longpatti").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="log").rate),2)
-                addon_total         += round((8 * Addon.objects.get(item="cleat").rate),2)
-                addon_total         += round((gr_ft * Addon.objects.get(item="pvc").rate),2)
-                addon_total         += round((shtt_size * 2 * Addon.objects.get(item="woolen").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="bearing").rate),2)
+                addon_total         += (pl * Addon.objects.get(item="PushLock").rate)
+                addon_total         += (hl * Addon.objects.get(item="HandleLock").rate)
+                addon_total         += (Addon.objects.get(item="silicone").rate)
+                addon_total         += (Addon.objects.get(item="screw").rate)
+                addon_total         += (16 * Addon.objects.get(item="lcorner").rate)
+                addon_total         += (4 * Addon.objects.get(item="malefemale").rate)
+                addon_total         += (2 * Addon.objects.get(item="longpatti").rate)
+                addon_total         += (4 * Addon.objects.get(item="log").rate)
+                addon_total         += (8 * Addon.objects.get(item="cleat").rate)
+                addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
+                addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
+                addon_total         += (4 * Addon.objects.get(item="bearing").rate)
                 grand_total         = round((coat_total +total+addon_total),2)
                 addon_total         = round(addon_total,2)
                 today               = datetime.date.today() 
@@ -271,13 +318,13 @@ def qoute(request):
             
             if product == "2":
 
-                fm_size             = round((((fh*2)+(fw*2))/12) ,2)
+                fm_size             = (((fh*2)+(fw*2))/12) 
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round((fm_size*coat.rate),2)
                 frame_prize         = round((fm_weight*frame_rate),2)
                 
-                sh                  = round((fh-2.75),2)
-                sw                  = round(((fw-0.375)/2),2)
+                sh                  = (fh-2.75)
+                sw                  = ((fw-0.375)/2)
                 shtt_size           = round((((sh*6)+(sw*6))/12),2) 
                 sh_coat             = round((shtt_size*coat.rate),2)
                 sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
@@ -288,8 +335,8 @@ def qoute(request):
                 il_coat             = round((il_size*coat.rate),2)
                 lpatti_prize        = round((il_weight * lpatti_rate),2)
 
-                uh                  = round((sh-5),2)
-                uw                  = round((sw-5),2)
+                uh                  =(sh-5)
+                uw                  = (sw-5)
                 uc_size             = round((((uh+uw)*2) / 12),2)                      
                 uc_coat             = round((uc_size * coat.rate),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
@@ -301,24 +348,25 @@ def qoute(request):
 
                 net_size            = round(((sh*sw)/144),2)
                 net_prize           = round((net_size * net_rate),2)
+                labour_rate         = round((fm_size*lab_rate) ,2)
 
-                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize  + labour_rate+ transport_rate),2)
+                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat+cl_coat),2)
+                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + clip_prize + labour_rate+ transport_rate),2)
                 
 
                 
-                addon_total         += round((pl * Addon.objects.get(item="PushLock").rate),2)
-                addon_total         += round((hl * Addon.objects.get(item="HandleLock").rate),2)
-                addon_total         += round((Addon.objects.get(item="silicone").rate),2)
-                addon_total         += round((Addon.objects.get(item="screw").rate),2)
-                addon_total         += round((16 * Addon.objects.get(item="lcorner").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="malefemale").rate),2)
-                addon_total         += round((2 * Addon.objects.get(item="longpatti").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="log").rate),2)
-                addon_total         += round((8 * Addon.objects.get(item="cleat").rate),2)
-                addon_total         += round((gr_ft * Addon.objects.get(item="pvc").rate),2)
-                addon_total         += round((shtt_size * 2 * Addon.objects.get(item="woolen").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="bearing").rate),2)
+                addon_total         += (pl * Addon.objects.get(item="PushLock").rate)
+                addon_total         += (hl * Addon.objects.get(item="HandleLock").rate)
+                addon_total         += (Addon.objects.get(item="silicone").rate)
+                addon_total         += (Addon.objects.get(item="screw").rate)
+                addon_total         += (16 * Addon.objects.get(item="lcorner").rate)
+                addon_total         += (4 * Addon.objects.get(item="malefemale").rate)
+                addon_total         += (2 * Addon.objects.get(item="longpatti").rate)
+                addon_total         += (4 * Addon.objects.get(item="log").rate)
+                addon_total         += (8 * Addon.objects.get(item="cleat").rate)
+                addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
+                addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
+                addon_total         += (4 * Addon.objects.get(item="bearing").rate)
                 grand_total         = round((coat_total +total+addon_total),2)
                 addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
@@ -326,13 +374,13 @@ def qoute(request):
             
             if product == "3":
 
-                fm_size             = round((((fh*2)+(fw*2))/12),2)
+                fm_size             = (((fh*2)+(fw*2))/12)
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round((fm_size*coat.rate),2)
                 frame_prize         = round((fm_weight*frame_rate),2)
                 
-                sh                  = round((fh-2.75),2)
-                sw                  = round(((fw+2.25)/3),2)
+                sh                  = (fh-2.75)
+                sw                  = ((fw+2.25)/3)
                 shtt_size           = round((((sh*6)+(sw*6))/12),2) 
                 sh_coat             = round((shtt_size*coat.rate),2)
                 sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
@@ -343,8 +391,8 @@ def qoute(request):
                 il_coat             = round((il_size*coat.rate),2)
                 lpatti_prize        = round((il_weight * lpatti_rate),2)
 
-                uh                  = round((sh-5),2)
-                uw                  = round((sw-5),2)
+                uh                  = (sh-5)
+                uw                  = (sw-5)
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round((uc_size * coat.rate),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
@@ -356,24 +404,25 @@ def qoute(request):
 
                 net_size            = round(((sh*sw)/144),2)
                 net_prize           = round((net_size * net_rate),2)
+                labour_rate         = round((fm_size*lab_rate) ,2)
 
-                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize  + labour_rate+ transport_rate),2)
+                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat+cl_coat),2)
+                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize  + clip_prize + labour_rate+ transport_rate),2)
                 
 
                 addon_total = 0
-                addon_total         += round((pl * Addon.objects.get(item="PushLock").rate),2)
-                addon_total         += round((hl * Addon.objects.get(item="HandleLock").rate),2)
-                addon_total         += round((Addon.objects.get(item="silicone").rate),2)
-                addon_total         += round((Addon.objects.get(item="screw").rate),2)
-                addon_total         += round((16 * Addon.objects.get(item="lcorner").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="malefemale").rate),2)
-                addon_total         += round((2 * Addon.objects.get(item="longpatti").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="log").rate),2)
-                addon_total         += round((8 * Addon.objects.get(item="cleat").rate),2)
-                addon_total         += round((gr_ft * Addon.objects.get(item="pvc").rate),2)
-                addon_total         += round((shtt_size * 2 * Addon.objects.get(item="woolen").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="bearing").rate),2)
+                addon_total         += (pl * Addon.objects.get(item="PushLock").rate)
+                addon_total         += (hl * Addon.objects.get(item="HandleLock").rate)
+                addon_total         += (Addon.objects.get(item="silicone").rate)
+                addon_total         += (Addon.objects.get(item="screw").rate)
+                addon_total         += (16 * Addon.objects.get(item="lcorner").rate)
+                addon_total         += (4 * Addon.objects.get(item="malefemale").rate)
+                addon_total         += (2 * Addon.objects.get(item="longpatti").rate)
+                addon_total         += (4 * Addon.objects.get(item="log").rate)
+                addon_total         += (8 * Addon.objects.get(item="cleat").rate)
+                addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
+                addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
+                addon_total         += (4 * Addon.objects.get(item="bearing").rate)
                 grand_total         = round((coat_total +total+addon_total),2)
                 addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
@@ -381,13 +430,13 @@ def qoute(request):
             
             if product == "4":
 
-                fm_size             = round((((fh*2)+(fw*2))/12) ,2)
+                fm_size             = (((fh*2)+(fw*2))/12) 
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round((fm_size*coat.rate),2)
                 frame_prize         = round((fm_weight*frame_rate),2)
                 
-                sh                  = round((fh-2.75),2)
-                sw                  = round(((fw+2)/4),2)
+                sh                  = (fh-2.75)
+                sw                  = ((fw+2)/4)
                 shtt_size           = round((((sh*6)+(sw*6))/12),2)
                 sh_coat             = round((shtt_size*coat.rate),2)
                 sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
@@ -398,8 +447,8 @@ def qoute(request):
                 il_coat             = round((il_size*coat.rate),2)
                 lpatti_prize        = round((il_weight * lpatti_rate),2)
 
-                uh                  = round((sh-5),2)
-                uw                  = round((sw-5),2)
+                uh                  = (sh-5)
+                uw                  = (sw-5)
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round((uc_size * coat.rate),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
@@ -411,24 +460,25 @@ def qoute(request):
 
                 net_size            = round(((sh*sw)/144),2)
                 net_prize           = round((net_size * net_rate),2)
+                labour_rate         = round((fm_size*lab_rate) ,2)
 
-                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize  + labour_rate+ transport_rate),2)
+                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat+cl_coat),2)
+                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + clip_prize + uchannel_prize  + labour_rate+ transport_rate),2)
                 
 
                 addon_total = 0
-                addon_total         += round((pl * Addon.objects.get(item="PushLock").rate),2)
-                addon_total         += round((hl * Addon.objects.get(item="HandleLock").rate),2)
-                addon_total         += round((Addon.objects.get(item="silicone").rate),2)
-                addon_total         += round((Addon.objects.get(item="screw").rate),2)
-                addon_total         += round((16 * Addon.objects.get(item="lcorner").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="malefemale").rate),2)
-                addon_total         += round((2 * Addon.objects.get(item="longpatti").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="log").rate),2)
-                addon_total         += round((8 * Addon.objects.get(item="cleat").rate),2)
-                addon_total         += round((gr_ft * Addon.objects.get(item="pvc").rate),2)
-                addon_total         += round((shtt_size * 2 * Addon.objects.get(item="woolen").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="bearing").rate),2)
+                addon_total         += (pl * Addon.objects.get(item="PushLock").rate)
+                addon_total         += (hl * Addon.objects.get(item="HandleLock").rate)
+                addon_total         += (Addon.objects.get(item="silicone").rate)
+                addon_total         += (Addon.objects.get(item="screw").rate)
+                addon_total         += (16 * Addon.objects.get(item="lcorner").rate)
+                addon_total         += (4 * Addon.objects.get(item="malefemale").rate)
+                addon_total         += (2 * Addon.objects.get(item="longpatti").rate)
+                addon_total         += (4 * Addon.objects.get(item="log").rate)
+                addon_total         += (8 * Addon.objects.get(item="cleat").rate)
+                addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
+                addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
+                addon_total         += (4 * Addon.objects.get(item="bearing").rate)
                 grand_total         = round((coat_total +total+addon_total),2)
                 addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
@@ -438,13 +488,13 @@ def qoute(request):
             
             if product == "5":
 
-                fm_size             = round((((fh*2)+(fw*2))/12) ,2)
+                fm_size             = round((((fh*2)+(fw*2))/12),2) 
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round((fm_size*coat.rate),2)
                 frame_prize         = round((fm_weight*frame_rate),2)
                 
-                sh                  = round((fh-2.75),2)
-                sw                  = round(((fw+4.75)/4),2)
+                sh                  = (fh-2.75)
+                sw                  = ((fw+4.75)/4)
                 shtt_size           = round((((sh*8)+(sw*8))/12),2)
                 sh_coat             = round((shtt_size*coat.rate),2)
                 sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
@@ -455,8 +505,8 @@ def qoute(request):
                 il_coat             = round((il_size*coat.rate),2)
                 lpatti_prize        = round((il_weight * lpatti_rate),2)
 
-                uh                  = round((sh-5),2)
-                uw                  = round((sw-5),2)
+                uh                  = (sh-5)
+                uw                  = (sw-5)
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round((uc_size * coat.rate),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
@@ -468,24 +518,25 @@ def qoute(request):
 
                 net_size            = round(((sh*sw)/144),2)
                 net_prize           = round((net_size * net_rate),2)
+                labour_rate         = round((fm_size*lab_rate) ,2)
 
-                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize  + labour_rate+ transport_rate),2)
+                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat+cl_coat),2)
+                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + clip_prize + uchannel_prize  + labour_rate+ transport_rate),2)
                 
 
                 addon_total = 0
-                addon_total         += round((pl * Addon.objects.get(item="PushLock").rate),2)
-                addon_total         += round((hl * Addon.objects.get(item="HandleLock").rate),2)
-                addon_total         += round((Addon.objects.get(item="silicone").rate),2)
-                addon_total         += round((Addon.objects.get(item="screw").rate),2)
-                addon_total         += round((16 * Addon.objects.get(item="lcorner").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="malefemale").rate),2)
-                addon_total         += round((2 * Addon.objects.get(item="longpatti").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="log").rate),2)
-                addon_total         += round((8 * Addon.objects.get(item="cleat").rate),2)
-                addon_total         += round((gr_ft * Addon.objects.get(item="pvc").rate),2)
-                addon_total         += round((shtt_size * 2 * Addon.objects.get(item="woolen").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="bearing").rate),2)
+                addon_total         += (pl * Addon.objects.get(item="PushLock").rate)
+                addon_total         += (hl * Addon.objects.get(item="HandleLock").rate)
+                addon_total         += (Addon.objects.get(item="silicone").rate)
+                addon_total         += (Addon.objects.get(item="screw").rate)
+                addon_total         += (16 * Addon.objects.get(item="lcorner").rate)
+                addon_total         += (4 * Addon.objects.get(item="malefemale").rate)
+                addon_total         += (2 * Addon.objects.get(item="longpatti").rate)
+                addon_total         += (4 * Addon.objects.get(item="log").rate)
+                addon_total         += (8 * Addon.objects.get(item="cleat").rate)
+                addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
+                addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
+                addon_total         += (4 * Addon.objects.get(item="bearing").rate)
                 grand_total         = round((coat_total +total+addon_total),2)
                 addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
@@ -493,13 +544,13 @@ def qoute(request):
 
             if product == "6":
 
-                fm_size             = round((((fh*2)+(fw*2))/12) ,2)
+                fm_size             = (((fh*2)+(fw*2))/12) 
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round((fm_size*coat.rate),2)
                 frame_prize         = round((fm_weight*frame_rate),2)
                 
-                sh                  = round((fh-2.75),2)
-                sw                  = round(((fw+2.25)/3),2)
+                sh                  = (fh-2.75)
+                sw                  = ((fw+2.25)/3)
                 shtt_size           = round((((sh*8)+(sw*8))/12),2)
                 sh_coat             = round((shtt_size*coat.rate),2)
                 sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
@@ -510,8 +561,8 @@ def qoute(request):
                 il_coat             = round(((il_size*coat.rate)/12),2)
                 lpatti_prize        = round((il_weight * lpatti_rate),2)
 
-                uh                  = round((sh-5),2)
-                uw                  = round((sw-5),2)
+                uh                  = (sh-5)
+                uw                  = (sw-5)
                 uc_size             = round((((uh+uw)*2) / 12),2)
                 uc_coat             = round((uc_size * coat.rate),2)
                 uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
@@ -523,23 +574,24 @@ def qoute(request):
 
                 net_size            = round(((sh*sw)/144),2)
                 net_prize           = round((net_size * net_rate),2)
+                labour_rate         = round((fm_size*lab_rate) ,2)
 
-                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + labour_rate+ transport_rate),2)
+                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat+cl_coat),2)
+                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + clip_prize + uchannel_prize + labour_rate+ transport_rate),2)
                 
                 addon_total = 0
-                addon_total         += round((pl * Addon.objects.get(item="PushLock").rate),2)
-                addon_total         += round((hl * Addon.objects.get(item="HandleLock").rate),2)
-                addon_total         += round((Addon.objects.get(item="silicone").rate),2)
-                addon_total         += round((Addon.objects.get(item="screw").rate),2)
-                addon_total         += round((16 * Addon.objects.get(item="lcorner").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="malefemale").rate),2)
-                addon_total         += round((2 * Addon.objects.get(item="longpatti").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="log").rate),2)
-                addon_total         += round((8 * Addon.objects.get(item="cleat").rate),2)
-                addon_total         += round((gr_ft * Addon.objects.get(item="pvc").rate),2)
-                addon_total         += round((shtt_size * 2 * Addon.objects.get(item="woolen").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="bearing").rate),2)
+                addon_total         += (pl * Addon.objects.get(item="PushLock").rate)
+                addon_total         += (hl * Addon.objects.get(item="HandleLock").rate)
+                addon_total         += (Addon.objects.get(item="silicone").rate)
+                addon_total         += (Addon.objects.get(item="screw").rate)
+                addon_total         += (16 * Addon.objects.get(item="lcorner").rate)
+                addon_total         += (4 * Addon.objects.get(item="malefemale").rate)
+                addon_total         += (2 * Addon.objects.get(item="longpatti").rate)
+                addon_total         += (4 * Addon.objects.get(item="log").rate)
+                addon_total         += (8 * Addon.objects.get(item="cleat").rate)
+                addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
+                addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
+                addon_total         += (4 * Addon.objects.get(item="bearing").rate)
                 grand_total         =  round((coat_total +total+addon_total),2)
                 addon_total         = round(addon_total,2)
                 today               = datetime.date.today()
@@ -547,25 +599,26 @@ def qoute(request):
             
             if product == "7":
 
-                fm_size             = round((((fh*2)+(fw*2))/12) ,2)
+                fm_size             = (((fh*2)+(fw*2))/12) 
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
                 fm_coat             = round((fm_size*coat.rate),2)
                 frame_prize         = round((fm_weight*frame_rate),2)
                 
                 sh                  = round((fh-1.5),2)
-                sw                  = round((fw-1.5),2)
+                sw                  = (fw-1.5)
                 shtt_size           = round((((sh*2)+(sw*2))/12),2)
                 sh_coat             = round((shtt_size*coat.rate),2)
                 sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
                 shutter_prize       = round((sh_weight * shutter_rate),2)
+
+
+                ch                  = (sh-3.125)
+                cw                  = (sw-4.25)
+                cl_size             = round((((ch*2)+(cw*2))/12),2)
+                cl_coat             = round((cl_size*coat.rate),2)
+                cl_weight           = round(((cl_size * clip_weight)/ clip_size),2)
+                clip_prize          = round((cl_weight * clip_rate),2)
             
-                #uh use here as clip 
-                uh                  = round((sh-5),2)
-                uw                  = round((sw-5),2)
-                uc_size             = round((((uh+uw)*2) / 12),2)
-                uc_coat             = round((uc_size * coat.rate),2)
-                uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-                uchannel_prize      = round((uc_weight * uchannel_rate),2)
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
                 glass_prize         = round((glass_size * glass_rate),2)
@@ -573,24 +626,25 @@ def qoute(request):
 
                 net_size            = round(((sh*sw)/144),2)
                 net_prize           = round((net_size * net_rate),2)
+                labour_rate         = round((fm_size*lab_rate) ,2)
 
-                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize + labour_rate+ transport_rate),2)
+                coat_total          = round((fm_coat + sh_coat +cl_coat),2)
+                total               = round((frame_prize + shutter_prize  + glass_prize + net_prize + clip_prize + + labour_rate+ transport_rate),2)
                 
 
                 addon_total = 0
-                addon_total         += round((pl * Addon.objects.get(item="PushLock").rate),2)
-                addon_total         += round((hl * Addon.objects.get(item="HandleLock").rate),2)
-                addon_total         += round((Addon.objects.get(item="silicone").rate),2)
-                addon_total         += round((Addon.objects.get(item="screw").rate),2)
-                addon_total         += round((16 * Addon.objects.get(item="lcorner").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="malefemale").rate),2)
-                addon_total         += round((2 * Addon.objects.get(item="longpatti").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="log").rate),2)
-                addon_total         += round((8 * Addon.objects.get(item="cleat").rate),2)
-                addon_total         += round((gr_ft * Addon.objects.get(item="pvc").rate),2)
-                addon_total         += round((shtt_size * 2 * Addon.objects.get(item="woolen").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="bearing").rate),2)
+                addon_total         += (pl * Addon.objects.get(item="PushLock").rate)
+                addon_total         += (hl * Addon.objects.get(item="HandleLock").rate)
+                addon_total         += (Addon.objects.get(item="silicone").rate)
+                addon_total         += (Addon.objects.get(item="screw").rate)
+                addon_total         += (16 * Addon.objects.get(item="lcorner").rate)
+                addon_total         += (4 * Addon.objects.get(item="malefemale").rate)
+                addon_total         += (2 * Addon.objects.get(item="longpatti").rate)
+                addon_total         += (4 * Addon.objects.get(item="log").rate)
+                addon_total         += (8 * Addon.objects.get(item="cleat").rate)
+                addon_total         +=(gr_ft * Addon.objects.get(item="pvc").rate)
+                addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
+                addon_total         += (4 * Addon.objects.get(item="bearing").rate)
                 grand_total         =  round((coat_total +total+addon_total),2)
                 addon_total         = round(addon_total,2)
                 today               = datetime.date.today()       
@@ -599,56 +653,59 @@ def qoute(request):
             
             if product == "8":
 
-                fm_size             = round((((fh*2)+(fw*2))/12) ,2)
+                fm_size             = (((fh*2)+(fw*2))/12) 
                 fm_weight           = round(((fm_size * frame_weight)/ frame_size),2)
-                fm_coat             = round((fm_size*coat.rate),2)
+                fm_coat             = (fm_size*coat.rate)
                 frame_prize         = round((fm_weight*frame_rate),2)
                 
-                sh                  = round((fh-2.75),2)
-                sw                  = round(((fw-1.875)/2),2)
+                sh                  = fh-2.75
+                sw                  = fw-1.875
                 shtt_size           = round((((sh*4)+(sw*4))/12),2)
-                sh_coat             = round((shtt_size*coat.rate),2)
+                sh_coat             = (shtt_size*coat.rate)
                 sh_weight           = round(((shtt_size * shutter_weight)/ shutter_size),2)
                 shutter_prize       = round((sh_weight * shutter_rate),2)
-            
-                #uh use here as clip here
-                uh                  = round((sh-5),2)
-                uw                  = round((sw-5),2)
-                uc_size             = round((((uh+uw)*2) / 12),2)
-                uc_coat             = round((uc_size * coat.rate),2)
-                uc_weight           = round(((uc_size* uchannel_weight) / uchannel_size),2)
-                uchannel_prize      = round((uc_weight * uchannel_rate),2)
+
+
+                ch                  = sh-3.125
+                cw                  = sw-4.25
+                cl_size             = round((((ch*4)+(cw*4))/12),2)
+                cl_coat             = (cl_size*coat.rate)
+                cl_weight           = round(((cl_size * clip_weight)/ clip_size),2)
+                clip_prize          = (cl_weight * clip_rate)
+               
 
                 glass_size          = round(((((sh-3.375) * (sw-3.375))*2)/144),2)
-                glass_prize         = round((glass_size * glass_rate),2)
-                gr_ft               = round((((sh-3.375) + (sw-3.375)) * 2),2)
+                glass_prize         = (glass_size * glass_rate)
+                gr_ft               = (((sh-3.375) + (sw-3.375)) * 2)
 
                 net_size            = round(((sh*sw)/144),2)
-                net_prize           = round((net_size * net_rate),2)
+                net_prize           = (net_size * net_rate)
 
-                coat_total          = round((fm_coat + sh_coat + il_coat +uc_coat),2)
-                total               = round((frame_prize + shutter_prize + lpatti_prize + glass_prize + net_prize + uchannel_prize  + labour_rate+ transport_rate),2)
+                labour_rate         = round((fm_size*lab_rate) ,2)
+
+                coat_total          = round((fm_coat + sh_coat +cl_coat),2)
+                total               = round((frame_prize + shutter_prize + lpatti_prize + clip_prize + glass_prize + net_prize + uchannel_prize  + labour_rate+ transport_rate),2)
                 
 
                 addon_total = 0
-                addon_total         += round((pl * Addon.objects.get(item="PushLock").rate),2)
-                addon_total         += round((hl * Addon.objects.get(item="HandleLock").rate),2)
-                addon_total         += round((Addon.objects.get(item="silicone").rate),2)
-                addon_total         += round((Addon.objects.get(item="screw").rate),2)
-                addon_total         += round((16 * Addon.objects.get(item="lcorner").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="malefemale").rate),2)
-                addon_total         += round((2 * Addon.objects.get(item="longpatti").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="log").rate),2)
-                addon_total         += round((8 * Addon.objects.get(item="cleat").rate),2)
-                addon_total         += round((gr_ft * Addon.objects.get(item="pvc").rate),2)
-                addon_total         += round((shtt_size * 2 * Addon.objects.get(item="woolen").rate),2)
-                addon_total         += round((4 * Addon.objects.get(item="bearing").rate),2)
+                addon_total         += (pl * Addon.objects.get(item="PushLock").rate)
+                addon_total         += (hl * Addon.objects.get(item="HandleLock").rate)
+                addon_total         += (Addon.objects.get(item="silicone").rate)
+                addon_total         += (Addon.objects.get(item="screw").rate)
+                addon_total         += (16 * Addon.objects.get(item="lcorner").rate)
+                addon_total         += (4 * Addon.objects.get(item="malefemale").rate)
+                addon_total         += (2 * Addon.objects.get(item="longpatti").rate)
+                addon_total         += (4 * Addon.objects.get(item="log").rate)
+                addon_total         += (8 * Addon.objects.get(item="cleat").rate)
+                addon_total         += (gr_ft * Addon.objects.get(item="pvc").rate)
+                addon_total         += (shtt_size * 2 * Addon.objects.get(item="woolen").rate)
+                addon_total         += (4 * Addon.objects.get(item="bearing").rate)
                 grand_total          = round((coat_total +total+addon_total),2)
                 addon_total         = round(addon_total,2)
                 """Shows todays current time and date."""
                 today               = datetime.date.today()
                  
-                
+               
             data = {
                 "Frame":
                     {
@@ -680,6 +737,8 @@ def qoute(request):
                     'prize':lpatti_prize,
                     },
 
+                
+
                 "U Channel":
                     {
                     'type':uchannel_type,
@@ -688,6 +747,16 @@ def qoute(request):
                     'rate':uchannel_rate,
                     'coat':uc_coat,
                     'prize':uchannel_prize,
+                    },
+
+                "Clip":
+                    {
+                    'type':clip_type ,
+                    'size':str(cl_size)+ ' ft',
+                    'weight':cl_weight,
+                    'rate':clip_rate,
+                    'coat':cl_coat,
+                    'prize':clip_prize,
                     },
 
                 "Net":
@@ -794,18 +863,19 @@ def tab_content(request):
             frame = framelist[i]  #section details
             coating = coatinglist[i]
             glass = glasslist[i]
-            value = round(( ma * qty),2)
+            value = ( ma * qty)
             # total_qid = q 
             total_qty += round((qty),2) # end quantity
             totalvalue += round((ma),2)
             totalsize +=round((size),2) # end total area  Sq.Ft. per Window
-            average_value = round((totalvalue / totalsize),2)
+            
             totallabour += round((labt),2)
            
             
             transt = float(translist[i])
             total_transport_charge += round(( transt),2)
-            finalvalue += round((value),2)
+            finalvalue += value
+            average_value = round((finalvalue / totalsize),2)
             gst=round(((finalvalue * 18 ) /100),2)
             summery = round((finalvalue+gst),2)
            
@@ -845,7 +915,7 @@ def tab_content(request):
         qt.totalsize = totalsize # total size sq.ft per window
         qt.totallabour = totallabour
         qt.total_transport_charge = total_transport_charge
-        qt.finalvalue = finalvalue
+        qt.finalvalue = round(finalvalue,2)
         qt.gst = gst    
         qt.summery = summery
         qt.save()

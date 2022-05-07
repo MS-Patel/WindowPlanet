@@ -300,6 +300,8 @@
     <script src="https://unpkg.com/htmx.org@1.7.0"></script>
 </head>
 <body>
+
+
     <div class="container">
         <form action="{% url 'app:qoute' %}" method="post">
             {% csrf_token %}
@@ -332,7 +334,7 @@
                         float: left;
                         width: 40%;
                         text-align: -webkit-left;">
-                        <select id="product" name="product">
+                        <select id="product" name="product" onchange="ddlselect();">
                             {% for i in products %}
                             <option value="{{i.code}}-{{i}}">
                                 {{i.name}}
@@ -469,11 +471,11 @@
                         <input type="text" placeholder="Coating Rate" name="shuttercoat" />
                     </div> {% endcomment %}
                 </div>
-                <div class="row"
+                <div id="ilpatti"  class="row"
                      style="border: 1px solid #b9b9b9;
                             ">
                     <div class=" col-half input-group input-group-icon">
-                        <label for="lpattitype">Select I/L patti:</label>
+                        <label  for="lpattitype">Select I/L patti:</label>
                         <select id="lpattitype" name="lpattitype">
                             {% for i in ilpatti %}
                                 <option value="{{i}}">{{i}}
@@ -510,7 +512,11 @@
                         <input type="text" placeholder="Coating Rate" name="lpatticoat" />
                     </div> {% endcomment %}
                 </div>
-                <div class="row"
+
+                    
+
+                
+                <div id="uchannel"  class="row"
                      style="border: 1px solid #b9b9b9;
                            ">
                     <div class=" col-half input-group input-group-icon">
@@ -551,6 +557,49 @@
                         <input type="text" placeholder="Coating Rate" name="uchannel_coat" />
                     </div>  -->
                 </div>
+
+                <div id="clip" class="row"
+                    style="border: 1px solid #b9b9b9; display:none;
+                        ">
+                    <div class=" col-half input-group input-group-icon">
+                    <label  for="cliptype">Select Clip:</label>
+                    <select id="cliptype" name="cliptype">
+                        {% for i in clip %}
+                            <option value="{{i}}">{{i}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    <div class=" col-half input-group input-group-icon">
+                    <label for="clipsize">Select length:</label>
+                    <select id="clipsize" name="clipsize">
+                        {% for i in length %}
+                            <option value="{{i}}">{{i}}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    <div class=" col-forth input-group input-group-icon">
+                    <input type="tel"
+                            list="clipweight"
+                            step="any"
+                            placeholder="Weight"
+                            name="clipweight"/>
+                    <datalist id="clipweight">
+                        {% for i in length %}
+                            <option value="{{i}}">{{i}}
+                            </option>
+                        {% endfor %}
+                    </datalist>
+                    </div>
+                    <div class=" col-forth input-group input-group-icon">
+                    <input type="tel" step="any" placeholder="Rate/kg" name="cliprate" />
+                    </div>
+                    {% comment %} <div class=" col-half input-group input-group-icon" style="float: right;">
+                    <input type="text" placeholder="Coating Rate" name="lpatticoat" />
+                    </div> {% endcomment %}
+                    </div>
+
                 <div class="row"
                      style="border: 1px solid #b9b9b9;
                             ">
@@ -651,6 +700,30 @@
             </div>
         </form>
     </div>
+
+    <script>
+        function ddlselect()
+           {
+               var d = document.getElementById("product");
+               var prd = d.value.split("-")[0];
+
+               if (prd === '7' || prd ==='8' ){
+                document.getElementById("ilpatti").style.display = "none";
+                document.getElementById("uchannel").style.display = "none";
+                document.getElementById("clip").style.display = "block";
+               }
+               else{
+                document.getElementById("ilpatti").style.display = "block";
+                document.getElementById("uchannel").style.display = "block";
+                document.getElementById("clip").style.display = "none";
+              
+               }
+
+            }
+  
+  
+      </script>
+    <script src="/templates/scripts.js"></script>
 </body>
 </html>
 

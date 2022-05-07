@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Addon, Coat, Quotation, QuotationItem, Frame, Glass, Ilpatti, Length, Location, Mnet, Product, Shutter, Uchannel
+from app.models import Addon, Coat, Quotation, QuotationItem, Frame, Glass, Ilpatti, Length, Location, Mnet, Product, Shutter, Uchannel,Clip
 
 # Register your models here.
 
@@ -15,6 +15,7 @@ admin.site.register(Glass)
 admin.site.register(Mnet)
 admin.site.register(Quotation)
 admin.site.register(QuotationItem)
+admin.site.register(Clip)
 
 @admin.register(Addon)
 class AddonAdmin(admin.ModelAdmin):
