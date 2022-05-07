@@ -711,9 +711,9 @@ def qoute(request):
                     {
                     'type'           :frame_type,
                     'size'           :str(round(fm_size,2))+' ft',
-                    'weight'           :round(fm_weight,2),
+                    'weight'         :round(fm_weight,2),
                     'rate'           :frame_rate,
-                    'coat'           :fm_coat,
+                    'coat'           :round(fm_coat,2),
                     'prize'           :round(frame_prize,2),
                     },
                 
@@ -723,7 +723,7 @@ def qoute(request):
                     'size'           :str(round(shtt_size,2))+ ' ft',
                     'weight'           :round(sh_weight,2),
                     'rate'           :shutter_rate,
-                    'coat'           :sh_coat,
+                    'coat'           :round(sh_coat,2),
                     'prize'           :round(shutter_prize,2),
                     },
                             
@@ -733,7 +733,7 @@ def qoute(request):
                     'size'           :str(round(il_size,2))+ ' ft',
                     'weight'           :round(il_weight,2),
                     'rate'           :lpatti_rate,
-                    'coat'           :il_coat,
+                    'coat'           :round(il_coat,2),
                     'prize'           :round(lpatti_prize,2),
                     },
                 "U Channel":
@@ -742,7 +742,7 @@ def qoute(request):
                     'size'           :str(round(uc_size,2))+ ' ft',
                     'weight'           :round(uc_weight,2),
                     'rate'           :uchannel_rate,
-                    'coat'           :uc_coat,
+                    'coat'           :round(uc_coat,2),
                     'prize'           :round(uchannel_prize,2),
                     },
 
@@ -752,7 +752,7 @@ def qoute(request):
                     'size'           :str(round(cl_size,2))+ ' ft',
                     'weight'           :round(cl_weight,2),
                     'rate'           :clip_rate,
-                    'coat'           :cl_coat,
+                    'coat'           :round(cl_coat,2),
                     'prize'           :round(clip_prize,2),
                     },
 
@@ -784,7 +784,7 @@ def qoute(request):
                 
                 
             } 
-            total = {'qouteid':qouteid,'qty':qty,'w': fw,'h': fh,'product':product_name, 'pd_code':product,'location':location,'pl':pl,'hl':hl,'coating':coating,'total':total ,'coat_total':coat_total,'grand_total':grand_total,'addon_total':addon_total}
+            total = {'qouteid':qouteid,'qty':qty,'w': fw,'h': fh,'product':product_name, 'pd_code':product,'location':location,'pl':pl,'hl':hl,'coating':coating,'total':round(total,2) ,'coat_total': round(coat_total,2),'grand_total':grand_total,'addon_total':addon_total}
             item = [data,total]
             qoute.append(item)
         context = { 'qoutes':qoute,'today':today}
