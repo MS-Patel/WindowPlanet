@@ -895,8 +895,8 @@ def tab_content(request):
                                             )
         qt.quotation_date=quotation_date                                    
         qt.qoute = qoute
-        qt.total_qty = total_qty # total qty
-        qt.totalvalue = totalvalue
+        qt.total_qty = total_qty, # total qty
+        qt.totalvalue = round(totalvalue,2)
         qt.to =to
         qt.to_address_line_1 =to_address_line_1
         qt.to_address_line_2 =to_address_line_2
@@ -909,12 +909,12 @@ def tab_content(request):
         qt.deliver_to_contact_no =deliver_to_contact_no
         qt.customer_reference =customer_reference
         qt.responsible =responsible
-        qt.totalsize = totalsize # total size sq.ft per window
-        qt.totallabour = totallabour
-        qt.total_transport_charge = total_transport_charge
-        qt.finalvalue = finalvalue
-        qt.gst = gst    
-        qt.summery = summery
+        qt.totalsize                = round(totalsize,2) # total size sq.ft per window
+        qt.totallabour              = round(totallabour,2)
+        qt.total_transport_charge   = round(total_transport_charge,2)
+        qt.finalvalue               = round(finalvalue,2)
+        qt.gst                      = round(gst,2)    
+        qt.summery = round(summery,2)
         qt.save()
 
         # qt=Quotation.objects.last()
