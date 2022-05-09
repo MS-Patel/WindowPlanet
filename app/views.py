@@ -853,7 +853,7 @@ def tab_content(request):
             hl = hllist[i]
             total =float(totallist[i])
             ma= round(( total+((total * m ) /100)),2)
-            qty = int(qtylist[i]) #quantity
+            qty = round(qtylist[i],0) #quantity
             labt = float(lablist[i])
             frame = framelist[i]  #section details
             coating = coatinglist[i]
