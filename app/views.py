@@ -853,7 +853,7 @@ def tab_content(request):
             hl = hllist[i]
             total =float(totallist[i])
             ma= round(( total+((total * m ) /100)),2)
-            qty = float(qtylist[i]) #quantity
+            qty = int(qtylist[i]) #quantity
             labt = float(lablist[i])
             frame = framelist[i]  #section details
             coating = coatinglist[i]
@@ -912,7 +912,7 @@ def tab_content(request):
         qt.total_transport_charge   = round(total_transport_charge,2)
         qt.finalvalue               = round(finalvalue,2)
         qt.gst                      = round(gst,2)    
-        qt.summery = round(summery,2)
+        qt.summery =                round(summery,2)
         qt.save()
 
         # qt=Quotation.objects.last()
