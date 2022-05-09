@@ -840,8 +840,6 @@ def tab_content(request):
         
 
 
-        
-
         for i,j in enumerate(productlist):
 
             product = Product.objects.get(code=j)
@@ -849,18 +847,18 @@ def tab_content(request):
             w = float(wlist[i])#width
             h = float(hlist[i]) #height
             m = float(mlist[i]) 
-            size = ( (w*h)/144)  #Sq.Ft. per Window
+            size = round(((w*h)/144),2)  #Sq.Ft. per Window
             location = locationlist[i]   #location
             pl = pllist[i]
             hl = hllist[i]
             total =float(totallist[i])
-            ma= ( total+((total * m ) /100))
+            ma= round(( total+((total * m ) /100)),2)
             qty = float(qtylist[i]) #quantity
             labt = float(lablist[i])
             frame = framelist[i]  #section details
             coating = coatinglist[i]
             glass = glasslist[i]
-            value = ( ma * qty)
+            value = round(( ma * qty),2)
             # total_qid = q 
             total_qty += (qty) # end quantity
             totalvalue += (ma)
